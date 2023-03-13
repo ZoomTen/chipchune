@@ -37,6 +37,30 @@
                                 <a class="function" href="#FurnaceModule.__init__">FurnaceModule</a>
                         </li>
                         <li>
+                                <a class="variable" href="#FurnaceModule.file_name">file_name</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#FurnaceModule.meta">meta</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#FurnaceModule.chips">chips</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#FurnaceModule.compat_flags">compat_flags</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#FurnaceModule.subsongs">subsongs</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#FurnaceModule.patchbay">patchbay</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#FurnaceModule.instruments">instruments</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#FurnaceModule.patterns">patterns</a>
+                        </li>
+                        <li>
                                 <a class="function" href="#FurnaceModule.load_from_file">load_from_file</a>
                         </li>
                         <li>
@@ -89,6 +113,10 @@
     <a class="headerlink" href="#FurnaceModule"></a>
     
             <div class="docstring"><p>Represents a Furnace .fur file.</p>
+
+<p>When possible, instrument objects etc. will use the latest format as its internal
+representation. For example, old instruments will internally be converted into the
+"new" instrument-feature-list format.</p>
 </div>
 
 
@@ -113,6 +141,112 @@ it will parse it from the stream.</p>
 
 <p>Defaults to None.</p></li>
 </ul>
+</div>
+
+
+                            </div>
+                            <div id="FurnaceModule.file_name" class="classattr">
+                                <div class="attr variable">
+            <span class="name">file_name</span><span class="annotation">: Union[str, NoneType]</span>
+
+        
+    </div>
+    <a class="headerlink" href="#FurnaceModule.file_name"></a>
+    
+            <div class="docstring"><p>Original file name, if the object was initialized with one.</p>
+</div>
+
+
+                            </div>
+                            <div id="FurnaceModule.meta" class="classattr">
+                                <div class="attr variable">
+            <span class="name">meta</span><span class="annotation">: <a href="data_types.html#ModuleMeta">chipchune.furnace.data_types.ModuleMeta</a></span>
+
+        
+    </div>
+    <a class="headerlink" href="#FurnaceModule.meta"></a>
+    
+            <div class="docstring"><p>Metadata concerning the module.</p>
+</div>
+
+
+                            </div>
+                            <div id="FurnaceModule.chips" class="classattr">
+                                <div class="attr variable">
+            <span class="name">chips</span><span class="annotation">: <a href="data_types.html#ChipList">chipchune.furnace.data_types.ChipList</a></span>
+
+        
+    </div>
+    <a class="headerlink" href="#FurnaceModule.chips"></a>
+    
+            <div class="docstring"><p>List of chips used in the module.</p>
+</div>
+
+
+                            </div>
+                            <div id="FurnaceModule.compat_flags" class="classattr">
+                                <div class="attr variable">
+            <span class="name">compat_flags</span><span class="annotation">: <a href="data_types.html#ModuleCompatFlags">chipchune.furnace.data_types.ModuleCompatFlags</a></span>
+
+        
+    </div>
+    <a class="headerlink" href="#FurnaceModule.compat_flags"></a>
+    
+            <div class="docstring"><p>Compat flags settings within the module.</p>
+</div>
+
+
+                            </div>
+                            <div id="FurnaceModule.subsongs" class="classattr">
+                                <div class="attr variable">
+            <span class="name">subsongs</span><span class="annotation">: List[<a href="data_types.html#SubSong">chipchune.furnace.data_types.SubSong</a>]</span>
+
+        
+    </div>
+    <a class="headerlink" href="#FurnaceModule.subsongs"></a>
+    
+            <div class="docstring"><p>Subsongs contained within the module. Although the first subsong
+and the others are internally stored separately, they're organized
+into a list here for convenience.</p>
+</div>
+
+
+                            </div>
+                            <div id="FurnaceModule.patchbay" class="classattr">
+                                <div class="attr variable">
+            <span class="name">patchbay</span><span class="annotation">: List[<a href="data_types.html#PatchBay">chipchune.furnace.data_types.PatchBay</a>]</span>
+
+        
+    </div>
+    <a class="headerlink" href="#FurnaceModule.patchbay"></a>
+    
+            <div class="docstring"><p>List of patchbay connections.</p>
+</div>
+
+
+                            </div>
+                            <div id="FurnaceModule.instruments" class="classattr">
+                                <div class="attr variable">
+            <span class="name">instruments</span><span class="annotation">: List[<a href="instrument.html#FurnaceInstrument">chipchune.furnace.instrument.FurnaceInstrument</a>]</span>
+
+        
+    </div>
+    <a class="headerlink" href="#FurnaceModule.instruments"></a>
+    
+            <div class="docstring"><p>List of all instruments in the module.</p>
+</div>
+
+
+                            </div>
+                            <div id="FurnaceModule.patterns" class="classattr">
+                                <div class="attr variable">
+            <span class="name">patterns</span><span class="annotation">: List[<a href="data_types.html#FurnacePattern">chipchune.furnace.data_types.FurnacePattern</a>]</span>
+
+        
+    </div>
+    <a class="headerlink" href="#FurnaceModule.patterns"></a>
+    
+            <div class="docstring"><p>List of all patterns in the module.</p>
 </div>
 
 
@@ -220,20 +354,45 @@ from in_name to out_name. Does not need instantiation.</p>
     </div>
     <a class="headerlink" href="#FurnaceModule.get_num_channels"></a>
     
-    
+            <div class="docstring"><p>Retrieve the number of total channels in the module.</p>
+
+<h6 id="returns">Returns</h6>
+
+<blockquote>
+  <p>Channel sum across all chips.</p>
+</blockquote>
+</div>
+
 
                             </div>
                             <div id="FurnaceModule.get_pattern" class="classattr">
                                 <div class="attr function">
             
         <span class="def">def</span>
-        <span class="name">get_pattern</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="bp">self</span>,</span><span class="param">	<span class="n">channel</span>,</span><span class="param">	<span class="n">index</span>,</span><span class="param">	<span class="n">subsong</span><span class="o">=</span><span class="mi">0</span></span><span class="return-annotation">) -> <span class="n">Union</span><span class="p">[</span><span class="n"><a href="data_types.html#FurnacePattern">chipchune.furnace.data_types.FurnacePattern</a></span><span class="p">,</span> <span class="n">NoneType</span><span class="p">]</span>:</span></span>
+        <span class="name">get_pattern</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="bp">self</span>,</span><span class="param">	<span class="n">channel</span><span class="p">:</span> <span class="nb">int</span>,</span><span class="param">	<span class="n">index</span><span class="p">:</span> <span class="nb">int</span>,</span><span class="param">	<span class="n">subsong</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span></span><span class="return-annotation">) -> <span class="n">Union</span><span class="p">[</span><span class="n"><a href="data_types.html#FurnacePattern">chipchune.furnace.data_types.FurnacePattern</a></span><span class="p">,</span> <span class="n">NoneType</span><span class="p">]</span>:</span></span>
 
         
     </div>
     <a class="headerlink" href="#FurnaceModule.get_pattern"></a>
     
-    
+            <div class="docstring"><p>Gets one pattern object from a module.</p>
+
+<h6 id="parameters">Parameters</h6>
+
+<ul>
+<li><strong>channel</strong>:  Which channel to use (zero-indexed), e.g. to get VRC6
+in a NES+VRC6 module, use <code>5</code>.</li>
+<li><strong>index</strong>:  The index of the pattern within the subsong.</li>
+<li><strong>subsong</strong>:  The subsong number.</li>
+</ul>
+
+<h6 id="returns">Returns</h6>
+
+<blockquote>
+  <p>FurnacePattern object or None if no such pattern exists.</p>
+</blockquote>
+</div>
+
 
                             </div>
                 </section>

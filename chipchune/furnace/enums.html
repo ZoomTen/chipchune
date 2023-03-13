@@ -1218,7 +1218,7 @@
     </div>
     <a class="headerlink" href="#DelayBehavior"></a>
     
-            <div class="docstring"><p>Options for CompatFlagInfo.cut_delay_effect_policy.</p>
+            <div class="docstring"><p>Options for <code><a href="data_types.html#ModuleCompatFlags.cut_delay_effect_policy">chipchune.furnace.data_types.ModuleCompatFlags.cut_delay_effect_policy</a></code>.</p>
 </div>
 
 
@@ -1279,7 +1279,7 @@
     </div>
     <a class="headerlink" href="#JumpTreatment"></a>
     
-            <div class="docstring"><p>Options for CompatFlagInfo.jump_treatment.</p>
+            <div class="docstring"><p>Options for <code><a href="data_types.html#ModuleCompatFlags.jump_treatment">chipchune.furnace.data_types.ModuleCompatFlags.jump_treatment</a></code>.</p>
 </div>
 
 
@@ -1545,7 +1545,8 @@
     </div>
     <a class="headerlink" href="#MacroItem"></a>
     
-            <div class="docstring"><p>Special values used only in this parser</p>
+            <div class="docstring"><p>Special values used only in this parser, to allow data editing similar to that
+of Furnace itself.</p>
 </div>
 
 
@@ -1991,7 +1992,7 @@
     </div>
     <a class="headerlink" href="#OpMacroCode"></a>
     
-            <div class="docstring"><p>An enumeration.</p>
+            <div class="docstring"><p>Controls which FM parameter a macro should change.</p>
 </div>
 
 
@@ -2256,7 +2257,7 @@
     </div>
     <a class="headerlink" href="#MacroType"></a>
     
-            <div class="docstring"><p>Used in FurnaceInstrumentDX</p>
+            <div class="docstring"><p>Instrument macro type (version 120+).</p>
 </div>
 
 
@@ -2317,7 +2318,7 @@
     </div>
     <a class="headerlink" href="#MacroSize"></a>
     
-            <div class="docstring"><p>Used in FurnaceInstrumentDX</p>
+            <div class="docstring"><p>Type of value stored in the instrument file.</p>
 </div>
 
 
@@ -2390,7 +2391,7 @@
     </div>
     <a class="headerlink" href="#GBHwCommand"></a>
     
-            <div class="docstring"><p>An enumeration.</p>
+            <div class="docstring"><p>Game Boy hardware envelope commands.</p>
 </div>
 
 
@@ -2632,7 +2633,7 @@
     </div>
     <a class="headerlink" href="#InstrumentType"></a>
     
-            <div class="docstring"><p>Instrument types currently available as of dev127</p>
+            <div class="docstring"><p>Instrument types currently available as of version 144.</p>
 </div>
 
 
@@ -3257,15 +3258,15 @@
     </div>
     <a class="headerlink" href="#ChipType"></a>
     
-            <div class="docstring"><p>FurnaceTracker planned and implemented chip database.
-Contains console name, ID and number of channels.</p>
+            <div class="docstring"><p>Furnace chip database, either planned or implemented.
+Contains console name, chip ID and number of channels.</p>
 </div>
 
 
                             <div id="ChipType.YMU759" class="classattr">
                                 <div class="attr variable">
-            <span class="name">YMU759</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">YMU759</span>
+            <span class="name">YMU759</span>        =
+<span class="default_value">YMU759 (0x01), 17 channels</span>
 
         
     </div>
@@ -3276,8 +3277,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.GENESIS" class="classattr">
                                 <div class="attr variable">
-            <span class="name">GENESIS</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">GENESIS</span>
+            <span class="name">GENESIS</span>        =
+<span class="default_value">GENESIS (0x02), 10 channels</span>
 
         
     </div>
@@ -3288,8 +3289,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.SMS" class="classattr">
                                 <div class="attr variable">
-            <span class="name">SMS</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">SMS</span>
+            <span class="name">SMS</span>        =
+<span class="default_value">SMS (0x03), 4 channels</span>
 
         
     </div>
@@ -3300,8 +3301,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.GB" class="classattr">
                                 <div class="attr variable">
-            <span class="name">GB</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">GB</span>
+            <span class="name">GB</span>        =
+<span class="default_value">GB (0x04), 4 channels</span>
 
         
     </div>
@@ -3312,8 +3313,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.PCE" class="classattr">
                                 <div class="attr variable">
-            <span class="name">PCE</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">PCE</span>
+            <span class="name">PCE</span>        =
+<span class="default_value">PCE (0x05), 6 channels</span>
 
         
     </div>
@@ -3324,8 +3325,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.NES" class="classattr">
                                 <div class="attr variable">
-            <span class="name">NES</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">NES</span>
+            <span class="name">NES</span>        =
+<span class="default_value">NES (0x06), 5 channels</span>
 
         
     </div>
@@ -3336,8 +3337,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.C64_8580" class="classattr">
                                 <div class="attr variable">
-            <span class="name">C64_8580</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">C64_8580</span>
+            <span class="name">C64_8580</span>        =
+<span class="default_value">C64_8580 (0x07), 4 channels</span>
 
         
     </div>
@@ -3348,8 +3349,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.SEGA_ARCADE" class="classattr">
                                 <div class="attr variable">
-            <span class="name">SEGA_ARCADE</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">SEGA_ARCADE</span>
+            <span class="name">SEGA_ARCADE</span>        =
+<span class="default_value">SEGA_ARCADE (0x08), 13 channels</span>
 
         
     </div>
@@ -3360,8 +3361,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.NEO_GEO_CD" class="classattr">
                                 <div class="attr variable">
-            <span class="name">NEO_GEO_CD</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">NEO_GEO_CD</span>
+            <span class="name">NEO_GEO_CD</span>        =
+<span class="default_value">NEO_GEO_CD (0x09), 13 channels</span>
 
         
     </div>
@@ -3372,8 +3373,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.GENESIS_EX" class="classattr">
                                 <div class="attr variable">
-            <span class="name">GENESIS_EX</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">GENESIS_EX</span>
+            <span class="name">GENESIS_EX</span>        =
+<span class="default_value">GENESIS_EX (0x42), 13 channels</span>
 
         
     </div>
@@ -3384,8 +3385,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.SMS_JP" class="classattr">
                                 <div class="attr variable">
-            <span class="name">SMS_JP</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">SMS_JP</span>
+            <span class="name">SMS_JP</span>        =
+<span class="default_value">SMS_JP (0x43), 13 channels</span>
 
         
     </div>
@@ -3396,8 +3397,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.NES_VRC7" class="classattr">
                                 <div class="attr variable">
-            <span class="name">NES_VRC7</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">NES_VRC7</span>
+            <span class="name">NES_VRC7</span>        =
+<span class="default_value">NES_VRC7 (0x46), 11 channels</span>
 
         
     </div>
@@ -3408,8 +3409,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.C64_6581" class="classattr">
                                 <div class="attr variable">
-            <span class="name">C64_6581</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">C64_6581</span>
+            <span class="name">C64_6581</span>        =
+<span class="default_value">C64_6581 (0x47), 3 channels</span>
 
         
     </div>
@@ -3420,8 +3421,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.NEO_GEO_CD_EX" class="classattr">
                                 <div class="attr variable">
-            <span class="name">NEO_GEO_CD_EX</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">NEO_GEO_CD_EX</span>
+            <span class="name">NEO_GEO_CD_EX</span>        =
+<span class="default_value">NEO_GEO_CD_EX (0x49), 16 channels</span>
 
         
     </div>
@@ -3432,8 +3433,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.AY38910" class="classattr">
                                 <div class="attr variable">
-            <span class="name">AY38910</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">AY38910</span>
+            <span class="name">AY38910</span>        =
+<span class="default_value">AY38910 (0x80), 3 channels</span>
 
         
     </div>
@@ -3444,8 +3445,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.AMIGA" class="classattr">
                                 <div class="attr variable">
-            <span class="name">AMIGA</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">AMIGA</span>
+            <span class="name">AMIGA</span>        =
+<span class="default_value">AMIGA (0x81), 4 channels</span>
 
         
     </div>
@@ -3456,8 +3457,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.YM2151" class="classattr">
                                 <div class="attr variable">
-            <span class="name">YM2151</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">YM2151</span>
+            <span class="name">YM2151</span>        =
+<span class="default_value">YM2151 (0x82), 8 channels</span>
 
         
     </div>
@@ -3468,8 +3469,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.YM2612" class="classattr">
                                 <div class="attr variable">
-            <span class="name">YM2612</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">YM2612</span>
+            <span class="name">YM2612</span>        =
+<span class="default_value">YM2612 (0x83), 6 channels</span>
 
         
     </div>
@@ -3480,8 +3481,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.TIA" class="classattr">
                                 <div class="attr variable">
-            <span class="name">TIA</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">TIA</span>
+            <span class="name">TIA</span>        =
+<span class="default_value">TIA (0x84), 2 channels</span>
 
         
     </div>
@@ -3492,8 +3493,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.VIC20" class="classattr">
                                 <div class="attr variable">
-            <span class="name">VIC20</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">VIC20</span>
+            <span class="name">VIC20</span>        =
+<span class="default_value">VIC20 (0x85), 4 channels</span>
 
         
     </div>
@@ -3504,8 +3505,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.PET" class="classattr">
                                 <div class="attr variable">
-            <span class="name">PET</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">PET</span>
+            <span class="name">PET</span>        =
+<span class="default_value">PET (0x86), 1 channel</span>
 
         
     </div>
@@ -3516,8 +3517,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.SNES" class="classattr">
                                 <div class="attr variable">
-            <span class="name">SNES</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">SNES</span>
+            <span class="name">SNES</span>        =
+<span class="default_value">SNES (0x87), 8 channels</span>
 
         
     </div>
@@ -3528,8 +3529,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.VRC6" class="classattr">
                                 <div class="attr variable">
-            <span class="name">VRC6</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">VRC6</span>
+            <span class="name">VRC6</span>        =
+<span class="default_value">VRC6 (0x88), 3 channels</span>
 
         
     </div>
@@ -3540,8 +3541,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.OPLL" class="classattr">
                                 <div class="attr variable">
-            <span class="name">OPLL</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">OPLL</span>
+            <span class="name">OPLL</span>        =
+<span class="default_value">OPLL (0x89), 9 channels</span>
 
         
     </div>
@@ -3552,8 +3553,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.FDS" class="classattr">
                                 <div class="attr variable">
-            <span class="name">FDS</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">FDS</span>
+            <span class="name">FDS</span>        =
+<span class="default_value">FDS (0x8a), 1 channel</span>
 
         
     </div>
@@ -3564,8 +3565,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.MMC5" class="classattr">
                                 <div class="attr variable">
-            <span class="name">MMC5</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">MMC5</span>
+            <span class="name">MMC5</span>        =
+<span class="default_value">MMC5 (0x8b), 3 channels</span>
 
         
     </div>
@@ -3576,8 +3577,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.N163" class="classattr">
                                 <div class="attr variable">
-            <span class="name">N163</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">N163</span>
+            <span class="name">N163</span>        =
+<span class="default_value">N163 (0x8c), 8 channels</span>
 
         
     </div>
@@ -3588,8 +3589,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.OPN" class="classattr">
                                 <div class="attr variable">
-            <span class="name">OPN</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">OPN</span>
+            <span class="name">OPN</span>        =
+<span class="default_value">OPN (0x8d), 6 channels</span>
 
         
     </div>
@@ -3600,8 +3601,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.PC98" class="classattr">
                                 <div class="attr variable">
-            <span class="name">PC98</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">PC98</span>
+            <span class="name">PC98</span>        =
+<span class="default_value">PC98 (0x8e), 16 channels</span>
 
         
     </div>
@@ -3612,8 +3613,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.OPL" class="classattr">
                                 <div class="attr variable">
-            <span class="name">OPL</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">OPL</span>
+            <span class="name">OPL</span>        =
+<span class="default_value">OPL (0x8f), 9 channels</span>
 
         
     </div>
@@ -3624,8 +3625,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.OPL2" class="classattr">
                                 <div class="attr variable">
-            <span class="name">OPL2</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">OPL2</span>
+            <span class="name">OPL2</span>        =
+<span class="default_value">OPL2 (0x90), 9 channels</span>
 
         
     </div>
@@ -3636,8 +3637,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.OPL3" class="classattr">
                                 <div class="attr variable">
-            <span class="name">OPL3</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">OPL3</span>
+            <span class="name">OPL3</span>        =
+<span class="default_value">OPL3 (0x91), 18 channels</span>
 
         
     </div>
@@ -3648,8 +3649,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.MULTIPCM" class="classattr">
                                 <div class="attr variable">
-            <span class="name">MULTIPCM</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">MULTIPCM</span>
+            <span class="name">MULTIPCM</span>        =
+<span class="default_value">MULTIPCM (0x92), 24 channels</span>
 
         
     </div>
@@ -3660,8 +3661,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.PC_SPEAKER" class="classattr">
                                 <div class="attr variable">
-            <span class="name">PC_SPEAKER</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">PC_SPEAKER</span>
+            <span class="name">PC_SPEAKER</span>        =
+<span class="default_value">PC_SPEAKER (0x93), 1 channel</span>
 
         
     </div>
@@ -3672,8 +3673,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.POKEY" class="classattr">
                                 <div class="attr variable">
-            <span class="name">POKEY</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">POKEY</span>
+            <span class="name">POKEY</span>        =
+<span class="default_value">POKEY (0x94), 4 channels</span>
 
         
     </div>
@@ -3684,8 +3685,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.RF5C68" class="classattr">
                                 <div class="attr variable">
-            <span class="name">RF5C68</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">RF5C68</span>
+            <span class="name">RF5C68</span>        =
+<span class="default_value">RF5C68 (0x95), 8 channels</span>
 
         
     </div>
@@ -3696,8 +3697,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.WONDERSWAN" class="classattr">
                                 <div class="attr variable">
-            <span class="name">WONDERSWAN</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">WONDERSWAN</span>
+            <span class="name">WONDERSWAN</span>        =
+<span class="default_value">WONDERSWAN (0x96), 4 channels</span>
 
         
     </div>
@@ -3708,8 +3709,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.SAA1099" class="classattr">
                                 <div class="attr variable">
-            <span class="name">SAA1099</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">SAA1099</span>
+            <span class="name">SAA1099</span>        =
+<span class="default_value">SAA1099 (0x97), 6 channels</span>
 
         
     </div>
@@ -3720,8 +3721,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.OPZ" class="classattr">
                                 <div class="attr variable">
-            <span class="name">OPZ</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">OPZ</span>
+            <span class="name">OPZ</span>        =
+<span class="default_value">OPZ (0x98), 8 channels</span>
 
         
     </div>
@@ -3732,8 +3733,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.POKEMON_MINI" class="classattr">
                                 <div class="attr variable">
-            <span class="name">POKEMON_MINI</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">POKEMON_MINI</span>
+            <span class="name">POKEMON_MINI</span>        =
+<span class="default_value">POKEMON_MINI (0x99), 1 channel</span>
 
         
     </div>
@@ -3744,8 +3745,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.AY8930" class="classattr">
                                 <div class="attr variable">
-            <span class="name">AY8930</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">AY8930</span>
+            <span class="name">AY8930</span>        =
+<span class="default_value">AY8930 (0x9a), 3 channels</span>
 
         
     </div>
@@ -3756,8 +3757,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.SEGAPCM" class="classattr">
                                 <div class="attr variable">
-            <span class="name">SEGAPCM</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">SEGAPCM</span>
+            <span class="name">SEGAPCM</span>        =
+<span class="default_value">SEGAPCM (0x9b), 16 channels</span>
 
         
     </div>
@@ -3768,8 +3769,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.VIRTUAL_BOY" class="classattr">
                                 <div class="attr variable">
-            <span class="name">VIRTUAL_BOY</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">VIRTUAL_BOY</span>
+            <span class="name">VIRTUAL_BOY</span>        =
+<span class="default_value">VIRTUAL_BOY (0x9c), 6 channels</span>
 
         
     </div>
@@ -3780,8 +3781,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.VRC7" class="classattr">
                                 <div class="attr variable">
-            <span class="name">VRC7</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">VRC7</span>
+            <span class="name">VRC7</span>        =
+<span class="default_value">VRC7 (0x9d), 6 channels</span>
 
         
     </div>
@@ -3792,8 +3793,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.YM2610B" class="classattr">
                                 <div class="attr variable">
-            <span class="name">YM2610B</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">YM2610B</span>
+            <span class="name">YM2610B</span>        =
+<span class="default_value">YM2610B (0x9e), 16 channels</span>
 
         
     </div>
@@ -3804,8 +3805,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.ZX_BEEPER" class="classattr">
                                 <div class="attr variable">
-            <span class="name">ZX_BEEPER</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">ZX_BEEPER</span>
+            <span class="name">ZX_BEEPER</span>        =
+<span class="default_value">ZX_BEEPER (0x9f), 6 channels</span>
 
         
     </div>
@@ -3816,8 +3817,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.YM2612_EX" class="classattr">
                                 <div class="attr variable">
-            <span class="name">YM2612_EX</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">YM2612_EX</span>
+            <span class="name">YM2612_EX</span>        =
+<span class="default_value">YM2612_EX (0xa0), 9 channels</span>
 
         
     </div>
@@ -3828,8 +3829,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.SCC" class="classattr">
                                 <div class="attr variable">
-            <span class="name">SCC</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">SCC</span>
+            <span class="name">SCC</span>        =
+<span class="default_value">SCC (0xa1), 5 channels</span>
 
         
     </div>
@@ -3840,8 +3841,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.OPL_DRUMS" class="classattr">
                                 <div class="attr variable">
-            <span class="name">OPL_DRUMS</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">OPL_DRUMS</span>
+            <span class="name">OPL_DRUMS</span>        =
+<span class="default_value">OPL_DRUMS (0xa2), 11 channels</span>
 
         
     </div>
@@ -3852,8 +3853,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.OPL2_DRUMS" class="classattr">
                                 <div class="attr variable">
-            <span class="name">OPL2_DRUMS</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">OPL2_DRUMS</span>
+            <span class="name">OPL2_DRUMS</span>        =
+<span class="default_value">OPL2_DRUMS (0xa3), 11 channels</span>
 
         
     </div>
@@ -3864,8 +3865,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.OPL3_DRUMS" class="classattr">
                                 <div class="attr variable">
-            <span class="name">OPL3_DRUMS</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">OPL3_DRUMS</span>
+            <span class="name">OPL3_DRUMS</span>        =
+<span class="default_value">OPL3_DRUMS (0xa4), 20 channels</span>
 
         
     </div>
@@ -3876,8 +3877,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.NEO_GEO" class="classattr">
                                 <div class="attr variable">
-            <span class="name">NEO_GEO</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">NEO_GEO</span>
+            <span class="name">NEO_GEO</span>        =
+<span class="default_value">NEO_GEO (0xa5), 14 channels</span>
 
         
     </div>
@@ -3888,8 +3889,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.NEO_GEO_EX" class="classattr">
                                 <div class="attr variable">
-            <span class="name">NEO_GEO_EX</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">NEO_GEO_EX</span>
+            <span class="name">NEO_GEO_EX</span>        =
+<span class="default_value">NEO_GEO_EX (0xa6), 17 channels</span>
 
         
     </div>
@@ -3900,8 +3901,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.OPLL_DRUMS" class="classattr">
                                 <div class="attr variable">
-            <span class="name">OPLL_DRUMS</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">OPLL_DRUMS</span>
+            <span class="name">OPLL_DRUMS</span>        =
+<span class="default_value">OPLL_DRUMS (0xa7), 11 channels</span>
 
         
     </div>
@@ -3912,8 +3913,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.LYNX" class="classattr">
                                 <div class="attr variable">
-            <span class="name">LYNX</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">LYNX</span>
+            <span class="name">LYNX</span>        =
+<span class="default_value">LYNX (0xa8), 4 channels</span>
 
         
     </div>
@@ -3924,8 +3925,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.SEGAPCM_DMF" class="classattr">
                                 <div class="attr variable">
-            <span class="name">SEGAPCM_DMF</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">SEGAPCM_DMF</span>
+            <span class="name">SEGAPCM_DMF</span>        =
+<span class="default_value">SEGAPCM_DMF (0xa9), 5 channels</span>
 
         
     </div>
@@ -3936,8 +3937,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.MSM6295" class="classattr">
                                 <div class="attr variable">
-            <span class="name">MSM6295</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">MSM6295</span>
+            <span class="name">MSM6295</span>        =
+<span class="default_value">MSM6295 (0xaa), 4 channels</span>
 
         
     </div>
@@ -3948,8 +3949,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.MSM6258" class="classattr">
                                 <div class="attr variable">
-            <span class="name">MSM6258</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">MSM6258</span>
+            <span class="name">MSM6258</span>        =
+<span class="default_value">MSM6258 (0xab), 1 channel</span>
 
         
     </div>
@@ -3960,8 +3961,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.COMMANDER_X16" class="classattr">
                                 <div class="attr variable">
-            <span class="name">COMMANDER_X16</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">COMMANDER_X16</span>
+            <span class="name">COMMANDER_X16</span>        =
+<span class="default_value">COMMANDER_X16 (0xac), 17 channels</span>
 
         
     </div>
@@ -3972,8 +3973,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.BUBBLE_SYSTEM_WSG" class="classattr">
                                 <div class="attr variable">
-            <span class="name">BUBBLE_SYSTEM_WSG</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">BUBBLE_SYSTEM_WSG</span>
+            <span class="name">BUBBLE_SYSTEM_WSG</span>        =
+<span class="default_value">BUBBLE_SYSTEM_WSG (0xad), 2 channels</span>
 
         
     </div>
@@ -3984,8 +3985,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.OPL4" class="classattr">
                                 <div class="attr variable">
-            <span class="name">OPL4</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">OPL4</span>
+            <span class="name">OPL4</span>        =
+<span class="default_value">OPL4 (0xae), 42 channels</span>
 
         
     </div>
@@ -3996,8 +3997,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.OPL4_DRUMS" class="classattr">
                                 <div class="attr variable">
-            <span class="name">OPL4_DRUMS</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">OPL4_DRUMS</span>
+            <span class="name">OPL4_DRUMS</span>        =
+<span class="default_value">OPL4_DRUMS (0xaf), 44 channels</span>
 
         
     </div>
@@ -4008,8 +4009,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.SETA" class="classattr">
                                 <div class="attr variable">
-            <span class="name">SETA</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">SETA</span>
+            <span class="name">SETA</span>        =
+<span class="default_value">SETA (0xb0), 16 channels</span>
 
         
     </div>
@@ -4020,8 +4021,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.ES5506" class="classattr">
                                 <div class="attr variable">
-            <span class="name">ES5506</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">ES5506</span>
+            <span class="name">ES5506</span>        =
+<span class="default_value">ES5506 (0xb1), 32 channels</span>
 
         
     </div>
@@ -4032,8 +4033,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.Y8950" class="classattr">
                                 <div class="attr variable">
-            <span class="name">Y8950</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">Y8950</span>
+            <span class="name">Y8950</span>        =
+<span class="default_value">Y8950 (0xb2), 10 channels</span>
 
         
     </div>
@@ -4044,8 +4045,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.Y8950_DRUMS" class="classattr">
                                 <div class="attr variable">
-            <span class="name">Y8950_DRUMS</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">Y8950_DRUMS</span>
+            <span class="name">Y8950_DRUMS</span>        =
+<span class="default_value">Y8950_DRUMS (0xb3), 12 channels</span>
 
         
     </div>
@@ -4056,8 +4057,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.SCC_PLUS" class="classattr">
                                 <div class="attr variable">
-            <span class="name">SCC_PLUS</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">SCC_PLUS</span>
+            <span class="name">SCC_PLUS</span>        =
+<span class="default_value">SCC_PLUS (0xb4), 5 channels</span>
 
         
     </div>
@@ -4068,8 +4069,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.TSU" class="classattr">
                                 <div class="attr variable">
-            <span class="name">TSU</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">TSU</span>
+            <span class="name">TSU</span>        =
+<span class="default_value">TSU (0xb5), 8 channels</span>
 
         
     </div>
@@ -4080,8 +4081,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.YM2203_EX" class="classattr">
                                 <div class="attr variable">
-            <span class="name">YM2203_EX</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">YM2203_EX</span>
+            <span class="name">YM2203_EX</span>        =
+<span class="default_value">YM2203_EX (0xb6), 9 channels</span>
 
         
     </div>
@@ -4092,8 +4093,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.YM2608_EX" class="classattr">
                                 <div class="attr variable">
-            <span class="name">YM2608_EX</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">YM2608_EX</span>
+            <span class="name">YM2608_EX</span>        =
+<span class="default_value">YM2608_EX (0xb7), 19 channels</span>
 
         
     </div>
@@ -4104,8 +4105,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.YMZ280B" class="classattr">
                                 <div class="attr variable">
-            <span class="name">YMZ280B</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">YMZ280B</span>
+            <span class="name">YMZ280B</span>        =
+<span class="default_value">YMZ280B (0xb8), 8 channels</span>
 
         
     </div>
@@ -4116,8 +4117,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.NAMCO" class="classattr">
                                 <div class="attr variable">
-            <span class="name">NAMCO</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">NAMCO</span>
+            <span class="name">NAMCO</span>        =
+<span class="default_value">NAMCO (0xb9), 3 channels</span>
 
         
     </div>
@@ -4128,8 +4129,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.N15XX" class="classattr">
                                 <div class="attr variable">
-            <span class="name">N15XX</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">N15XX</span>
+            <span class="name">N15XX</span>        =
+<span class="default_value">N15XX (0xba), 8 channels</span>
 
         
     </div>
@@ -4140,8 +4141,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.CUS30" class="classattr">
                                 <div class="attr variable">
-            <span class="name">CUS30</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">CUS30</span>
+            <span class="name">CUS30</span>        =
+<span class="default_value">CUS30 (0xbb), 8 channels</span>
 
         
     </div>
@@ -4152,8 +4153,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.MSM5232" class="classattr">
                                 <div class="attr variable">
-            <span class="name">MSM5232</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">MSM5232</span>
+            <span class="name">MSM5232</span>        =
+<span class="default_value">MSM5232 (0xbc), 8 channels</span>
 
         
     </div>
@@ -4164,8 +4165,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.YM2612_PLUS_EX" class="classattr">
                                 <div class="attr variable">
-            <span class="name">YM2612_PLUS_EX</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">YM2612_PLUS_EX</span>
+            <span class="name">YM2612_PLUS_EX</span>        =
+<span class="default_value">YM2612_PLUS_EX (0xbd), 11 channels</span>
 
         
     </div>
@@ -4176,8 +4177,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.YM2612_PLUS" class="classattr">
                                 <div class="attr variable">
-            <span class="name">YM2612_PLUS</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">YM2612_PLUS</span>
+            <span class="name">YM2612_PLUS</span>        =
+<span class="default_value">YM2612_PLUS (0xbe), 7 channels</span>
 
         
     </div>
@@ -4188,8 +4189,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.T6W28" class="classattr">
                                 <div class="attr variable">
-            <span class="name">T6W28</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">T6W28</span>
+            <span class="name">T6W28</span>        =
+<span class="default_value">T6W28 (0xbf), 4 channels</span>
 
         
     </div>
@@ -4200,8 +4201,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.PCM_DAC" class="classattr">
                                 <div class="attr variable">
-            <span class="name">PCM_DAC</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">PCM_DAC</span>
+            <span class="name">PCM_DAC</span>        =
+<span class="default_value">PCM_DAC (0xc0), 1 channel</span>
 
         
     </div>
@@ -4212,8 +4213,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.YM2612_CSM" class="classattr">
                                 <div class="attr variable">
-            <span class="name">YM2612_CSM</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">YM2612_CSM</span>
+            <span class="name">YM2612_CSM</span>        =
+<span class="default_value">YM2612_CSM (0xc1), 10 channels</span>
 
         
     </div>
@@ -4224,8 +4225,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.NEO_GEO_CSM" class="classattr">
                                 <div class="attr variable">
-            <span class="name">NEO_GEO_CSM</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">NEO_GEO_CSM</span>
+            <span class="name">NEO_GEO_CSM</span>        =
+<span class="default_value">NEO_GEO_CSM (0xc2), 18 channels</span>
 
         
     </div>
@@ -4236,8 +4237,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.YM2203_CSM" class="classattr">
                                 <div class="attr variable">
-            <span class="name">YM2203_CSM</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">YM2203_CSM</span>
+            <span class="name">YM2203_CSM</span>        =
+<span class="default_value">YM2203_CSM (0xc3), 10 channels</span>
 
         
     </div>
@@ -4248,8 +4249,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.YM2608_CSM" class="classattr">
                                 <div class="attr variable">
-            <span class="name">YM2608_CSM</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">YM2608_CSM</span>
+            <span class="name">YM2608_CSM</span>        =
+<span class="default_value">YM2608_CSM (0xc4), 20 channels</span>
 
         
     </div>
@@ -4260,8 +4261,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.YM2610B_CSM" class="classattr">
                                 <div class="attr variable">
-            <span class="name">YM2610B_CSM</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">YM2610B_CSM</span>
+            <span class="name">YM2610B_CSM</span>        =
+<span class="default_value">YM2610B_CSM (0xc5), 20 channels</span>
 
         
     </div>
@@ -4272,8 +4273,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.K007232" class="classattr">
                                 <div class="attr variable">
-            <span class="name">K007232</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">K007232</span>
+            <span class="name">K007232</span>        =
+<span class="default_value">K007232 (0xc6), 2 channels</span>
 
         
     </div>
@@ -4284,8 +4285,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.GA20" class="classattr">
                                 <div class="attr variable">
-            <span class="name">GA20</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">GA20</span>
+            <span class="name">GA20</span>        =
+<span class="default_value">GA20 (0xc7), 4 channels</span>
 
         
     </div>
@@ -4296,8 +4297,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.SM8521" class="classattr">
                                 <div class="attr variable">
-            <span class="name">SM8521</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">SM8521</span>
+            <span class="name">SM8521</span>        =
+<span class="default_value">SM8521 (0xc8), 3 channels</span>
 
         
     </div>
@@ -4308,8 +4309,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.M114S" class="classattr">
                                 <div class="attr variable">
-            <span class="name">M114S</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">M114S</span>
+            <span class="name">M114S</span>        =
+<span class="default_value">M114S (0xc9), 16 channels</span>
 
         
     </div>
@@ -4321,7 +4322,7 @@ Contains console name, ID and number of channels.</p>
                             <div id="ChipType.ZX_BEEPER_QUADTONE" class="classattr">
                                 <div class="attr variable">
             <span class="name">ZX_BEEPER_QUADTONE</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">ZX_BEEPER_QUADTONE</span>
+<span class="default_value">ZX_BEEPER_QUADTONE (0xca), 5 channels</span>
 
         
     </div>
@@ -4333,7 +4334,7 @@ Contains console name, ID and number of channels.</p>
                             <div id="ChipType.PV_1000" class="classattr">
                                 <div class="attr variable">
             <span class="name">PV_1000</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">PV_1000</span>
+<span class="default_value">PV_1000 (0xcb), 3 channels</span>
 
         
     </div>
@@ -4344,8 +4345,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.YM2610B_EX" class="classattr">
                                 <div class="attr variable">
-            <span class="name">YM2610B_EX</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">YM2610B_EX</span>
+            <span class="name">YM2610B_EX</span>        =
+<span class="default_value">YM2610B_EX (0xde), 19 channels</span>
 
         
     </div>
@@ -4356,8 +4357,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.QSOUND" class="classattr">
                                 <div class="attr variable">
-            <span class="name">QSOUND</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">QSOUND</span>
+            <span class="name">QSOUND</span>        =
+<span class="default_value">QSOUND (0xe0), 19 channels</span>
 
         
     </div>
@@ -4368,8 +4369,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.PONG" class="classattr">
                                 <div class="attr variable">
-            <span class="name">PONG</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">PONG</span>
+            <span class="name">PONG</span>        =
+<span class="default_value">PONG (0xfc), 1 channel</span>
 
         
     </div>
@@ -4380,8 +4381,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.DUMMY" class="classattr">
                                 <div class="attr variable">
-            <span class="name">DUMMY</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">DUMMY</span>
+            <span class="name">DUMMY</span>        =
+<span class="default_value">DUMMY (0xfd), 1 channel</span>
 
         
     </div>
@@ -4392,8 +4393,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.RESERVED_1" class="classattr">
                                 <div class="attr variable">
-            <span class="name">RESERVED_1</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">RESERVED_1</span>
+            <span class="name">RESERVED_1</span>        =
+<span class="default_value">RESERVED_1 (0xfe), 1 channel</span>
 
         
     </div>
@@ -4404,8 +4405,8 @@ Contains console name, ID and number of channels.</p>
                             </div>
                             <div id="ChipType.RESERVED_2" class="classattr">
                                 <div class="attr variable">
-            <span class="name">RESERVED_2</span><span class="annotation">: Tuple[int, int]</span>        =
-<span class="default_value">RESERVED_2</span>
+            <span class="name">RESERVED_2</span>        =
+<span class="default_value">RESERVED_2 (0xff), 1 channel</span>
 
         
     </div>
@@ -4435,7 +4436,7 @@ Contains console name, ID and number of channels.</p>
     </div>
     <a class="headerlink" href="#InputPortSet"></a>
     
-            <div class="docstring"><p>An enumeration.</p>
+            <div class="docstring"><p>Devices which contain an "input" port.</p>
 </div>
 
 
@@ -4484,7 +4485,7 @@ Contains console name, ID and number of channels.</p>
     </div>
     <a class="headerlink" href="#OutputPortSet"></a>
     
-            <div class="docstring"><p>An enumeration.</p>
+            <div class="docstring"><p>Devices which contain an "output" port.</p>
 </div>
 
 
@@ -4929,7 +4930,7 @@ Contains console name, ID and number of channels.</p>
     </div>
     <a class="headerlink" href="#WaveFX"></a>
     
-            <div class="docstring"><p>An enumeration.</p>
+            <div class="docstring"><p>Used in <code><a href="data_types.html#InsFeatureWaveSynth.effect">chipchune.furnace.data_types.InsFeatureWaveSynth.effect</a></code>.</p>
 </div>
 
 
@@ -5146,7 +5147,7 @@ Contains console name, ID and number of channels.</p>
     </div>
     <a class="headerlink" href="#ESFilterMode"></a>
     
-            <div class="docstring"><p>An enumeration.</p>
+            <div class="docstring"><p>Used in <code><a href="data_types.html#InsFeatureES5506.filter_mode">chipchune.furnace.data_types.InsFeatureES5506.filter_mode</a></code>.</p>
 </div>
 
 
@@ -5219,7 +5220,7 @@ Contains console name, ID and number of channels.</p>
     </div>
     <a class="headerlink" href="#GainMode"></a>
     
-            <div class="docstring"><p>An enumeration.</p>
+            <div class="docstring"><p>Used in <code><a href="data_types.html#InsFeatureSNES.gain_mode">chipchune.furnace.data_types.InsFeatureSNES.gain_mode</a></code>.</p>
 </div>
 
 
@@ -5304,7 +5305,7 @@ Contains console name, ID and number of channels.</p>
     </div>
     <a class="headerlink" href="#SNESSusMode"></a>
     
-            <div class="docstring"><p>An enumeration.</p>
+            <div class="docstring"><p>Used in <code><a href="data_types.html#InsFeatureSNES.sus">chipchune.furnace.data_types.InsFeatureSNES.sus</a></code>.</p>
 </div>
 
 

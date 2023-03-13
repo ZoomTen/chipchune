@@ -36,12 +36,21 @@
                         <li>
                                 <a class="function" href="#ChipInfo.__init__">ChipInfo</a>
                         </li>
+                        <li>
+                                <a class="variable" href="#ChipInfo.surround">surround</a>
+                        </li>
                 </ul>
 
             </li>
             <li>
                     <a class="class" href="#ModuleMeta">ModuleMeta</a>
                             <ul class="memberlist">
+                        <li>
+                                <a class="function" href="#ModuleMeta.__init__">ModuleMeta</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#ModuleMeta.album">album</a>
+                        </li>
                 </ul>
 
             </li>
@@ -66,6 +75,9 @@
             <li>
                     <a class="class" href="#ChannelDisplayInfo">ChannelDisplayInfo</a>
                             <ul class="memberlist">
+                        <li>
+                                <a class="function" href="#ChannelDisplayInfo.__init__">ChannelDisplayInfo</a>
+                        </li>
                 </ul>
 
             </li>
@@ -95,6 +107,9 @@
                             <ul class="memberlist">
                         <li>
                                 <a class="function" href="#SubSong.__init__">SubSong</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#SubSong.speed_pattern">speed_pattern</a>
                         </li>
                 </ul>
 
@@ -126,12 +141,24 @@
             <li>
                     <a class="class" href="#InputPatchBayEntry">InputPatchBayEntry</a>
                             <ul class="memberlist">
+                        <li>
+                                <a class="variable" href="#InputPatchBayEntry.set">set</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#InputPatchBayEntry.port">port</a>
+                        </li>
                 </ul>
 
             </li>
             <li>
                     <a class="class" href="#OutputPatchBayEntry">OutputPatchBayEntry</a>
                             <ul class="memberlist">
+                        <li>
+                                <a class="variable" href="#OutputPatchBayEntry.set">set</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#OutputPatchBayEntry.port">port</a>
+                        </li>
                 </ul>
 
             </li>
@@ -397,15 +424,6 @@
 
             </li>
             <li>
-                    <a class="class" href="#InsFeaturePointerAbstract">InsFeaturePointerAbstract</a>
-                            <ul class="memberlist">
-                        <li>
-                                <a class="function" href="#InsFeaturePointerAbstract.__init__">InsFeaturePointerAbstract</a>
-                        </li>
-                </ul>
-
-            </li>
-            <li>
                     <a class="class" href="#InsFeatureSampleList">InsFeatureSampleList</a>
                             <ul class="memberlist">
                         <li>
@@ -454,20 +472,34 @@
     </div>
     <a class="headerlink" href="#ChipInfo"></a>
     
-            <div class="docstring"><p>Data for a single chip defn.</p>
+            <div class="docstring"><p>Information on a single chip.</p>
 </div>
 
 
                             <div id="ChipInfo.__init__" class="classattr">
                                 <div class="attr function">
             
-        <span class="name">ChipInfo</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="nb">type</span><span class="p">:</span> <span class="n"><a href="enums.html#ChipType">chipchune.furnace.enums.ChipType</a></span>,</span><span class="param">	<span class="n">flags</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">factory</span><span class="o">&gt;</span></span>)</span>
+        <span class="name">ChipInfo</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="nb">type</span><span class="p">:</span> <span class="n"><a href="enums.html#ChipType">chipchune.furnace.enums.ChipType</a></span>,</span><span class="param">	<span class="n">flags</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">factory</span><span class="o">&gt;</span>,</span><span class="param">	<span class="n">panning</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>,</span><span class="param">	<span class="n">surround</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>,</span><span class="param">	<span class="n">volume</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span></span>)</span>
 
         
     </div>
     <a class="headerlink" href="#ChipInfo.__init__"></a>
     
     
+
+                            </div>
+                            <div id="ChipInfo.surround" class="classattr">
+                                <div class="attr variable">
+            <span class="name">surround</span><span class="annotation">: float</span>        =
+<span class="default_value">0.0</span>
+
+        
+    </div>
+    <a class="headerlink" href="#ChipInfo.surround"></a>
+    
+            <div class="docstring"><p>Chip front/rear balance.</p>
+</div>
+
 
                             </div>
                 </section>
@@ -485,6 +517,32 @@
 </div>
 
 
+                            <div id="ModuleMeta.__init__" class="classattr">
+                                <div class="attr function">
+            
+        <span class="name">ModuleMeta</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>,</span><span class="param">	<span class="n">name_jp</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>,</span><span class="param">	<span class="n">author</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>,</span><span class="param">	<span class="n">author_jp</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>,</span><span class="param">	<span class="n">album</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>,</span><span class="param">	<span class="n">album_jp</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>,</span><span class="param">	<span class="n">sys_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;Sega Genesis/Mega Drive&#39;</span>,</span><span class="param">	<span class="n">sys_name_jp</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>,</span><span class="param">	<span class="n">comment</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>,</span><span class="param">	<span class="n">version</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>,</span><span class="param">	<span class="n">tuning</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">440.0</span></span>)</span>
+
+        
+    </div>
+    <a class="headerlink" href="#ModuleMeta.__init__"></a>
+    
+    
+
+                            </div>
+                            <div id="ModuleMeta.album" class="classattr">
+                                <div class="attr variable">
+            <span class="name">album</span><span class="annotation">: str</span>        =
+<span class="default_value">&#39;&#39;</span>
+
+        
+    </div>
+    <a class="headerlink" href="#ModuleMeta.album"></a>
+    
+            <div class="docstring"><p>Can also be the game name or container name.</p>
+</div>
+
+
+                            </div>
                 </section>
                 <section id="TimingInfo">
                     <div class="attr class">
@@ -530,7 +588,7 @@
                             <div id="ChipList.__init__" class="classattr">
                                 <div class="attr function">
             
-        <span class="name">ChipList</span><span class="signature pdoc-code condensed">(<span class="param"><span class="nb">list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n"><a href="#ChipInfo">chipchune.furnace.data_types.ChipInfo</a></span><span class="p">]</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">factory</span><span class="o">&gt;</span></span>)</span>
+        <span class="name">ChipList</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="nb">list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n"><a href="#ChipInfo">chipchune.furnace.data_types.ChipInfo</a></span><span class="p">]</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">factory</span><span class="o">&gt;</span>,</span><span class="param">	<span class="n">master_volume</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">2.0</span></span>)</span>
 
         
     </div>
@@ -554,6 +612,18 @@
 </div>
 
 
+                            <div id="ChannelDisplayInfo.__init__" class="classattr">
+                                <div class="attr function">
+            
+        <span class="name">ChannelDisplayInfo</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>,</span><span class="param">	<span class="n">abbreviation</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>,</span><span class="param">	<span class="n">collapsed</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">shown</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span></span>)</span>
+
+        
+    </div>
+    <a class="headerlink" href="#ChannelDisplayInfo.__init__"></a>
+    
+    
+
+                            </div>
                 </section>
                 <section id="ModuleCompatFlags">
                     <div class="attr class">
@@ -658,6 +728,19 @@
     
 
                             </div>
+                            <div id="SubSong.speed_pattern" class="classattr">
+                                <div class="attr variable">
+            <span class="name">speed_pattern</span><span class="annotation">: List[int]</span>
+
+        
+    </div>
+    <a class="headerlink" href="#SubSong.speed_pattern"></a>
+    
+            <div class="docstring"><p>Maximum 16 entries.</p>
+</div>
+
+
+                            </div>
                 </section>
                 <section id="FurnaceRow">
                     <div class="attr class">
@@ -669,7 +752,9 @@
     </div>
     <a class="headerlink" href="#FurnaceRow"></a>
     
-    
+            <div class="docstring"><p>Represents a single row in a pattern.</p>
+</div>
+
 
                             <div id="FurnaceRow.__init__" class="classattr">
                                 <div class="attr function">
@@ -698,7 +783,7 @@
 <h6 id="returns">Returns</h6>
 
 <blockquote>
-  <p>Furnace clipboard data</p>
+  <p>Furnace clipboard data (str)</p>
 </blockquote>
 </div>
 
@@ -715,7 +800,9 @@
     </div>
     <a class="headerlink" href="#FurnacePattern"></a>
     
-    
+            <div class="docstring"><p>Represents one pattern in a module.</p>
+</div>
+
 
                             <div id="FurnacePattern.__init__" class="classattr">
                                 <div class="attr function">
@@ -765,6 +852,32 @@
 </div>
 
 
+                            <div id="InputPatchBayEntry.set" class="classattr">
+                                <div class="attr variable">
+            <span class="name">set</span><span class="annotation">: <a href="enums.html#InputPortSet">chipchune.furnace.enums.InputPortSet</a></span>
+
+        
+    </div>
+    <a class="headerlink" href="#InputPatchBayEntry.set"></a>
+    
+            <div class="docstring"><p>The set that the patch belongs to.</p>
+</div>
+
+
+                            </div>
+                            <div id="InputPatchBayEntry.port" class="classattr">
+                                <div class="attr variable">
+            <span class="name">port</span><span class="annotation">: int</span>
+
+        
+    </div>
+    <a class="headerlink" href="#InputPatchBayEntry.port"></a>
+    
+            <div class="docstring"><p>Which port to connect to.</p>
+</div>
+
+
+                            </div>
                             <div class="inherited">
                                 <h5>Inherited Members</h5>
                                 <dl>
@@ -799,6 +912,32 @@
 </div>
 
 
+                            <div id="OutputPatchBayEntry.set" class="classattr">
+                                <div class="attr variable">
+            <span class="name">set</span><span class="annotation">: <a href="enums.html#OutputPortSet">chipchune.furnace.enums.OutputPortSet</a></span>
+
+        
+    </div>
+    <a class="headerlink" href="#OutputPatchBayEntry.set"></a>
+    
+            <div class="docstring"><p>The set that the patch belongs to.</p>
+</div>
+
+
+                            </div>
+                            <div id="OutputPatchBayEntry.port" class="classattr">
+                                <div class="attr variable">
+            <span class="name">port</span><span class="annotation">: int</span>
+
+        
+    </div>
+    <a class="headerlink" href="#OutputPatchBayEntry.port"></a>
+    
+            <div class="docstring"><p>Which port to connect from.</p>
+</div>
+
+
+                            </div>
                             <div class="inherited">
                                 <h5>Inherited Members</h5>
                                 <dl>
@@ -856,7 +995,9 @@
     </div>
     <a class="headerlink" href="#InsFeatureAbstract"></a>
     
-    
+            <div class="docstring"><p>Base class for all InsFeature* classes. Not really to be used.</p>
+</div>
+
 
                 </section>
                 <section id="InsFeatureName">
@@ -869,7 +1010,9 @@
     </div>
     <a class="headerlink" href="#InsFeatureName"></a>
     
-    
+            <div class="docstring"><p>Instrument's name block. Can be used as a string.</p>
+</div>
+
 
                             <div id="InsFeatureName.__init__" class="classattr">
                                 <div class="attr function">
@@ -1621,42 +1764,19 @@
 
                             </div>
                 </section>
-                <section id="InsFeaturePointerAbstract">
-                    <div class="attr class">
-            
-    <span class="def">class</span>
-    <span class="name">InsFeaturePointerAbstract</span><wbr>(<span class="base"><a href="#InsFeatureAbstract">InsFeatureAbstract</a></span>):
-
-        
-    </div>
-    <a class="headerlink" href="#InsFeaturePointerAbstract"></a>
-    
-    
-
-                            <div id="InsFeaturePointerAbstract.__init__" class="classattr">
-                                <div class="attr function">
-            
-        <span class="name">InsFeaturePointerAbstract</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">pointers</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">factory</span><span class="o">&gt;</span></span>)</span>
-
-        
-    </div>
-    <a class="headerlink" href="#InsFeaturePointerAbstract.__init__"></a>
-    
-    
-
-                            </div>
-                </section>
                 <section id="InsFeatureSampleList">
                     <div class="attr class">
             
     <span class="def">class</span>
-    <span class="name">InsFeatureSampleList</span><wbr>(<span class="base"><a href="#InsFeaturePointerAbstract">InsFeaturePointerAbstract</a></span>):
+    <span class="name">InsFeatureSampleList</span><wbr>(<span class="base"><a href="#_InsFeaturePointerAbstract">_InsFeaturePointerAbstract</a></span>):
 
         
     </div>
     <a class="headerlink" href="#InsFeatureSampleList"></a>
     
-    
+            <div class="docstring"><p>List of pointers to all samples used by this instrument.</p>
+</div>
+
 
                             <div id="InsFeatureSampleList.__init__" class="classattr">
                                 <div class="attr function">
@@ -1675,13 +1795,15 @@
                     <div class="attr class">
             
     <span class="def">class</span>
-    <span class="name">InsFeatureWaveList</span><wbr>(<span class="base"><a href="#InsFeaturePointerAbstract">InsFeaturePointerAbstract</a></span>):
+    <span class="name">InsFeatureWaveList</span><wbr>(<span class="base"><a href="#_InsFeaturePointerAbstract">_InsFeaturePointerAbstract</a></span>):
 
         
     </div>
     <a class="headerlink" href="#InsFeatureWaveList"></a>
     
-    
+            <div class="docstring"><p>List of pointers to all wave tables used by this instrument.</p>
+</div>
+
 
                             <div id="InsFeatureWaveList.__init__" class="classattr">
                                 <div class="attr function">
