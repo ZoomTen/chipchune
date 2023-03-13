@@ -26,5 +26,5 @@ if ! git config user.name; then
     git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
 fi
 
-git commit -a -m "CI: Update docs for ${GITHUB_REF#refs/tags/} ($head)"
+git commit -a -m "CI: Update docs"
 git push
