@@ -6,7 +6,7 @@ from .data_types import (
     InsFeatureAbstract, InsFeatureMacro, InsMeta, InstrumentType, InsFeatureName,
     InsFeatureFM, InsFeatureOpr1Macro, InsFeatureOpr2Macro, InsFeatureOpr3Macro, InsFeatureOpr4Macro,
     InsFeatureC64, InsFeatureGB, GBHwSeq, SingleMacro, InsFeatureAmiga, InsFeatureOPLDrums, InsFeatureSNES,
-    GainMode, InsFeatureN163, InsFeatureFDS, InsFeatureWaveSynth, InsFeaturePointerAbstract, InsFeatureSampleList,
+    GainMode, InsFeatureN163, InsFeatureFDS, InsFeatureWaveSynth, _InsFeaturePointerAbstract, InsFeatureSampleList,
     InsFeatureWaveList, InsFeatureMultiPCM, InsFeatureSoundUnit, InsFeatureES5506, InsFeatureX1010, GenericADSR
 )
 from .enums import (
@@ -21,7 +21,7 @@ EMBED_MAGIC_STR = b'INST'
 DEV127_EMBED_MAGIC_STR = b'INS2'
 
 T_MACRO = TypeVar('T_MACRO', bound=InsFeatureMacro)  # T_MACRO must be subclass of InsFeatureMacro
-T_POINTERS = TypeVar('T_POINTERS', bound=InsFeaturePointerAbstract)
+T_POINTERS = TypeVar('T_POINTERS', bound=_InsFeaturePointerAbstract)
 
 
 class FurnaceInstrument:
@@ -42,9 +42,23 @@ class FurnaceInstrument:
             Defaults to 2 (dev127+ ins. format)
         """
         self.file_name: Optional[str] = None
-        self.protocol_version = protocol_version  # 0 = ... - dev126 (old), 1 = dev127 - ... (new)
+        """
+        Original file name, if the object was initialized with one.
+        """
+        self.protocol_version: int = protocol_version
+        """
+        Instrument file "protocol" version. Currently:
+        - 0: The "unified" instrument format up to Furnace version 126.
+        - 1: The new "featural" instrument format introduced in version 127.
+        """
         self.features: List[InsFeatureAbstract] = []
-        self.meta = InsMeta()
+        """
+        List of features, regardless of protocol version.
+        """
+        self.meta: InsMeta = InsMeta()
+        """
+        Instrument metadata.
+        """
 
         # self.wavetables: list[] = []
         # self.samples: list[] = []
@@ -190,6 +204,11 @@ class FurnaceInstrument:
         return self.__map_to_fn[code](feature_block)
 
     def get_name(self) -> str:
+        """
+        Shortcut to fetch the instrument name.
+
+        :return: Instrument name
+        """
         name = ''
         for i in self.features:
             if isinstance(i, InsFeatureName):

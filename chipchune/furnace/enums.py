@@ -21,7 +21,7 @@ class LoopModality(EnumShowNameOnly, EnumValueEquals):
 
 class DelayBehavior(EnumShowNameOnly, EnumValueEquals):
     """
-    Options for CompatFlagInfo.cut_delay_effect_policy.
+    Options for :attr:`chipchune.furnace.data_types.ModuleCompatFlags.cut_delay_effect_policy`.
     """
     STRICT = 0
     BROKEN = 1
@@ -30,7 +30,7 @@ class DelayBehavior(EnumShowNameOnly, EnumValueEquals):
 
 class JumpTreatment(EnumShowNameOnly, EnumValueEquals):
     """
-    Options for CompatFlagInfo.jump_treatment.
+    Options for :attr:`chipchune.furnace.data_types.ModuleCompatFlags.jump_treatment`.
     """
     ALL_JUMPS = 0
     FIRST_JUMP_ONLY = 1
@@ -61,7 +61,8 @@ class Note(EnumShowNameOnly):
 
 class MacroItem(EnumShowNameOnly):
     """
-    Special values used only in this parser
+    Special values used only in this parser, to allow data editing similar to that
+    of Furnace itself.
     """
     LOOP = 0
     RELEASE = 1
@@ -218,6 +219,9 @@ class MacroCode(EnumShowNameOnly, EnumValueEquals):
 
 
 class OpMacroCode(EnumShowNameOnly, EnumValueEquals):
+    """
+    Controls which FM parameter a macro should change.
+    """
     AM = 0
     AR = 1
     DR = 2
@@ -242,7 +246,7 @@ class OpMacroCode(EnumShowNameOnly, EnumValueEquals):
 
 class MacroType(EnumShowNameOnly):
     """
-    Used in FurnaceInstrumentDX
+    Instrument macro type (version 120+).
     """
     SEQUENCE = 0
     ADSR = 1
@@ -251,7 +255,7 @@ class MacroType(EnumShowNameOnly):
 
 class MacroSize(EnumShowNameOnly):
     """
-    Used in FurnaceInstrumentDX
+    Type of value stored in the instrument file.
     """
     _value_: int
     num_bytes: int
@@ -271,6 +275,9 @@ class MacroSize(EnumShowNameOnly):
 
 
 class GBHwCommand(EnumShowNameOnly):
+    """
+    Game Boy hardware envelope commands.
+    """
     ENVELOPE = 0
     SWEEP = 1
     WAIT = 2
@@ -297,7 +304,7 @@ class SampleType(EnumShowNameOnly):
 
 class InstrumentType(EnumShowNameOnly):
     """
-    Instrument types currently available as of dev127
+    Instrument types currently available as of version 144.
     """
     STANDARD = 0
     FM_4OP = 1
@@ -353,118 +360,118 @@ class InstrumentType(EnumShowNameOnly):
 
 class ChipType(EnumShowNameOnly):
     """
-    FurnaceTracker planned and implemented chip database.
-    Contains console name, ID and number of channels.
+    Furnace chip database, either planned or implemented.
+    Contains console name, chip ID and number of channels.
     """
     _value_: int
     channels: int
 
-    YMU759: Tuple[int,int] = (0x01, 17)
-    GENESIS: Tuple[int,int] = (0x02, 10)  # YM2612 + SN76489
-    SMS: Tuple[int,int] = (0x03, 4)  # SN76489
-    GB: Tuple[int,int] = (0x04, 4)  # LR53902
-    PCE: Tuple[int,int] = (0x05, 6)  # HuC6280
-    NES: Tuple[int,int] = (0x06, 5)  # RP2A03
-    C64_8580: Tuple[int,int] = (0x07, 4)  # SID r8580
-    SEGA_ARCADE: Tuple[int,int] = (0x08, 13)  # YM2151 + SegaPCM
-    NEO_GEO_CD: Tuple[int,int] = (0x09, 13)
+    YMU759 = (0x01, 17)
+    GENESIS = (0x02, 10)  # YM2612 + SN76489
+    SMS = (0x03, 4)  # SN76489
+    GB = (0x04, 4)  # LR53902
+    PCE = (0x05, 6)  # HuC6280
+    NES = (0x06, 5)  # RP2A03
+    C64_8580 = (0x07, 4)  # SID r8580
+    SEGA_ARCADE = (0x08, 13)  # YM2151 + SegaPCM
+    NEO_GEO_CD = (0x09, 13)
 
-    GENESIS_EX: Tuple[int,int] = (0x42, 13)  # YM2612 + SN76489
-    SMS_JP: Tuple[int,int] = (0x43, 13)  # SN76489 + YM2413
-    NES_VRC7: Tuple[int,int] = (0x46, 11)  # RP2A03 + YM2413
-    C64_6581: Tuple[int,int] = (0x47, 3)  # SID r6581
-    NEO_GEO_CD_EX: Tuple[int,int] = (0x49, 16)
+    GENESIS_EX = (0x42, 13)  # YM2612 + SN76489
+    SMS_JP = (0x43, 13)  # SN76489 + YM2413
+    NES_VRC7 = (0x46, 11)  # RP2A03 + YM2413
+    C64_6581 = (0x47, 3)  # SID r6581
+    NEO_GEO_CD_EX = (0x49, 16)
 
-    AY38910: Tuple[int,int] = (0x80, 3)
-    AMIGA: Tuple[int,int] = (0x81, 4)  # Paula
-    YM2151: Tuple[int,int] = (0x82, 8)  # YM2151
-    YM2612: Tuple[int,int] = (0x83, 6)  # YM2612
-    TIA: Tuple[int,int] = (0x84, 2)
-    VIC20: Tuple[int,int] = (0x85, 4)
-    PET: Tuple[int,int] = (0x86, 1)
-    SNES: Tuple[int,int] = (0x87, 8)  # SPC700
-    VRC6: Tuple[int,int] = (0x88, 3)
-    OPLL: Tuple[int,int] = (0x89, 9)  # YM2413
-    FDS: Tuple[int,int] = (0x8a, 1)
-    MMC5: Tuple[int,int] = (0x8b, 3)
-    N163: Tuple[int,int] = (0x8c, 8)
-    OPN: Tuple[int,int] = (0x8d, 6)  # YM2203
-    PC98: Tuple[int,int] = (0x8e, 16)  # YM2608
-    OPL: Tuple[int,int] = (0x8f, 9)  # YM3526
+    AY38910 = (0x80, 3)
+    AMIGA = (0x81, 4)  # Paula
+    YM2151 = (0x82, 8)  # YM2151
+    YM2612 = (0x83, 6)  # YM2612
+    TIA = (0x84, 2)
+    VIC20 = (0x85, 4)
+    PET = (0x86, 1)
+    SNES = (0x87, 8)  # SPC700
+    VRC6 = (0x88, 3)
+    OPLL = (0x89, 9)  # YM2413
+    FDS = (0x8a, 1)
+    MMC5 = (0x8b, 3)
+    N163 = (0x8c, 8)
+    OPN = (0x8d, 6)  # YM2203
+    PC98 = (0x8e, 16)  # YM2608
+    OPL = (0x8f, 9)  # YM3526
 
-    OPL2: Tuple[int,int] = (0x90, 9)  # YM3812
-    OPL3: Tuple[int,int] = (0x91, 18)  # YMF262
-    MULTIPCM: Tuple[int,int] = (0x92, 24)
-    PC_SPEAKER: Tuple[int,int] = (0x93, 1)  # Intel 8253
-    POKEY: Tuple[int,int] = (0x94, 4)
-    RF5C68: Tuple[int,int] = (0x95, 8)
-    WONDERSWAN: Tuple[int,int] = (0x96, 4)
-    SAA1099: Tuple[int,int] = (0x97, 6)
-    OPZ: Tuple[int,int] = (0x98, 8)
-    POKEMON_MINI: Tuple[int,int] = (0x99, 1)
-    AY8930: Tuple[int,int] = (0x9a, 3)
-    SEGAPCM: Tuple[int,int] = (0x9b, 16)
-    VIRTUAL_BOY: Tuple[int,int] = (0x9c, 6)
-    VRC7: Tuple[int,int] = (0x9d, 6)
-    YM2610B: Tuple[int,int] = (0x9e, 16)
-    ZX_BEEPER: Tuple[int,int] = (0x9f, 6)  # tildearrow's engine
+    OPL2 = (0x90, 9)  # YM3812
+    OPL3 = (0x91, 18)  # YMF262
+    MULTIPCM = (0x92, 24)
+    PC_SPEAKER = (0x93, 1)  # Intel 8253
+    POKEY = (0x94, 4)
+    RF5C68 = (0x95, 8)
+    WONDERSWAN = (0x96, 4)
+    SAA1099 = (0x97, 6)
+    OPZ = (0x98, 8)
+    POKEMON_MINI = (0x99, 1)
+    AY8930 = (0x9a, 3)
+    SEGAPCM = (0x9b, 16)
+    VIRTUAL_BOY = (0x9c, 6)
+    VRC7 = (0x9d, 6)
+    YM2610B = (0x9e, 16)
+    ZX_BEEPER = (0x9f, 6)  # tildearrow's engine
 
-    YM2612_EX: Tuple[int,int] = (0xa0, 9)
-    SCC: Tuple[int,int] = (0xa1, 5)
-    OPL_DRUMS: Tuple[int,int] = (0xa2, 11)
-    OPL2_DRUMS: Tuple[int,int] = (0xa3, 11)
-    OPL3_DRUMS: Tuple[int,int] = (0xa4, 20)
-    NEO_GEO: Tuple[int,int] = (0xa5, 14)
-    NEO_GEO_EX: Tuple[int,int] = (0xa6, 17)
-    OPLL_DRUMS: Tuple[int,int] = (0xa7, 11)
-    LYNX: Tuple[int,int] = (0xa8, 4)
-    SEGAPCM_DMF: Tuple[int,int] = (0xa9, 5)
-    MSM6295: Tuple[int,int] = (0xaa, 4)
-    MSM6258: Tuple[int,int] = (0xab, 1)
-    COMMANDER_X16: Tuple[int,int] = (0xac, 17)  # VERA
-    BUBBLE_SYSTEM_WSG: Tuple[int,int] = (0xad, 2)
-    OPL4: Tuple[int,int] = (0xae, 42)
-    OPL4_DRUMS: Tuple[int,int] = (0xaf, 44)
+    YM2612_EX = (0xa0, 9)
+    SCC = (0xa1, 5)
+    OPL_DRUMS = (0xa2, 11)
+    OPL2_DRUMS = (0xa3, 11)
+    OPL3_DRUMS = (0xa4, 20)
+    NEO_GEO = (0xa5, 14)
+    NEO_GEO_EX = (0xa6, 17)
+    OPLL_DRUMS = (0xa7, 11)
+    LYNX = (0xa8, 4)
+    SEGAPCM_DMF = (0xa9, 5)
+    MSM6295 = (0xaa, 4)
+    MSM6258 = (0xab, 1)
+    COMMANDER_X16 = (0xac, 17)  # VERA
+    BUBBLE_SYSTEM_WSG = (0xad, 2)
+    OPL4 = (0xae, 42)
+    OPL4_DRUMS = (0xaf, 44)
 
-    SETA: Tuple[int,int] = (0xb0, 16)  # Allumer X1-010
-    ES5506: Tuple[int,int] = (0xb1, 32)
-    Y8950: Tuple[int,int] = (0xb2, 10)
-    Y8950_DRUMS: Tuple[int,int] = (0xb3, 12)
-    SCC_PLUS: Tuple[int,int] = (0xb4, 5)
-    TSU: Tuple[int,int] = (0xb5, 8)
-    YM2203_EX: Tuple[int,int] = (0xb6, 9)
-    YM2608_EX: Tuple[int,int] = (0xb7, 19)
-    YMZ280B: Tuple[int,int] = (0xb8, 8)
-    NAMCO: Tuple[int,int] = (0xb9, 3)  # Namco WSG
-    N15XX: Tuple[int,int] = (0xba, 8)  # Namco 15xx
-    CUS30: Tuple[int,int] = (0xbb, 8)  # Namco CUS30
-    MSM5232: Tuple[int,int] = (0xbc, 8)
-    YM2612_PLUS_EX: Tuple[int,int] = (0xbd, 11)
-    YM2612_PLUS: Tuple[int,int] = (0xbe, 7)
-    T6W28: Tuple[int,int] = (0xbf, 4)
+    SETA = (0xb0, 16)  # Allumer X1-010
+    ES5506 = (0xb1, 32)
+    Y8950 = (0xb2, 10)
+    Y8950_DRUMS = (0xb3, 12)
+    SCC_PLUS = (0xb4, 5)
+    TSU = (0xb5, 8)
+    YM2203_EX = (0xb6, 9)
+    YM2608_EX = (0xb7, 19)
+    YMZ280B = (0xb8, 8)
+    NAMCO = (0xb9, 3)  # Namco WSG
+    N15XX = (0xba, 8)  # Namco 15xx
+    CUS30 = (0xbb, 8)  # Namco CUS30
+    MSM5232 = (0xbc, 8)
+    YM2612_PLUS_EX = (0xbd, 11)
+    YM2612_PLUS = (0xbe, 7)
+    T6W28 = (0xbf, 4)
 
-    PCM_DAC: Tuple[int,int] = (0xc0, 1)
-    YM2612_CSM: Tuple[int,int] = (0xc1, 10)
-    NEO_GEO_CSM: Tuple[int,int] = (0xc2, 18)  # YM2610 CSM
-    YM2203_CSM: Tuple[int,int] = (0xc3, 10)
-    YM2608_CSM: Tuple[int,int] = (0xc4, 20)
-    YM2610B_CSM: Tuple[int,int] = (0xc5, 20)
-    K007232: Tuple[int,int] = (0xc6, 2)
-    GA20: Tuple[int,int] = (0xc7, 4)
-    SM8521: Tuple[int,int] = (0xc8, 3)
-    M114S: Tuple[int,int] = (0xc9, 16)
+    PCM_DAC = (0xc0, 1)
+    YM2612_CSM = (0xc1, 10)
+    NEO_GEO_CSM = (0xc2, 18)  # YM2610 CSM
+    YM2203_CSM = (0xc3, 10)
+    YM2608_CSM = (0xc4, 20)
+    YM2610B_CSM = (0xc5, 20)
+    K007232 = (0xc6, 2)
+    GA20 = (0xc7, 4)
+    SM8521 = (0xc8, 3)
+    M114S = (0xc9, 16)
     ZX_BEEPER_QUADTONE: Tuple[int, int] = (0xca, 5)  # Natt Akuma's engine
     PV_1000: Tuple[int, int] = (0xcb, 3)  # NEC D65010G031
 
-    YM2610B_EX: Tuple[int,int] = (0xde, 19)
+    YM2610B_EX = (0xde, 19)
 
-    QSOUND: Tuple[int,int] = (0xe0, 19)
+    QSOUND = (0xe0, 19)
 
-    PONG: Tuple[int,int] = (0xfc, 1)
-    DUMMY: Tuple[int,int] = (0xfd, 1)
+    PONG = (0xfc, 1)
+    DUMMY = (0xfd, 1)
 
-    RESERVED_1: Tuple[int,int] = (0xfe, 1)
-    RESERVED_2: Tuple[int,int] = (0xff, 1)
+    RESERVED_1 = (0xfe, 1)
+    RESERVED_2 = (0xff, 1)
 
     def __new__(cls, id: int, channels: int):  # type: ignore[no-untyped-def]
         member = object.__new__(cls)
@@ -472,13 +479,27 @@ class ChipType(EnumShowNameOnly):
         setattr(member, 'channels', channels)
         return member
 
+    def __repr__(self) -> str:
+        # repr abuse
+        # about as stupid as "mapping for the renderer"...
+        return "%s (0x%02x), %d channel%s" % (
+            self.name, self._value_, self.channels,
+            "s" if self.channels != 1 else ""
+        )
+
 
 class InputPortSet(EnumShowNameOnly):
+    """
+    Devices which contain an "input" port.
+    """
     SYSTEM = 0
     NULL = 0xFFF
 
 
 class OutputPortSet(EnumShowNameOnly):
+    """
+    Devices which contain an "output" port.
+    """
     CHIP_1 = 0
     CHIP_2 = 1
     CHIP_3 = 2
@@ -517,6 +538,9 @@ class OutputPortSet(EnumShowNameOnly):
 
 
 class WaveFX(EnumShowNameOnly):
+    """
+    Used in :attr:`chipchune.furnace.data_types.InsFeatureWaveSynth.effect`.
+    """
     NONE = 0
 
     # single waveform
@@ -540,6 +564,9 @@ class WaveFX(EnumShowNameOnly):
 
 
 class ESFilterMode(EnumShowNameOnly):
+    """
+    Used in :attr:`chipchune.furnace.data_types.InsFeatureES5506.filter_mode`.
+    """
     HPK2_HPK2 = 0
     HPK2_LPK1 = 1
     LPK2_LPK2 = 2
@@ -547,6 +574,9 @@ class ESFilterMode(EnumShowNameOnly):
 
 
 class GainMode(EnumShowNameOnly):
+    """
+    Used in :attr:`chipchune.furnace.data_types.InsFeatureSNES.gain_mode`.
+    """
     DIRECT = 0
     DEC_LINEAR = 4
     DEC_LOG = 5
@@ -555,6 +585,9 @@ class GainMode(EnumShowNameOnly):
 
 
 class SNESSusMode(EnumShowNameOnly):
+    """
+    Used in :attr:`chipchune.furnace.data_types.InsFeatureSNES.sus`.
+    """
     DIRECT = 0
     SUS_WITH_DEC = 1
     SUS_WITH_EXP = 2
@@ -562,6 +595,9 @@ class SNESSusMode(EnumShowNameOnly):
 
 
 class _FurInsImportType(EnumShowNameOnly, EnumValueEquals):
+    """
+    Also only used in this parser to differentiate between different types of instrument formats.
+    """
     # Old format
     FORMAT_0_FILE = 0
     FORMAT_0_EMBED = 1

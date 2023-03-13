@@ -12,14 +12,17 @@ from .enums import (
 @dataclass
 class ChipInfo:
     """
-    Data for a single chip defn.
+    Information on a single chip.
     """
     type: ChipType
     #: shall be a simple dict, no enums needed
     flags: Dict[str, Any] = field(default_factory=dict)
-    panning = 0.0
-    surround = 0.0  # chip front/rear balance
-    volume = 1.0
+    panning: float = 0.0
+    surround: float = 0.0
+    """
+    Chip front/rear balance.
+    """
+    volume: float = 1.0
 
 
 @dataclass
@@ -27,17 +30,20 @@ class ModuleMeta:
     """
     Module metadata.
     """
-    name = ''
-    name_jp = ''
-    author = ''
-    author_jp = ''
-    album = ''
-    album_jp = ''
-    sys_name = 'Sega Genesis/Mega Drive'
-    sys_name_jp = ''
-    comment = ''
-    version = 0
-    tuning = 440.0
+    name: str = ''
+    name_jp: str = ''
+    author: str = ''
+    author_jp: str = ''
+    album: str = ''
+    """
+    Can also be the game name or container name.
+    """
+    album_jp: str = ''
+    sys_name: str = 'Sega Genesis/Mega Drive'
+    sys_name_jp: str = ''
+    comment: str = ''
+    version: int = 0
+    tuning: float = 440.0
 
 
 @dataclass
@@ -59,7 +65,7 @@ class ChipList:
     Information about chips used in the module.
     """
     list: List[ChipInfo] = field(default_factory=list)
-    master_volume = 2.0
+    master_volume: float = 2.0
 
 
 @dataclass(repr=False)
@@ -67,10 +73,10 @@ class ChannelDisplayInfo:
     """
     Relating to channel display in Pattern and Order windows.
     """
-    name = ''
-    abbreviation = ''
-    collapsed = False
-    shown = True
+    name: str = ''
+    abbreviation: str = ''
+    collapsed: bool = False
+    shown: bool = True
 
     def __repr__(self) -> str:
         return "ChannelDisplayInfo(name='%s', abbreviation='%s', collapsed=%s, shown=%s)" % (
@@ -160,6 +166,9 @@ class SubSong:
     name: str = ''
     comment: str = ''
     speed_pattern: List[int] = field(default_factory=lambda: [6])
+    """
+    Maximum 16 entries.
+    """
     grooves: List[List[int]] = field(default_factory=list)
     timing: TimingInfo = TimingInfo()
     pattern_length = 64
@@ -181,6 +190,9 @@ class SubSong:
 
 @dataclass
 class FurnaceRow:
+    """
+    Represents a single row in a pattern.
+    """
     note: Note
     octave: int
     instrument: int
@@ -191,7 +203,7 @@ class FurnaceRow:
         """
         Renders the selected row in Furnace clipboard format (without header!)
 
-        :return: Furnace clipboard data
+        :return: Furnace clipboard data (str)
         """
         note_maps = {
             Note.Cs: "C#",
@@ -265,6 +277,9 @@ class FurnaceRow:
 
 @dataclass
 class FurnacePattern:
+    """
+    Represents one pattern in a module.
+    """
     channel: int = 0
     index: int = 0
     subsong: int = 0
@@ -292,7 +307,13 @@ class InputPatchBayEntry(TypedDict):
     A patch that has an "input" connector.
     """
     set: InputPortSet
+    """
+    The set that the patch belongs to.
+    """
     port: int
+    """
+    Which port to connect to.
+    """
 
 
 class OutputPatchBayEntry(TypedDict):
@@ -300,7 +321,13 @@ class OutputPatchBayEntry(TypedDict):
     A patch that has an "output" connector.
     """
     set: OutputPortSet
+    """
+    The set that the patch belongs to.
+    """
     port: int
+    """
+    Which port to connect from.
+    """
 
 
 @dataclass
@@ -315,6 +342,9 @@ class PatchBay:
 # instruments
 @dataclass
 class InsFeatureAbstract:
+    """
+    Base class for all InsFeature* classes. Not really to be used.
+    """
     _code: str = field(init=False)
 
     def __post_init__(self) -> None:
@@ -327,6 +357,9 @@ class InsFeatureAbstract:
 
 @dataclass
 class InsFeatureName(InsFeatureAbstract, str):
+    """
+    Instrument's name block. Can be used as a string.
+    """
     _code = 'NA'
     name: str = ''
 
@@ -599,16 +632,25 @@ class InsFeatureOPLDrums(InsFeatureAbstract):
 
 
 @dataclass
-class InsFeaturePointerAbstract(InsFeatureAbstract):
+class _InsFeaturePointerAbstract(InsFeatureAbstract):
+    """
+    Also not really to be used. Container for all "list" features.
+    """
     _code = 'LL'
     pointers: Dict[int, int] = field(default_factory=dict)
 
 
 @dataclass
-class InsFeatureSampleList(InsFeaturePointerAbstract):
+class InsFeatureSampleList(_InsFeaturePointerAbstract):
+    """
+    List of pointers to all samples used by this instrument.
+    """
     _code = 'SL'
 
 
 @dataclass
-class InsFeatureWaveList(InsFeaturePointerAbstract):
+class InsFeatureWaveList(_InsFeaturePointerAbstract):
+    """
+    List of pointers to all wave tables used by this instrument.
+    """
     _code = 'WL'

@@ -21,6 +21,10 @@ MAX_CHIPS = 32
 class FurnaceModule:
     """
     Represents a Furnace .fur file.
+
+    When possible, instrument objects etc. will use the latest format as its internal
+    representation. For example, old instruments will internally be converted into the
+    "new" instrument-feature-list format.
     """
 
     def __init__(self, file_name_or_stream: Optional[Union[BufferedReader, str]] = None) -> None:
@@ -35,13 +39,39 @@ class FurnaceModule:
             Defaults to None.
         """
         self.file_name: Optional[str] = None
-        self.meta = ModuleMeta()
-        self.chips = ChipList()
-        self.compat_flags = ModuleCompatFlags()
+        """
+        Original file name, if the object was initialized with one.
+        """
+        self.meta: ModuleMeta = ModuleMeta()
+        """
+        Metadata concerning the module.
+        """
+        self.chips: ChipList = ChipList()
+        """
+        List of chips used in the module.
+        """
+        self.compat_flags: ModuleCompatFlags = ModuleCompatFlags()
+        """
+        Compat flags settings within the module.
+        """
         self.subsongs: List[SubSong] = [SubSong()]
+        """
+        Subsongs contained within the module. Although the first subsong
+        and the others are internally stored separately, they're organized
+        into a list here for convenience.
+        """
         self.patchbay: List[PatchBay] = []
+        """
+        List of patchbay connections.
+        """
         self.instruments: List[FurnaceInstrument] = []
+        """
+        List of all instruments in the module.
+        """
         self.patterns: List[FurnacePattern] = []
+        """
+        List of all patterns in the module.
+        """
 
         if isinstance(file_name_or_stream, BufferedReader):
             self.load_from_stream(file_name_or_stream)
@@ -120,19 +150,32 @@ class FurnaceModule:
         self.__read_patterns(stream)
 
     def get_num_channels(self) -> int:
+        """
+        Retrieve the number of total channels in the module.
+
+        :return: Channel sum across all chips.
+        """
         num_channels = 0
         for chip in self.chips.list:
             num_channels += chip.type.channels
         return num_channels
 
-    def get_pattern(self, channel, index, subsong=0) -> Optional[FurnacePattern]:
+    def get_pattern(self, channel: int, index: int, subsong: int=0) -> Optional[FurnacePattern]:
+        """
+        Gets one pattern object from a module.
+
+        :param channel: Which channel to use (zero-indexed), e.g. to get VRC6
+          in a NES+VRC6 module, use `5`.
+        :param index: The index of the pattern within the subsong.
+        :param subsong: The subsong number.
+        :return: FurnacePattern object or None if no such pattern exists.
+        """
         try:
             return next(
                 filter(lambda x: x.channel==channel and x.index==index and x.subsong==subsong, self.patterns)
             )
         except StopIteration:
             return None
-
 
     def __init_compat_flags(self) -> None:
         """
