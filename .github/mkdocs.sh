@@ -4,7 +4,7 @@ set -eu
 
 BUILDROOT="docbuild"
 
-pdoc --output-dir "$BUILDROOT" chipchune
+pdoc --no-show-source -o "$BUILDROOT" chipchune
 
 [ "$GH_PASSWORD" ] || exit 12
 

@@ -8,6 +8,11 @@ Currently supports:
 Plans to support:
   - DefleMask (:mod:`chipchune.deflemask`)
   - FamiTracker (:mod:`chipchune.famitracker`)
+
+### Installation
+
+`pip install git+https://github.com/ZoomTen/chipchune@master`
+
 """
 
 __version__ = "0.0.1"
