@@ -8,9 +8,10 @@ def get_version():
     import importlib.util
 
     spec = importlib.util.spec_from_file_location(
-        os.path.join(os.path.dirname("__file__"), "chipchune", "__init__.py")
+        "__meta__", os.path.join(os.path.dirname("__file__"), "chipchune", "__init__.py")
     )
     meta = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(meta)
     return meta.__version__
 
 
