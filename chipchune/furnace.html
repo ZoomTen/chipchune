@@ -61,25 +61,25 @@
 <li><code><a href="furnace/enums.html">chipchune.furnace.enums</a></code>: Various constants that apply to Furnace.</li>
 <li><code><a href="furnace/data_types.html">chipchune.furnace.data_types</a></code>: Various data types that apply to Furnace.</li>
 </ul>
+
+<h3 id="example">Example</h3>
+
+<pre><code>from <a href="furnace/module.html">chipchune.furnace.module</a> import FurnaceModule
+
+module = FurnaceModule("tests/samples/furnace/skate_or_die.143.fur")
+
+pattern = module.get_pattern(0, 0, 0)
+
+print(pattern.as_clipboard())
+
+for row in pattern.data:
+    print(row)
+</code></pre>
 </div>
 
-                        <input id="mod-furnace-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
-
-                        <label class="view-source-button" for="mod-furnace-view-source"><span>View Source</span></label>
-
-                        <div class="pdoc-code codehilite"><pre><span></span><span id="L-1"><a href="#L-1"><span class="linenos"> 1</span></a><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="L-2"><a href="#L-2"><span class="linenos"> 2</span></a><span class="sd">Tools to manipulate Furnace .fur files.</span>
-</span><span id="L-3"><a href="#L-3"><span class="linenos"> 3</span></a>
-</span><span id="L-4"><a href="#L-4"><span class="linenos"> 4</span></a><span class="sd">- :mod:`chipchune.furnace.module`: Tools to inspect and manipulate module files.</span>
-</span><span id="L-5"><a href="#L-5"><span class="linenos"> 5</span></a><span class="sd">- :mod:`chipchune.furnace.instrument`: Tools to inspect and manipulate instrument data from within or without the module.</span>
-</span><span id="L-6"><a href="#L-6"><span class="linenos"> 6</span></a><span class="sd">- :mod:`chipchune.furnace.sample`: Tools to inspect and manipulate sample data (might be merged with inst?)</span>
-</span><span id="L-7"><a href="#L-7"><span class="linenos"> 7</span></a><span class="sd">- :mod:`chipchune.furnace.wavetable`: Tools to inspect and manipulate wavetable data</span>
-</span><span id="L-8"><a href="#L-8"><span class="linenos"> 8</span></a><span class="sd">- :mod:`chipchune.furnace.enums`: Various constants that apply to Furnace.</span>
-</span><span id="L-9"><a href="#L-9"><span class="linenos"> 9</span></a><span class="sd">- :mod:`chipchune.furnace.data_types`: Various data types that apply to Furnace.</span>
-</span><span id="L-10"><a href="#L-10"><span class="linenos">10</span></a><span class="sd">&quot;&quot;&quot;</span>
-</span></pre></div>
-
-
+                
+                
+                
             </section>
     </main>
 <script>
