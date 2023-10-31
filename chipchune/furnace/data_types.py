@@ -98,8 +98,8 @@ class ModuleCompatFlags:
     # compat 1
 
     limit_slides: bool = False
-    linear_pitch: LinearPitch = LinearPitch.FULL_LINEAR
-    loop_modality: LoopModality = LoopModality.DO_NOTHING
+    linear_pitch: LinearPitch = field(default_factory=lambda: LinearPitch.FULL_LINEAR)
+    loop_modality: LoopModality = field(default_factory=lambda: LoopModality.DO_NOTHING)
     proper_noise_layout: bool = True
     wave_duty_is_volume: bool = False
     reset_macro_on_porta: bool = False
@@ -142,8 +142,8 @@ class ModuleCompatFlags:
     e1e2_stop_on_same_note: bool = False
     broken_porta_after_arp: bool = False
     sn_no_low_periods: bool = False
-    cut_delay_effect_policy: DelayBehavior = DelayBehavior.LAX
-    jump_treatment: JumpTreatment = JumpTreatment.ALL_JUMPS
+    cut_delay_effect_policy: DelayBehavior = field(default_factory=lambda: DelayBehavior.LAX)
+    jump_treatment: JumpTreatment = field(default_factory=lambda: JumpTreatment.ALL_JUMPS)
     auto_sys_name: bool = True
     disable_sample_macro: bool = False
     broken_out_vol_2: bool = False
@@ -170,7 +170,7 @@ class SubSong:
     Maximum 16 entries.
     """
     grooves: List[List[int]] = field(default_factory=list)
-    timing: TimingInfo = TimingInfo()
+    timing: TimingInfo = field(default_factory=TimingInfo)
     pattern_length = 64
     order: Dict[int, List[int]] = field(default_factory=lambda: {
         0: [0], 1: [0], 2: [0], 3: [0], 4: [0],
@@ -436,9 +436,9 @@ class InsFeatureFM(InsFeatureAbstract):
 
 @dataclass
 class SingleMacro:
-    kind: Union[MacroCode, OpMacroCode] = MacroCode.VOL
+    kind: Union[MacroCode, OpMacroCode] = field(default_factory=lambda: MacroCode.VOL)
     mode: int = 0
-    type: MacroType = MacroType.SEQUENCE
+    type: MacroType = field(default_factory=lambda: MacroType.SEQUENCE)
     delay: int = 0
     speed: int = 1
     open: bool = False
@@ -504,7 +504,7 @@ class InsFeatureC64(InsFeatureAbstract):
     saw_on: bool = True
     pulse_on: bool = False
     noise_on: bool = False
-    envelope: GenericADSR = GenericADSR(a=0, d=8, s=0, r=0)
+    envelope: GenericADSR = field(default_factory=lambda: GenericADSR(a=0, d=8, s=0, r=0))
     duty: int = 2048
     ring_mod: int = 0
     osc_sync: int = 0
@@ -619,7 +619,7 @@ class InsFeatureSNES(InsFeatureAbstract):
     gain_mode: GainMode = GainMode.DIRECT
     gain: int = 127
     d2: int = 0
-    envelope: GenericADSR = GenericADSR(a=15, d=7, s=7, r=0)
+    envelope: GenericADSR = field(default_factory=lambda: GenericADSR(a=15, d=7, s=7, r=0))
 
 
 @dataclass
