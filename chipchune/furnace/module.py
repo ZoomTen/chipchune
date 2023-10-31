@@ -827,39 +827,156 @@ class FurnaceModule:
             if i == 0:
                 break
             stream.seek(i)
-            if stream.read(4) != b'PATR':
-                raise ValueError('No "PATR" magic')
-            sz = read_int(stream)
-            if sz == 0:
-                patr_blk = stream
+
+            # Old pattern
+            if self.meta.version < 157:
+                if stream.read(4) != b'PATR':
+                    raise ValueError('No "PATR" magic')
+                sz = read_int(stream)
+                if sz == 0:
+                    patr_blk = stream
+                else:
+                    patr_blk = BytesIO(stream.read(sz))
+
+                new_patr = FurnacePattern()
+                new_patr.channel = read_short(patr_blk)
+                new_patr.index = read_short(patr_blk)
+                new_patr.subsong = read_short(patr_blk)
+                if self.meta.version < 95:
+                    assert new_patr.subsong == 0
+                read_short(patr_blk)  # reserved
+
+                num_rows = self.subsongs[new_patr.subsong].pattern_length
+
+                for _ in range(num_rows):
+                    row = FurnaceRow(
+                        note=Note(read_short(patr_blk)),
+                        octave=read_short(patr_blk),
+                        instrument=read_short(patr_blk),
+                        volume=read_short(patr_blk)
+                    )
+                    effect_columns = self.subsongs[new_patr.subsong].effect_columns[new_patr.channel]
+                    row.effects = [
+                        (read_short(patr_blk), read_short(patr_blk)) for _ in range(effect_columns)
+                    ]
+                    new_patr.data.append(row)
+
+                if self.meta.version >= 51:
+                    new_patr.name = read_str(patr_blk)
+
+            # New pattern
             else:
-                patr_blk = BytesIO(stream.read(sz))
+                if stream.read(4) != b'PATN':
+                    raise ValueError('No "PATN" magic')
+                sz = read_int(stream)
+                if sz == 0:
+                    patr_blk = stream
+                else:
+                    patr_blk = BytesIO(stream.read(sz))
 
-            new_patr = FurnacePattern()
-            new_patr.channel = read_short(patr_blk)
-            new_patr.index = read_short(patr_blk)
-            new_patr.subsong = read_short(patr_blk)
-            if self.meta.version < 95:
-                assert new_patr.subsong == 0
-            read_short(patr_blk)  # reserved
-
-            num_rows = self.subsongs[new_patr.subsong].pattern_length
-
-            for _ in range(num_rows):
-                row = FurnaceRow(
-                    note=Note(read_short(patr_blk)),
-                    octave=read_short(patr_blk),
-                    instrument=read_short(patr_blk),
-                    volume=read_short(patr_blk)
-                )
-                effect_columns = self.subsongs[new_patr.subsong].effect_columns[new_patr.channel]
-                row.effects = [
-                    (read_short(patr_blk), read_short(patr_blk)) for _ in range(effect_columns)
-                ]
-                new_patr.data.append(row)
-
-            if self.meta.version >= 51:
+                new_patr = FurnacePattern()
+                new_patr.subsong = read_byte(patr_blk)
+                new_patr.channel = read_byte(patr_blk)
+                new_patr.index = read_short(patr_blk)
                 new_patr.name = read_str(patr_blk)
+
+                num_rows = self.subsongs[new_patr.subsong].pattern_length
+                effect_columns = self.subsongs[new_patr.subsong].effect_columns[new_patr.channel]
+
+                empty_row = lambda: FurnaceRow(Note.__, 0, 0xffff, 0xffff, [(0xffff,0xffff)] * effect_columns)
+
+                row_idx = 0
+                while row_idx < num_rows:
+                    char = read_byte(patr_blk)
+                    # end of pattern
+                    if char == 0xff:
+                        break
+                    # skip N+2 rows
+                    if char & 0x80:
+                        skip = (char & 0x7f) + 2
+                        row_idx += skip
+                        for _ in range(skip):
+                            new_patr.data.append(empty_row())
+                        continue
+                    # check if some values present
+                    effect_present_list = [False] * 8
+                    effect_val_present_list = [False] * 8
+                    note_present = bool(char & 0x01)
+                    ins_present = bool(char & 0x02)
+                    volume_present = bool(char & 0x04)
+                    effect_present_list[0] = bool(char & 0x08)
+                    effect_val_present_list[0] = bool(char & 0x10)
+                    effect_0_3_present = bool(char & 0x20)
+                    effect_4_7_present = bool(char & 0x40)
+                    if effect_0_3_present:
+                        char = read_byte(patr_blk)
+                        assert effect_present_list[0] == bool(char & 0x01)
+                        assert effect_val_present_list[0] == bool(char & 0x02)
+                        effect_present_list[1] = bool(char & 0x04)
+                        effect_val_present_list[1] = bool(char & 0x08)
+                        effect_present_list[2] = bool(char & 0x10)
+                        effect_val_present_list[2] = bool(char & 0x20)
+                        effect_present_list[3] = bool(char & 0x40)
+                        effect_val_present_list[3] = bool(char & 0x80)
+                    if effect_4_7_present:
+                        char = read_byte(patr_blk)
+                        effect_present_list[4] = bool(char & 0x01)
+                        effect_val_present_list[4] = bool(char & 0x02)
+                        effect_present_list[5] = bool(char & 0x04)
+                        effect_val_present_list[5] = bool(char & 0x08)
+                        effect_present_list[6] = bool(char & 0x10)
+                        effect_val_present_list[6] = bool(char & 0x20)
+                        effect_present_list[7] = bool(char & 0x40)
+                        effect_val_present_list[7] = bool(char & 0x80)
+
+                    # actually read present values
+                    note, octave = Note(0), 0
+                    if note_present:
+                        raw_note = read_byte(patr_blk)
+                        assert raw_note != 0
+                        if raw_note == 180:
+                            note = Note.OFF
+                        elif raw_note == 181:
+                            note = Note.OFF_REL
+                        elif raw_note == 182:
+                            note = Note.REL
+                        else:
+                            note = raw_note % 12
+                            note = 12 if note == 0 else note
+                            note = Note(note)
+                            octave = -5 + raw_note // 12
+
+                    ins, volume = 0xffff, 0xffff
+                    if ins_present:
+                        ins = read_byte(patr_blk)
+                    if volume_present:
+                        volume = read_byte(patr_blk)
+
+                    row = FurnaceRow(
+                        note=note,
+                        octave=octave,
+                        instrument=ins,
+                        volume=volume
+                    )
+
+                    row.effects = [(0xffff,0xffff)] * effect_columns
+                    for i, fx_presents in enumerate(zip(effect_present_list, effect_val_present_list)):
+                        if i >= effect_columns:
+                            break
+                        fx_cmd, fx_val = 0xffff, 0xffff
+                        if fx_presents[0]:
+                            fx_cmd = read_byte(patr_blk)
+                        if fx_presents[1]:
+                            fx_val = read_byte(patr_blk)
+                        row.effects[i] = (fx_cmd, fx_val)
+
+                    new_patr.data.append(row)
+                    row_idx += 1
+                
+                # fill the rest of the pattern with EMPTY
+                while row_idx < num_rows:
+                    new_patr.data.append(empty_row())
+                    row_idx += 1
 
             self.patterns.append(new_patr)
 
