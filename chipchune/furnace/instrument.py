@@ -98,7 +98,7 @@ class FurnaceInstrument:
 
         # since we're loading from an uncompressed file, we can just check the file magic number
         with open(self.file_name, 'rb') as f:
-            detect_magic = f.peek(len(FILE_MAGIC_STR))
+            detect_magic = f.peek(len(FILE_MAGIC_STR))[:len(FILE_MAGIC_STR)]
             if detect_magic == FILE_MAGIC_STR:
                 return self.load_from_stream(f, _FurInsImportType.FORMAT_0_FILE)
             elif detect_magic[:len(DEV127_FILE_MAGIC_STR)] == DEV127_FILE_MAGIC_STR:

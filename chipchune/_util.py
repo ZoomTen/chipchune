@@ -90,9 +90,9 @@ def read_str(file: BinaryIO) -> str:
     """
     variable string (ends in \\x00)
     """
-    text = ''
-    buffer = file.read(1)
-    while buffer != b'\x00':
-        text += buffer.decode('ascii')  # probably unsafe
-        buffer = file.read(1)
-    return text
+    buffer = bytearray()
+    char = file.read(1)
+    while char != b'\x00':
+        buffer += char
+        char = file.read(1)
+    return buffer.decode('utf-8')

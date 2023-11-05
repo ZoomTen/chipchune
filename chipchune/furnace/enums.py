@@ -605,3 +605,10 @@ class _FurInsImportType(EnumShowNameOnly, EnumValueEquals):
     # Dev127 format
     FORMAT_1_FILE = 2
     FORMAT_1_EMBED = 3
+
+class _FurWavetableImportType(EnumShowNameOnly, EnumValueEquals):
+    """
+    Also only used in this parser to differentiate between different types of wavetable formats.
+    """
+    FILE = 0
+    EMBED = 1

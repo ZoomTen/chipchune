@@ -1,10 +1,13 @@
 from chipchune.furnace.module import FurnaceModule, PatchBay, InputPatchBayEntry, OutputPatchBayEntry
 from chipchune.furnace.instrument import FurnaceInstrument
+from chipchune.furnace.wavetable import FurnaceWavetable
 from chipchune.furnace.data_types import InsFeatureFM, InsFeatureMacro, SingleMacro
 from chipchune.furnace.enums import MacroCode
 from typing import Union
 
 import pytest
+
+from chipchune.furnace.wavetable import FurnaceWavetable
 
 # pytest --cov=chipchune
 
@@ -16,6 +19,11 @@ def dev_70() -> FurnaceModule:
 @pytest.fixture
 def dev_143() -> FurnaceModule:
     return FurnaceModule('samples/furnace/skate_or_die.143.fur')
+
+
+@pytest.fixture
+def dev_181() -> FurnaceModule:
+    return FurnaceModule('samples/furnace/skate_or_die.181.fur')
 
 
 @pytest.fixture
@@ -36,6 +44,11 @@ def new_ins_2() -> FurnaceInstrument:
 @pytest.fixture
 def old_ins() -> FurnaceInstrument:
     return FurnaceInstrument('samples/furnace/opl1_brass.old.fui')
+
+
+@pytest.fixture
+def wav_181() -> FurnaceWavetable:
+    return FurnaceWavetable('samples/furnace/skate_or_die.181.wave.1.fuw')
 
 
 def test_meta(dev_70: FurnaceModule, dev_143: FurnaceModule) -> None:
@@ -196,3 +209,19 @@ def test_if_old_instr_the_same(dev_70: FurnaceModule, dev_143: FurnaceModule) ->
             assert a_wave == b_wave
         except StopIteration:
             continue
+
+
+def test_old_new_pettern_match(dev_143: FurnaceModule, dev_181: FurnaceModule) -> None:
+    # make sure old & new patterns match
+    assert dev_143.patterns == dev_181.patterns
+
+
+def test_wavetables(dev_181: FurnaceModule, wav_181: FurnaceWavetable) -> None:
+    # verify wavetables
+    assert len(dev_181.wavetables) == 7
+    assert dev_181.wavetables[1].data == wav_181.data
+
+    assert wav_181.meta.width == 32
+    assert wav_181.meta.height == 32
+    assert wav_181.data == [7, 19, 31, 25, 23, 21, 19, 16, 7, 1, 0, 0, 16, 14, 25, 24,
+                            23, 21, 20, 20, 17, 31, 6, 9, 11, 13, 16, 19, 20, 22, 25, 30]
