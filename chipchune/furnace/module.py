@@ -863,6 +863,7 @@ class FurnaceModule:
                         instrument=read_short(patr_blk),
                         volume=read_short(patr_blk)
                     )
+                    row.octave += (1 if row.note == Note.C_ else 0)
                     effect_columns = self.subsongs[new_patr.subsong].effect_columns[new_patr.channel]
                     row.effects = [
                         (read_short(patr_blk), read_short(patr_blk)) for _ in range(effect_columns)
@@ -941,7 +942,6 @@ class FurnaceModule:
                     note, octave = Note(0), 0
                     if note_present:
                         raw_note = read_byte(patr_blk)
-                        assert raw_note != 0
                         if raw_note == 180:
                             note = Note.OFF
                         elif raw_note == 181:
