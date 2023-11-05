@@ -654,3 +654,9 @@ class InsFeatureWaveList(_InsFeaturePointerAbstract):
     List of pointers to all wave tables used by this instrument.
     """
     _code = 'WL'
+
+@dataclass
+class WavetableMeta:
+    name: str = ''
+    width: int = 32
+    height: int = 32

@@ -10,9 +10,10 @@ from .data_types import (
 )
 from .enums import (
     ChipType, LinearPitch, InputPortSet, OutputPortSet, LoopModality,
-    DelayBehavior, JumpTreatment, _FurInsImportType, Note
+    DelayBehavior, JumpTreatment, _FurInsImportType, _FurWavetableImportType, Note
 )
 from .instrument import FurnaceInstrument
+from .wavetable import FurnaceWavetable
 
 MAGIC_STR = b'-Furnace module-'
 MAX_CHIPS = 32
@@ -72,6 +73,7 @@ class FurnaceModule:
         """
         List of all patterns in the module.
         """
+        self.wavetables: List[FurnaceWavetable] = []
 
         if isinstance(file_name_or_stream, BufferedReader):
             self.load_from_stream(file_name_or_stream)
@@ -817,7 +819,13 @@ class FurnaceModule:
             self.instruments.append(new_ins)
 
     def __read_wavetables(self, stream: BinaryIO) -> None:
-        pass
+        for i in self.__wavetable_ptr:
+            if i == 0:
+                break
+            stream.seek(i)
+            new_wt = FurnaceWavetable()
+            new_wt.load_from_stream(stream, _FurWavetableImportType.EMBED)
+            self.wavetables.append(new_wt)
 
     def __read_samples(self, stream: BinaryIO) -> None:
         pass
