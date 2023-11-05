@@ -19,6 +19,11 @@ def dev_143() -> FurnaceModule:
 
 
 @pytest.fixture
+def dev_181() -> FurnaceModule:
+    return FurnaceModule('samples/furnace/skate_or_die.181.fur')
+
+
+@pytest.fixture
 def dev_140() -> FurnaceModule:
     return FurnaceModule('samples/furnace/map04.140.fur')
 
@@ -196,3 +201,17 @@ def test_if_old_instr_the_same(dev_70: FurnaceModule, dev_143: FurnaceModule) ->
             assert a_wave == b_wave
         except StopIteration:
             continue
+
+
+def test_old_new_pettern_match(dev_143: FurnaceModule, dev_181: FurnaceModule) -> None:
+    # make sure old & new patterns match
+    assert dev_143.patterns == dev_181.patterns
+
+
+def test_wavetables(dev_181: FurnaceModule) -> None:
+    # verify wavetables
+    assert len(dev_181.wavetables) == 7
+    assert dev_181.wavetables[1].meta.width == 32
+    assert dev_181.wavetables[1].meta.height == 32
+    assert dev_181.wavetables[1].data == [7, 19, 31, 25, 23, 21, 19, 16, 7, 1, 0, 0, 16, 14, 25, 24,
+                                          23, 21, 20, 20, 17, 31, 6, 9, 11, 13, 16, 19, 20, 22, 25, 30]
