@@ -24,14 +24,14 @@ setup(
     packages=[
         "chipchune.furnace", "chipchune.famitracker", "chipchune.deflemask"
     ],
-    license="GPL2+",
+    license="MIT",
     python_requires=">=3.8",
     extras_require={
         "testing": ["coverage", "pytest", "mypy"]
     },
     classifiers=[
         "Development Status :: 2 - Pre-Alpha",
-        "License :: OSI Approved :: GNU General Public License v2 or later (GPLv2+)",
+        "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
@@ -39,6 +39,7 @@ setup(
         'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: 3.10',
         'Programming Language :: Python :: 3.11',
+        'Programming Language :: Python :: 3.12',
         'Topic :: Multimedia :: Sound/Audio :: Editors',
         'Topic :: Multimedia :: Sound/Audio :: Conversion',
     ]
