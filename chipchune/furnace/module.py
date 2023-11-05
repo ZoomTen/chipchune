@@ -91,7 +91,7 @@ class FurnaceModule:
         if self.file_name is None:
             raise RuntimeError('No file name set, either set self.file_name or pass file_name to the function')
         with open(self.file_name, 'rb') as f:
-            detect_magic = f.peek(len(MAGIC_STR))
+            detect_magic = f.peek(len(MAGIC_STR))[:len(MAGIC_STR)]
             if detect_magic != MAGIC_STR:  # this is probably compressed, so try decompressing it first
                 return self.load_from_bytes(
                     zlib.decompress(f.read())
