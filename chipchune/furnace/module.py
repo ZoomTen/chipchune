@@ -433,8 +433,9 @@ class FurnaceModule:
 
     def __read_dev119_chip_flags(self, stream: BinaryIO) -> None:
         for i in range(len(self.chips.list)):
-            if i == 0:  # bail out if we don't have flags
-                break
+            # skip if this chip doesn't have flags
+            if self.__chip_flag_ptr[i] == 0:
+                continue
             stream.seek(self.__chip_flag_ptr[i])
 
             if stream.read(4) != b'FLAG':
