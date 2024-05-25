@@ -537,6 +537,12 @@ class SampleMap:
 
 
 @dataclass
+class DPCMMap:
+    pitch: int = 0
+    delta: int = 0
+
+
+@dataclass
 class InsFeatureAmiga(InsFeatureAbstract):  # Sample data
     _code = 'SM'
     init_sample: int = 0
@@ -548,9 +554,30 @@ class InsFeatureAmiga(InsFeatureAbstract):  # Sample data
 
 
 @dataclass
+class InsFeatureDPCMMap(InsFeatureAbstract):  # DPCM sample data
+    _code = 'NE'
+    use_map: bool = False
+    sample_map: List[DPCMMap] = field(default_factory=lambda: [SampleMap() for _ in range(120)])
+
+
+@dataclass
 class InsFeatureX1010(InsFeatureAbstract):
     _code = 'X1'
     bank_slot: int = 0
+
+
+@dataclass
+class InsFeaturePowerNoise(InsFeatureAbstract):
+    _code = 'PN'
+    octave: int = 0
+
+
+@dataclass
+class InsFeatureSID2(InsFeatureAbstract):
+    _code = 'S2'
+    noise_mode: int = 0
+    wave_mix: int = 0
+    volume: int = 0
 
 
 @dataclass

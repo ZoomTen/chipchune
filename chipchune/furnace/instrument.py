@@ -7,7 +7,8 @@ from .data_types import (
     InsFeatureFM, InsFeatureOpr1Macro, InsFeatureOpr2Macro, InsFeatureOpr3Macro, InsFeatureOpr4Macro,
     InsFeatureC64, InsFeatureGB, GBHwSeq, SingleMacro, InsFeatureAmiga, InsFeatureOPLDrums, InsFeatureSNES,
     GainMode, InsFeatureN163, InsFeatureFDS, InsFeatureWaveSynth, _InsFeaturePointerAbstract, InsFeatureSampleList,
-    InsFeatureWaveList, InsFeatureMultiPCM, InsFeatureSoundUnit, InsFeatureES5506, InsFeatureX1010, GenericADSR
+    InsFeatureWaveList, InsFeatureMultiPCM, InsFeatureSoundUnit, InsFeatureES5506, InsFeatureX1010, GenericADSR,
+    InsFeatureDPCMMap, InsFeaturePowerNoise, InsFeatureSID2
 )
 from .enums import (
     _FurInsImportType, MacroCode, OpMacroCode, MacroItem, MacroType, GBHwCommand,
@@ -84,7 +85,12 @@ class FurnaceInstrument:
             b'MP': self.__load_mp_block,
             b'SU': self.__load_su_block,
             b'ES': self.__load_es_block,
-            b'X1': self.__load_x1_block
+            b'X1': self.__load_x1_block,
+            b'NE': self.__load_ne_block,
+            # TODO: No documentation?
+            #b'EF': self.__load_ef_block,
+            b'PN': self.__load_pn_block,
+            b'S2': self.__load_s2_block,
         }
 
         if isinstance(file_name, str):
@@ -588,6 +594,35 @@ class FurnaceInstrument:
             bank_slot=read_int(stream)
         )
 
+    def __load_ne_block(self, stream: BytesIO) -> InsFeatureDPCMMap:
+        sm = InsFeatureDPCMMap()
+
+        sm.use_map = bool(read_byte(stream) & 1)
+
+        if sm.use_map:
+            for i in range(len(sm.sample_map)):
+                sm.sample_map[i].pitch = read_byte(stream)
+                sm.sample_map[i].delta = read_byte(stream)
+
+        return sm
+
+    # TODO: No documentation?
+    #def __load_ef_block(self, stream: BytesIO) -> InsFeatureESFM:
+    #    pass
+
+    def __load_pn_block(self, stream: BytesIO) -> InsFeaturePowerNoise:
+        return InsFeaturePowerNoise(
+            octave=read_byte(stream)
+        )
+
+    def __load_s2_block(self, stream: BytesIO) -> InsFeatureSID2:
+        current_byte = read_byte(stream)
+        return InsFeatureSID2(
+            volume=current_byte & 0b1111,
+            wave_mix=(current_byte >> 4) & 0b11,
+            noise_mode=(current_byte >> 6) & 0b11
+        )
+    
     # format 0; also used for file because it includes the "INST" header too
 
     def __load_format_0_embed(self, stream: BinaryIO) -> None:
