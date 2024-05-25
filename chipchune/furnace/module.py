@@ -260,6 +260,20 @@ class FurnaceModule:
             self.compat_flags.old_arp_strategy = True
         if self.meta.version < 138:
             self.compat_flags.broken_porta_during_legato = True
+        if self.meta.version < 155:
+            self.compat_flags.broken_fm_off = True
+        if self.meta.version < 168:
+            self.compat_flags.pre_note_no_effect = True
+        if self.meta.version < 183:
+            self.compat_flags.old_dpcm = True
+        if self.meta.version < 184:
+            self.compat_flags.reset_arp_phase_on_new_note = False
+        if self.meta.version < 188:
+            self.compat_flags.ceil_volume_scaling = False
+        if self.meta.version < 191:
+            self.compat_flags.old_always_set_volume = True
+        if self.meta.version < 200:
+            self.compat_flags.old_sample_offset = True
 
     # XXX: update my signature whenever a new compat flag block is added
     def __read_compat_flags(self, stream: BinaryIO, phase: Literal[1, 2, 3]) -> None:
@@ -424,6 +438,30 @@ class FurnaceModule:
             compat_flags_to_skip = 8
             if self.meta.version >= 138:
                 self.compat_flags.broken_porta_during_legato = bool(read_byte(stream))
+                compat_flags_to_skip -= 1
+            
+            if self.meta.version >= 155:
+                self.compat_flags.broken_fm_off = bool(read_byte(stream))
+                compat_flags_to_skip -= 1
+            
+            if self.meta.version >= 168:
+                self.compat_flags.pre_note_no_effect = bool(read_byte(stream))
+                compat_flags_to_skip -= 1
+            
+            if self.meta.version >= 183:
+                self.compat_flags.old_dpcm = bool(read_byte(stream))
+                compat_flags_to_skip -= 1
+            
+            if self.meta.version >= 184:
+                self.compat_flags.reset_arp_phase_on_new_note = bool(read_byte(stream))
+                compat_flags_to_skip -= 1
+            
+            if self.meta.version >= 188:
+                self.compat_flags.ceil_volume_scaling = bool(read_byte(stream))
+                compat_flags_to_skip -= 1
+            
+            if self.meta.version >= 191:
+                self.compat_flags.old_always_set_volume = bool(read_byte(stream))
                 compat_flags_to_skip -= 1
         else:
             raise ValueError(

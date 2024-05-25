@@ -157,6 +157,14 @@ class ModuleCompatFlags:
 
     broken_porta_during_legato: bool = False
 
+    broken_fm_off: bool = False
+    pre_note_no_effect: bool = False
+    old_dpcm: bool = False
+    reset_arp_phase_on_new_note: bool = False
+    ceil_volume_scaling: bool = False
+    old_always_set_volume: bool = False
+    old_sample_offset: bool = False
+
 
 @dataclass
 class SubSong:
