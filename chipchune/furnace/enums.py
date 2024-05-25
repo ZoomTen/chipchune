@@ -462,11 +462,26 @@ class ChipType(EnumShowNameOnly):
     M114S = (0xc9, 16)
     ZX_BEEPER_QUADTONE: Tuple[int, int] = (0xca, 5)  # Natt Akuma's engine
     PV_1000: Tuple[int, int] = (0xcb, 3)  # NEC D65010G031
+    K053260 = (0xcc, 4)
+    TED = (0xcd, 2)
+    NAMCO_C140 = (0xce, 24)
+    NAMCO_C219 = (0xcf, 16)
 
+    NAMCO_C352 = (0xd0, 32)
+    ESFM = (0xd1, 18)
+    ES5503 = (0xd2, 32)
+    POWERNOISE = (0xd4, 4)
+    DAVE = (0xd5, 6)
+    NDS = (0xd6, 16)
+    GBA = (0xd7, 2)
+    GBA_MINMOD = (0xd8, 16)
+    BIFURCATOR = (0xd9, 4)
     YM2610B_EX = (0xde, 19)
 
     QSOUND = (0xe0, 19)
 
+    SID2 = (0xf0, 3) # SID2
+    FIVEE01 = (0xf1, 5) # 5E01
     PONG = (0xfc, 1)
     DUMMY = (0xfd, 1)
 
