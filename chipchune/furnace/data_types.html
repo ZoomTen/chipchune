@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="pdoc 14.1.0"/>
+    <meta name="generator" content="pdoc 14.5.0"/>
     <title>chipchune.furnace.data_types API documentation</title>
 
     <style>/*! * Bootstrap Reboot v5.0.0 (https://getbootstrap.com/) * Copyright 2011-2021 The Bootstrap Authors * Copyright 2011-2021 Twitter, Inc. * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE) * Forked from Normalize.css, licensed MIT (https://github.com/necolas/normalize.css/blob/master/LICENSE.md) */*,::after,::before{box-sizing:border-box}@media (prefers-reduced-motion:no-preference){:root{scroll-behavior:smooth}}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";font-size:1rem;font-weight:400;line-height:1.5;color:#212529;background-color:#fff;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}hr{margin:1rem 0;color:inherit;background-color:currentColor;border:0;opacity:.25}hr:not([size]){height:1px}h1,h2,h3,h4,h5,h6{margin-top:0;margin-bottom:.5rem;font-weight:500;line-height:1.2}h1{font-size:calc(1.375rem + 1.5vw)}@media (min-width:1200px){h1{font-size:2.5rem}}h2{font-size:calc(1.325rem + .9vw)}@media (min-width:1200px){h2{font-size:2rem}}h3{font-size:calc(1.3rem + .6vw)}@media (min-width:1200px){h3{font-size:1.75rem}}h4{font-size:calc(1.275rem + .3vw)}@media (min-width:1200px){h4{font-size:1.5rem}}h5{font-size:1.25rem}h6{font-size:1rem}p{margin-top:0;margin-bottom:1rem}abbr[data-bs-original-title],abbr[title]{-webkit-text-decoration:underline dotted;text-decoration:underline dotted;cursor:help;-webkit-text-decoration-skip-ink:none;text-decoration-skip-ink:none}address{margin-bottom:1rem;font-style:normal;line-height:inherit}ol,ul{padding-left:2rem}dl,ol,ul{margin-top:0;margin-bottom:1rem}ol ol,ol ul,ul ol,ul ul{margin-bottom:0}dt{font-weight:700}dd{margin-bottom:.5rem;margin-left:0}blockquote{margin:0 0 1rem}b,strong{font-weight:bolder}small{font-size:.875em}mark{padding:.2em;background-color:#fcf8e3}sub,sup{position:relative;font-size:.75em;line-height:0;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}a{color:#0d6efd;text-decoration:underline}a:hover{color:#0a58ca}a:not([href]):not([class]),a:not([href]):not([class]):hover{color:inherit;text-decoration:none}code,kbd,pre,samp{font-family:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;font-size:1em;direction:ltr;unicode-bidi:bidi-override}pre{display:block;margin-top:0;margin-bottom:1rem;overflow:auto;font-size:.875em}pre code{font-size:inherit;color:inherit;word-break:normal}code{font-size:.875em;color:#d63384;word-wrap:break-word}a>code{color:inherit}kbd{padding:.2rem .4rem;font-size:.875em;color:#fff;background-color:#212529;border-radius:.2rem}kbd kbd{padding:0;font-size:1em;font-weight:700}figure{margin:0 0 1rem}img,svg{vertical-align:middle}table{caption-side:bottom;border-collapse:collapse}caption{padding-top:.5rem;padding-bottom:.5rem;color:#6c757d;text-align:left}th{text-align:inherit;text-align:-webkit-match-parent}tbody,td,tfoot,th,thead,tr{border-color:inherit;border-style:solid;border-width:0}label{display:inline-block}button{border-radius:0}button:focus:not(:focus-visible){outline:0}button,input,optgroup,select,textarea{margin:0;font-family:inherit;font-size:inherit;line-height:inherit}button,select{text-transform:none}[role=button]{cursor:pointer}select{word-wrap:normal}select:disabled{opacity:1}[list]::-webkit-calendar-picker-indicator{display:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]:not(:disabled),[type=reset]:not(:disabled),[type=submit]:not(:disabled),button:not(:disabled){cursor:pointer}::-moz-focus-inner{padding:0;border-style:none}textarea{resize:vertical}fieldset{min-width:0;padding:0;margin:0;border:0}legend{float:left;width:100%;padding:0;margin-bottom:.5rem;font-size:calc(1.275rem + .3vw);line-height:inherit}@media (min-width:1200px){legend{font-size:1.5rem}}legend+*{clear:left}::-webkit-datetime-edit-day-field,::-webkit-datetime-edit-fields-wrapper,::-webkit-datetime-edit-hour-field,::-webkit-datetime-edit-minute,::-webkit-datetime-edit-month-field,::-webkit-datetime-edit-text,::-webkit-datetime-edit-year-field{padding:0}::-webkit-inner-spin-button{height:auto}[type=search]{outline-offset:-2px;-webkit-appearance:textfield}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-color-swatch-wrapper{padding:0}::file-selector-button{font:inherit}::-webkit-file-upload-button{font:inherit;-webkit-appearance:button}output{display:inline-block}iframe{border:0}summary{display:list-item;cursor:pointer}progress{vertical-align:baseline}[hidden]{display:none!important}</style>
@@ -314,6 +314,27 @@
                         </li>
                         <li>
                                 <a class="variable" href="#ModuleCompatFlags.broken_porta_during_legato">broken_porta_during_legato</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#ModuleCompatFlags.broken_fm_off">broken_fm_off</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#ModuleCompatFlags.pre_note_no_effect">pre_note_no_effect</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#ModuleCompatFlags.old_dpcm">old_dpcm</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#ModuleCompatFlags.reset_arp_phase_on_new_note">reset_arp_phase_on_new_note</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#ModuleCompatFlags.ceil_volume_scaling">ceil_volume_scaling</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#ModuleCompatFlags.old_always_set_volume">old_always_set_volume</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#ModuleCompatFlags.old_sample_offset">old_sample_offset</a>
                         </li>
                 </ul>
 
@@ -820,6 +841,21 @@
 
             </li>
             <li>
+                    <a class="class" href="#DPCMMap">DPCMMap</a>
+                            <ul class="memberlist">
+                        <li>
+                                <a class="function" href="#DPCMMap.__init__">DPCMMap</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#DPCMMap.pitch">pitch</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#DPCMMap.delta">delta</a>
+                        </li>
+                </ul>
+
+            </li>
+            <li>
                     <a class="class" href="#InsFeatureAmiga">InsFeatureAmiga</a>
                             <ul class="memberlist">
                         <li>
@@ -847,6 +883,21 @@
 
             </li>
             <li>
+                    <a class="class" href="#InsFeatureDPCMMap">InsFeatureDPCMMap</a>
+                            <ul class="memberlist">
+                        <li>
+                                <a class="function" href="#InsFeatureDPCMMap.__init__">InsFeatureDPCMMap</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#InsFeatureDPCMMap.use_map">use_map</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#InsFeatureDPCMMap.sample_map">sample_map</a>
+                        </li>
+                </ul>
+
+            </li>
+            <li>
                     <a class="class" href="#InsFeatureX1010">InsFeatureX1010</a>
                             <ul class="memberlist">
                         <li>
@@ -854,6 +905,36 @@
                         </li>
                         <li>
                                 <a class="variable" href="#InsFeatureX1010.bank_slot">bank_slot</a>
+                        </li>
+                </ul>
+
+            </li>
+            <li>
+                    <a class="class" href="#InsFeaturePowerNoise">InsFeaturePowerNoise</a>
+                            <ul class="memberlist">
+                        <li>
+                                <a class="function" href="#InsFeaturePowerNoise.__init__">InsFeaturePowerNoise</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#InsFeaturePowerNoise.octave">octave</a>
+                        </li>
+                </ul>
+
+            </li>
+            <li>
+                    <a class="class" href="#InsFeatureSID2">InsFeatureSID2</a>
+                            <ul class="memberlist">
+                        <li>
+                                <a class="function" href="#InsFeatureSID2.__init__">InsFeatureSID2</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#InsFeatureSID2.noise_mode">noise_mode</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#InsFeatureSID2.wave_mix">wave_mix</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#InsFeatureSID2.volume">volume</a>
                         </li>
                 </ul>
 
@@ -1616,7 +1697,7 @@
                             <div id="ModuleCompatFlags.__init__" class="classattr">
                                 <div class="attr function">
             
-        <span class="name">ModuleCompatFlags</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="n">limit_slides</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">linear_pitch</span><span class="p">:</span> <span class="n"><a href="enums.html#LinearPitch">chipchune.furnace.enums.LinearPitch</a></span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">factory</span><span class="o">&gt;</span>,</span><span class="param">	<span class="n">loop_modality</span><span class="p">:</span> <span class="n"><a href="enums.html#LoopModality">chipchune.furnace.enums.LoopModality</a></span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">factory</span><span class="o">&gt;</span>,</span><span class="param">	<span class="n">proper_noise_layout</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>,</span><span class="param">	<span class="n">wave_duty_is_volume</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">reset_macro_on_porta</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">legacy_volume_slides</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">compatible_arpeggio</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">note_off_resets_slides</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>,</span><span class="param">	<span class="n">target_resets_slides</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>,</span><span class="param">	<span class="n">arpeggio_inhibits_portamento</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">wack_algorithm_macro</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">broken_shortcut_slides</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">ignore_duplicates_slides</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">stop_portamento_on_note_off</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">continuous_vibrato</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">broken_dac_mode</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">one_tick_cut</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">instrument_change_allowed_in_porta</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>,</span><span class="param">	<span class="n">reset_note_base_on_arpeggio_stop</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>,</span><span class="param">	<span class="n">broken_speed_selection</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">no_slides_on_first_tick</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">next_row_reset_arp_pos</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">ignore_jump_at_end</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">buggy_portamento_after_slide</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">gb_ins_affects_env</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>,</span><span class="param">	<span class="n">shared_extch_state</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>,</span><span class="param">	<span class="n">ignore_outside_dac_mode_change</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">e1e2_takes_priority</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">new_sega_pcm</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>,</span><span class="param">	<span class="n">weird_fnum_pitch_slides</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">sn_duty_resets_phase</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">linear_pitch_macro</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>,</span><span class="param">	<span class="n">pitch_slide_speed_in_linear</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4</span>,</span><span class="param">	<span class="n">old_octave_boundary</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">disable_opn2_dac_volume_control</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">new_volume_scaling</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>,</span><span class="param">	<span class="n">volume_macro_lingers</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>,</span><span class="param">	<span class="n">broken_out_vol</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">e1e2_stop_on_same_note</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">broken_porta_after_arp</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">sn_no_low_periods</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">cut_delay_effect_policy</span><span class="p">:</span> <span class="n"><a href="enums.html#DelayBehavior">chipchune.furnace.enums.DelayBehavior</a></span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">factory</span><span class="o">&gt;</span>,</span><span class="param">	<span class="n">jump_treatment</span><span class="p">:</span> <span class="n"><a href="enums.html#JumpTreatment">chipchune.furnace.enums.JumpTreatment</a></span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">factory</span><span class="o">&gt;</span>,</span><span class="param">	<span class="n">auto_sys_name</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>,</span><span class="param">	<span class="n">disable_sample_macro</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">broken_out_vol_2</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">old_arp_strategy</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">auto_patchbay</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>,</span><span class="param">	<span class="n">broken_porta_during_legato</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span></span>)</span>
+        <span class="name">ModuleCompatFlags</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="n">limit_slides</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">linear_pitch</span><span class="p">:</span> <span class="n"><a href="enums.html#LinearPitch">chipchune.furnace.enums.LinearPitch</a></span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">factory</span><span class="o">&gt;</span>,</span><span class="param">	<span class="n">loop_modality</span><span class="p">:</span> <span class="n"><a href="enums.html#LoopModality">chipchune.furnace.enums.LoopModality</a></span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">factory</span><span class="o">&gt;</span>,</span><span class="param">	<span class="n">proper_noise_layout</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>,</span><span class="param">	<span class="n">wave_duty_is_volume</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">reset_macro_on_porta</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">legacy_volume_slides</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">compatible_arpeggio</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">note_off_resets_slides</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>,</span><span class="param">	<span class="n">target_resets_slides</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>,</span><span class="param">	<span class="n">arpeggio_inhibits_portamento</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">wack_algorithm_macro</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">broken_shortcut_slides</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">ignore_duplicates_slides</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">stop_portamento_on_note_off</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">continuous_vibrato</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">broken_dac_mode</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">one_tick_cut</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">instrument_change_allowed_in_porta</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>,</span><span class="param">	<span class="n">reset_note_base_on_arpeggio_stop</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>,</span><span class="param">	<span class="n">broken_speed_selection</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">no_slides_on_first_tick</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">next_row_reset_arp_pos</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">ignore_jump_at_end</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">buggy_portamento_after_slide</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">gb_ins_affects_env</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>,</span><span class="param">	<span class="n">shared_extch_state</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>,</span><span class="param">	<span class="n">ignore_outside_dac_mode_change</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">e1e2_takes_priority</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">new_sega_pcm</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>,</span><span class="param">	<span class="n">weird_fnum_pitch_slides</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">sn_duty_resets_phase</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">linear_pitch_macro</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>,</span><span class="param">	<span class="n">pitch_slide_speed_in_linear</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4</span>,</span><span class="param">	<span class="n">old_octave_boundary</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">disable_opn2_dac_volume_control</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">new_volume_scaling</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>,</span><span class="param">	<span class="n">volume_macro_lingers</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>,</span><span class="param">	<span class="n">broken_out_vol</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">e1e2_stop_on_same_note</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">broken_porta_after_arp</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">sn_no_low_periods</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">cut_delay_effect_policy</span><span class="p">:</span> <span class="n"><a href="enums.html#DelayBehavior">chipchune.furnace.enums.DelayBehavior</a></span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">factory</span><span class="o">&gt;</span>,</span><span class="param">	<span class="n">jump_treatment</span><span class="p">:</span> <span class="n"><a href="enums.html#JumpTreatment">chipchune.furnace.enums.JumpTreatment</a></span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">factory</span><span class="o">&gt;</span>,</span><span class="param">	<span class="n">auto_sys_name</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>,</span><span class="param">	<span class="n">disable_sample_macro</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">broken_out_vol_2</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">old_arp_strategy</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">auto_patchbay</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>,</span><span class="param">	<span class="n">broken_porta_during_legato</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">broken_fm_off</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">pre_note_no_effect</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">old_dpcm</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">reset_arp_phase_on_new_note</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">ceil_volume_scaling</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">old_always_set_volume</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">old_sample_offset</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span></span>)</span>
 
         
     </div>
@@ -2217,6 +2298,90 @@
         
     </div>
     <a class="headerlink" href="#ModuleCompatFlags.broken_porta_during_legato"></a>
+    
+    
+
+                            </div>
+                            <div id="ModuleCompatFlags.broken_fm_off" class="classattr">
+                                <div class="attr variable">
+            <span class="name">broken_fm_off</span><span class="annotation">: bool</span>        =
+<span class="default_value">False</span>
+
+        
+    </div>
+    <a class="headerlink" href="#ModuleCompatFlags.broken_fm_off"></a>
+    
+    
+
+                            </div>
+                            <div id="ModuleCompatFlags.pre_note_no_effect" class="classattr">
+                                <div class="attr variable">
+            <span class="name">pre_note_no_effect</span><span class="annotation">: bool</span>        =
+<span class="default_value">False</span>
+
+        
+    </div>
+    <a class="headerlink" href="#ModuleCompatFlags.pre_note_no_effect"></a>
+    
+    
+
+                            </div>
+                            <div id="ModuleCompatFlags.old_dpcm" class="classattr">
+                                <div class="attr variable">
+            <span class="name">old_dpcm</span><span class="annotation">: bool</span>        =
+<span class="default_value">False</span>
+
+        
+    </div>
+    <a class="headerlink" href="#ModuleCompatFlags.old_dpcm"></a>
+    
+    
+
+                            </div>
+                            <div id="ModuleCompatFlags.reset_arp_phase_on_new_note" class="classattr">
+                                <div class="attr variable">
+            <span class="name">reset_arp_phase_on_new_note</span><span class="annotation">: bool</span>        =
+<span class="default_value">False</span>
+
+        
+    </div>
+    <a class="headerlink" href="#ModuleCompatFlags.reset_arp_phase_on_new_note"></a>
+    
+    
+
+                            </div>
+                            <div id="ModuleCompatFlags.ceil_volume_scaling" class="classattr">
+                                <div class="attr variable">
+            <span class="name">ceil_volume_scaling</span><span class="annotation">: bool</span>        =
+<span class="default_value">False</span>
+
+        
+    </div>
+    <a class="headerlink" href="#ModuleCompatFlags.ceil_volume_scaling"></a>
+    
+    
+
+                            </div>
+                            <div id="ModuleCompatFlags.old_always_set_volume" class="classattr">
+                                <div class="attr variable">
+            <span class="name">old_always_set_volume</span><span class="annotation">: bool</span>        =
+<span class="default_value">False</span>
+
+        
+    </div>
+    <a class="headerlink" href="#ModuleCompatFlags.old_always_set_volume"></a>
+    
+    
+
+                            </div>
+                            <div id="ModuleCompatFlags.old_sample_offset" class="classattr">
+                                <div class="attr variable">
+            <span class="name">old_sample_offset</span><span class="annotation">: bool</span>        =
+<span class="default_value">False</span>
+
+        
+    </div>
+    <a class="headerlink" href="#ModuleCompatFlags.old_sample_offset"></a>
     
     
 
@@ -4128,6 +4293,55 @@
 
                             </div>
                 </section>
+                <section id="DPCMMap">
+                    <div class="attr class">
+            
+    <span class="def">class</span>
+    <span class="name">DPCMMap</span>:
+
+        
+    </div>
+    <a class="headerlink" href="#DPCMMap"></a>
+    
+    
+
+                            <div id="DPCMMap.__init__" class="classattr">
+                                <div class="attr function">
+            
+        <span class="name">DPCMMap</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">pitch</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>, </span><span class="param"><span class="n">delta</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span></span>)</span>
+
+        
+    </div>
+    <a class="headerlink" href="#DPCMMap.__init__"></a>
+    
+    
+
+                            </div>
+                            <div id="DPCMMap.pitch" class="classattr">
+                                <div class="attr variable">
+            <span class="name">pitch</span><span class="annotation">: int</span>        =
+<span class="default_value">0</span>
+
+        
+    </div>
+    <a class="headerlink" href="#DPCMMap.pitch"></a>
+    
+    
+
+                            </div>
+                            <div id="DPCMMap.delta" class="classattr">
+                                <div class="attr variable">
+            <span class="name">delta</span><span class="annotation">: int</span>        =
+<span class="default_value">0</span>
+
+        
+    </div>
+    <a class="headerlink" href="#DPCMMap.delta"></a>
+    
+    
+
+                            </div>
+                </section>
                 <section id="InsFeatureAmiga">
                     <div class="attr class">
             
@@ -4224,6 +4438,54 @@
 
                             </div>
                 </section>
+                <section id="InsFeatureDPCMMap">
+                    <div class="attr class">
+            
+    <span class="def">class</span>
+    <span class="name">InsFeatureDPCMMap</span><wbr>(<span class="base"><a href="#InsFeatureAbstract">InsFeatureAbstract</a></span>):
+
+        
+    </div>
+    <a class="headerlink" href="#InsFeatureDPCMMap"></a>
+    
+    
+
+                            <div id="InsFeatureDPCMMap.__init__" class="classattr">
+                                <div class="attr function">
+            
+        <span class="name">InsFeatureDPCMMap</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="n">use_map</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">sample_map</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n"><a href="#DPCMMap">DPCMMap</a></span><span class="p">]</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">factory</span><span class="o">&gt;</span></span>)</span>
+
+        
+    </div>
+    <a class="headerlink" href="#InsFeatureDPCMMap.__init__"></a>
+    
+    
+
+                            </div>
+                            <div id="InsFeatureDPCMMap.use_map" class="classattr">
+                                <div class="attr variable">
+            <span class="name">use_map</span><span class="annotation">: bool</span>        =
+<span class="default_value">False</span>
+
+        
+    </div>
+    <a class="headerlink" href="#InsFeatureDPCMMap.use_map"></a>
+    
+    
+
+                            </div>
+                            <div id="InsFeatureDPCMMap.sample_map" class="classattr">
+                                <div class="attr variable">
+            <span class="name">sample_map</span><span class="annotation">: List[<a href="#DPCMMap">DPCMMap</a>]</span>
+
+        
+    </div>
+    <a class="headerlink" href="#InsFeatureDPCMMap.sample_map"></a>
+    
+    
+
+                            </div>
+                </section>
                 <section id="InsFeatureX1010">
                     <div class="attr class">
             
@@ -4256,6 +4518,104 @@
         
     </div>
     <a class="headerlink" href="#InsFeatureX1010.bank_slot"></a>
+    
+    
+
+                            </div>
+                </section>
+                <section id="InsFeaturePowerNoise">
+                    <div class="attr class">
+            
+    <span class="def">class</span>
+    <span class="name">InsFeaturePowerNoise</span><wbr>(<span class="base"><a href="#InsFeatureAbstract">InsFeatureAbstract</a></span>):
+
+        
+    </div>
+    <a class="headerlink" href="#InsFeaturePowerNoise"></a>
+    
+    
+
+                            <div id="InsFeaturePowerNoise.__init__" class="classattr">
+                                <div class="attr function">
+            
+        <span class="name">InsFeaturePowerNoise</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">octave</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span></span>)</span>
+
+        
+    </div>
+    <a class="headerlink" href="#InsFeaturePowerNoise.__init__"></a>
+    
+    
+
+                            </div>
+                            <div id="InsFeaturePowerNoise.octave" class="classattr">
+                                <div class="attr variable">
+            <span class="name">octave</span><span class="annotation">: int</span>        =
+<span class="default_value">0</span>
+
+        
+    </div>
+    <a class="headerlink" href="#InsFeaturePowerNoise.octave"></a>
+    
+    
+
+                            </div>
+                </section>
+                <section id="InsFeatureSID2">
+                    <div class="attr class">
+            
+    <span class="def">class</span>
+    <span class="name">InsFeatureSID2</span><wbr>(<span class="base"><a href="#InsFeatureAbstract">InsFeatureAbstract</a></span>):
+
+        
+    </div>
+    <a class="headerlink" href="#InsFeatureSID2"></a>
+    
+    
+
+                            <div id="InsFeatureSID2.__init__" class="classattr">
+                                <div class="attr function">
+            
+        <span class="name">InsFeatureSID2</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">noise_mode</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>, </span><span class="param"><span class="n">wave_mix</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>, </span><span class="param"><span class="n">volume</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span></span>)</span>
+
+        
+    </div>
+    <a class="headerlink" href="#InsFeatureSID2.__init__"></a>
+    
+    
+
+                            </div>
+                            <div id="InsFeatureSID2.noise_mode" class="classattr">
+                                <div class="attr variable">
+            <span class="name">noise_mode</span><span class="annotation">: int</span>        =
+<span class="default_value">0</span>
+
+        
+    </div>
+    <a class="headerlink" href="#InsFeatureSID2.noise_mode"></a>
+    
+    
+
+                            </div>
+                            <div id="InsFeatureSID2.wave_mix" class="classattr">
+                                <div class="attr variable">
+            <span class="name">wave_mix</span><span class="annotation">: int</span>        =
+<span class="default_value">0</span>
+
+        
+    </div>
+    <a class="headerlink" href="#InsFeatureSID2.wave_mix"></a>
+    
+    
+
+                            </div>
+                            <div id="InsFeatureSID2.volume" class="classattr">
+                                <div class="attr variable">
+            <span class="name">volume</span><span class="annotation">: int</span>        =
+<span class="default_value">0</span>
+
+        
+    </div>
+    <a class="headerlink" href="#InsFeatureSID2.volume"></a>
     
     
 
