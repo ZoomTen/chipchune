@@ -45,7 +45,7 @@ class FurnaceInstrument:
         """
         Original file name, if the object was initialized with one.
         """
-        self.protocol_version: int = protocol_version
+        self.protocol_version: Optional[int] = protocol_version
         """
         Instrument file "protocol" version. Currently:
         - 0: The "unified" instrument format up to Furnace version 126.
