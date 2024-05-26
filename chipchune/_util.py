@@ -1,3 +1,8 @@
+"""
+This is for internal use; not to be confused with
+`chipchune.utils`.
+"""
+
 import struct
 from enum import Enum
 from typing import BinaryIO, Any, cast
