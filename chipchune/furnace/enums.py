@@ -474,8 +474,8 @@ class ChipType(EnumShowNameOnly):
     GA20 = (0xC7, 4)
     SM8521 = (0xC8, 3)
     M114S = (0xC9, 16)
-    ZX_BEEPER_QUADTONE: Tuple[int, int] = (0xCA, 5)  # Natt Akuma's engine
-    PV_1000: Tuple[int, int] = (0xCB, 3)  # NEC D65010G031
+    ZX_BEEPER_QUADTONE = (0xCA, 5)  # Natt Akuma's engine
+    PV_1000 = (0xCB, 3)  # NEC D65010G031
     K053260 = (0xCC, 4)
     TED = (0xCD, 2)
     NAMCO_C140 = (0xCE, 24)
@@ -498,7 +498,6 @@ class ChipType(EnumShowNameOnly):
     FIVEE01 = (0xF1, 5)  # 5E01
     PONG = (0xFC, 1)
     DUMMY = (0xFD, 1)
-
     RESERVED_1 = (0xFE, 1)
     RESERVED_2 = (0xFF, 1)
 
