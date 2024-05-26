@@ -5,17 +5,34 @@ from typing import BinaryIO, Optional, Literal, Union, Dict, List, Callable
 
 from chipchune._util import read_byte, read_short, read_int, read_float, read_str
 from .data_types import (
-    ModuleMeta, ChipList, ModuleCompatFlags, SubSong, PatchBay, ChannelDisplayInfo,
-    InputPatchBayEntry, OutputPatchBayEntry, ChipInfo, FurnacePattern, FurnaceRow
+    ModuleMeta,
+    ChipList,
+    ModuleCompatFlags,
+    SubSong,
+    PatchBay,
+    ChannelDisplayInfo,
+    InputPatchBayEntry,
+    OutputPatchBayEntry,
+    ChipInfo,
+    FurnacePattern,
+    FurnaceRow,
 )
 from .enums import (
-    ChipType, LinearPitch, InputPortSet, OutputPortSet, LoopModality,
-    DelayBehavior, JumpTreatment, _FurInsImportType, _FurWavetableImportType, Note
+    ChipType,
+    LinearPitch,
+    InputPortSet,
+    OutputPortSet,
+    LoopModality,
+    DelayBehavior,
+    JumpTreatment,
+    _FurInsImportType,
+    _FurWavetableImportType,
+    Note,
 )
 from .instrument import FurnaceInstrument
 from .wavetable import FurnaceWavetable
 
-MAGIC_STR = b'-Furnace module-'
+MAGIC_STR = b"-Furnace module-"
 MAX_CHIPS = 32
 
 
@@ -28,7 +45,9 @@ class FurnaceModule:
     "new" instrument-feature-list format.
     """
 
-    def __init__(self, file_name_or_stream: Optional[Union[BufferedReader, str]] = None) -> None:
+    def __init__(
+        self, file_name_or_stream: Optional[Union[BufferedReader, str]] = None
+    ) -> None:
         """
         Creates or opens a new Furnace module as a Python object.
 
@@ -89,13 +108,15 @@ class FurnaceModule:
         if isinstance(file_name, str):
             self.file_name = file_name
         if self.file_name is None:
-            raise RuntimeError('No file name set, either set self.file_name or pass file_name to the function')
-        with open(self.file_name, 'rb') as f:
-            detect_magic = f.peek(len(MAGIC_STR))[:len(MAGIC_STR)]
-            if detect_magic != MAGIC_STR:  # this is probably compressed, so try decompressing it first
-                return self.load_from_bytes(
-                    zlib.decompress(f.read())
-                )
+            raise RuntimeError(
+                "No file name set, either set self.file_name or pass file_name to the function"
+            )
+        with open(self.file_name, "rb") as f:
+            detect_magic = f.peek(len(MAGIC_STR))[: len(MAGIC_STR)]
+            if (
+                detect_magic != MAGIC_STR
+            ):  # this is probably compressed, so try decompressing it first
+                return self.load_from_bytes(zlib.decompress(f.read()))
             else:  # uncompressed for sure
                 return self.load_from_stream(f)
 
@@ -109,8 +130,8 @@ class FurnaceModule:
         :param out_name: output file name
         :return: Results of file.write().
         """
-        with open(in_name, 'rb') as fi:
-            with open(out_name, 'wb') as fo:
+        with open(in_name, "rb") as fi:
+            with open(out_name, "wb") as fo:
                 return fo.write(zlib.decompress(fi.read()))
 
     def load_from_bytes(self, data: bytes) -> None:
@@ -119,9 +140,7 @@ class FurnaceModule:
 
         :param data: Bytes
         """
-        return self.load_from_stream(
-            BytesIO(data)
-        )
+        return self.load_from_stream(BytesIO(data))
 
     def load_from_stream(self, stream: BinaryIO) -> None:
         """
@@ -131,7 +150,9 @@ class FurnaceModule:
         """
         # assumes uncompressed stream
         if stream.read(len(MAGIC_STR)) != MAGIC_STR:
-            raise RuntimeError('Bad magic value; this is not a Furnace file or is corrupt')
+            raise RuntimeError(
+                "Bad magic value; this is not a Furnace file or is corrupt"
+            )
 
         # clear defaults
         self.chips.list.clear()
@@ -162,7 +183,9 @@ class FurnaceModule:
             num_channels += chip.type.channels
         return num_channels
 
-    def get_pattern(self, channel: int, index: int, subsong: int=0) -> Optional[FurnacePattern]:
+    def get_pattern(
+        self, channel: int, index: int, subsong: int = 0
+    ) -> Optional[FurnacePattern]:
         """
         Gets one pattern object from a module.
 
@@ -174,7 +197,12 @@ class FurnaceModule:
         """
         try:
             return next(
-                filter(lambda x: x.channel==channel and x.index==index and x.subsong==subsong, self.patterns)
+                filter(
+                    lambda x: x.channel == channel
+                    and x.index == index
+                    and x.subsong == subsong,
+                    self.patterns,
+                )
             )
         except StopIteration:
             return None
@@ -306,7 +334,9 @@ class FurnaceModule:
                     compat_flags_to_skip -= 5
 
                 if self.meta.version >= 47:
-                    self.compat_flags.arpeggio_inhibits_portamento = bool(read_byte(stream))
+                    self.compat_flags.arpeggio_inhibits_portamento = bool(
+                        read_byte(stream)
+                    )
                     self.compat_flags.wack_algorithm_macro = bool(read_byte(stream))
                     compat_flags_to_skip -= 2
 
@@ -319,7 +349,9 @@ class FurnaceModule:
                     compat_flags_to_skip -= 1
 
                 if self.meta.version >= 62:
-                    self.compat_flags.stop_portamento_on_note_off = bool(read_byte(stream))
+                    self.compat_flags.stop_portamento_on_note_off = bool(
+                        read_byte(stream)
+                    )
                     self.compat_flags.continuous_vibrato = bool(read_byte(stream))
                     compat_flags_to_skip -= 2
 
@@ -332,11 +364,15 @@ class FurnaceModule:
                     compat_flags_to_skip -= 1
 
                 if self.meta.version >= 66:
-                    self.compat_flags.instrument_change_allowed_in_porta = bool(read_byte(stream))
+                    self.compat_flags.instrument_change_allowed_in_porta = bool(
+                        read_byte(stream)
+                    )
                     compat_flags_to_skip -= 1
 
                 if self.meta.version >= 69:
-                    self.compat_flags.reset_note_base_on_arpeggio_stop = bool(read_byte(stream))
+                    self.compat_flags.reset_note_base_on_arpeggio_stop = bool(
+                        read_byte(stream)
+                    )
                     compat_flags_to_skip -= 1
         elif phase == 2:
             compat_flags_to_skip = 28
@@ -351,7 +387,9 @@ class FurnaceModule:
                     compat_flags_to_skip -= 3
 
                 if self.meta.version >= 72:
-                    self.compat_flags.buggy_portamento_after_slide = bool(read_byte(stream))
+                    self.compat_flags.buggy_portamento_after_slide = bool(
+                        read_byte(stream)
+                    )
                     self.compat_flags.gb_ins_affects_env = bool(read_byte(stream))
                     compat_flags_to_skip -= 2
 
@@ -360,7 +398,9 @@ class FurnaceModule:
                     compat_flags_to_skip -= 1
 
                 if self.meta.version >= 83:
-                    self.compat_flags.ignore_outside_dac_mode_change = bool(read_byte(stream))
+                    self.compat_flags.ignore_outside_dac_mode_change = bool(
+                        read_byte(stream)
+                    )
                     self.compat_flags.e1e2_takes_priority = bool(read_byte(stream))
                     compat_flags_to_skip -= 2
 
@@ -389,7 +429,9 @@ class FurnaceModule:
                     compat_flags_to_skip -= 1
 
                 if self.meta.version >= 98:
-                    self.compat_flags.disable_opn2_dac_volume_control = bool(read_byte(stream))
+                    self.compat_flags.disable_opn2_dac_volume_control = bool(
+                        read_byte(stream)
+                    )
                     compat_flags_to_skip -= 1
 
                 if self.meta.version >= 99:
@@ -411,7 +453,9 @@ class FurnaceModule:
                     compat_flags_to_skip -= 1
 
                 if self.meta.version >= 110:
-                    self.compat_flags.cut_delay_effect_policy = DelayBehavior(read_byte(stream))
+                    self.compat_flags.cut_delay_effect_policy = DelayBehavior(
+                        read_byte(stream)
+                    )
                     compat_flags_to_skip -= 1
 
                 if self.meta.version >= 113:
@@ -439,34 +483,32 @@ class FurnaceModule:
             if self.meta.version >= 138:
                 self.compat_flags.broken_porta_during_legato = bool(read_byte(stream))
                 compat_flags_to_skip -= 1
-            
+
             if self.meta.version >= 155:
                 self.compat_flags.broken_fm_off = bool(read_byte(stream))
                 compat_flags_to_skip -= 1
-            
+
             if self.meta.version >= 168:
                 self.compat_flags.pre_note_no_effect = bool(read_byte(stream))
                 compat_flags_to_skip -= 1
-            
+
             if self.meta.version >= 183:
                 self.compat_flags.old_dpcm = bool(read_byte(stream))
                 compat_flags_to_skip -= 1
-            
+
             if self.meta.version >= 184:
                 self.compat_flags.reset_arp_phase_on_new_note = bool(read_byte(stream))
                 compat_flags_to_skip -= 1
-            
+
             if self.meta.version >= 188:
                 self.compat_flags.ceil_volume_scaling = bool(read_byte(stream))
                 compat_flags_to_skip -= 1
-            
+
             if self.meta.version >= 191:
                 self.compat_flags.old_always_set_volume = bool(read_byte(stream))
                 compat_flags_to_skip -= 1
         else:
-            raise ValueError(
-                'Compat flag phase must be in between: 1, 2, 3'
-            )
+            raise ValueError("Compat flag phase must be in between: 1, 2, 3")
         stream.read(compat_flags_to_skip)
 
     def __read_dev119_chip_flags(self, stream: BinaryIO) -> None:
@@ -476,7 +518,7 @@ class FurnaceModule:
                 continue
             stream.seek(self.__chip_flag_ptr[i])
 
-            if stream.read(4) != b'FLAG':
+            if stream.read(4) != b"FLAG":
                 raise ValueError('No "FLAG" magic')
 
             # i assume this will grow, you never know
@@ -484,23 +526,25 @@ class FurnaceModule:
             flag_blk = BytesIO(stream.read(blk_size))
 
             # read entries in FLAG
-            for entry in [flag.split('=') for flag in read_str(flag_blk).split()]:
+            for entry in [flag.split("=") for flag in read_str(flag_blk).split()]:
                 key = entry[0]
                 value = entry[1]
                 # cast by regex
-                if re.match(r'true', value):
+                if re.match(r"true", value):
                     self.chips.list[i].flags[key] = True
-                elif re.match(r'false', value):
+                elif re.match(r"false", value):
                     self.chips.list[i].flags[key] = False
-                elif re.match(r'\d+$', value):
+                elif re.match(r"\d+$", value):
                     self.chips.list[i].flags[key] = int(value)
-                elif re.match(r'\d+\.\d+', value):
+                elif re.match(r"\d+\.\d+", value):
                     self.chips.list[i].flags[key] = float(value)
                 else:  # all other values should be treated as a string
                     self.chips.list[i].flags[key] = value
 
     @staticmethod
-    def __convert_old_chip_flags(chip: ChipType, flag: int) -> Dict[str, Union[bool, int]]:
+    def __convert_old_chip_flags(
+        chip: ChipType, flag: int
+    ) -> Dict[str, Union[bool, int]]:
         """
         Convert pre-v119 binary chip flags to the newer dict-style form.
 
@@ -511,125 +555,141 @@ class FurnaceModule:
         n = {}
 
         if chip in [ChipType.GENESIS, ChipType.GENESIS_EX]:
-            n['clockSel'] = flag & 2147483647  # bits 0-30
-            n['ladderEffect'] = bool((flag >> 31) & 1)
+            n["clockSel"] = flag & 2147483647  # bits 0-30
+            n["ladderEffect"] = bool((flag >> 31) & 1)
         elif chip == ChipType.SMS:
-            cs = flag & 0xff03
+            cs = flag & 0xFF03
             if cs > 0x100:
                 cs = cs - 252  # 0x100 + 4
-            n['clockSel'] = cs
-            ct = (flag & 0xcc) // 4
+            n["clockSel"] = cs
+            ct = (flag & 0xCC) // 4
             if ct >= 32:
                 ct -= 24
             elif ct >= 16:
                 ct -= 12
-            n['chipType'] = ct
-            n['noPhaseReset'] = flag >> 4
+            n["chipType"] = ct
+            n["noPhaseReset"] = flag >> 4
         elif chip == ChipType.GB:
-            n['chipType'] = flag & 0b11
-            n['noAntiClick'] = bool((flag >> 3) & 1)
+            n["chipType"] = flag & 0b11
+            n["noAntiClick"] = bool((flag >> 3) & 1)
         elif chip == ChipType.PCE:
-            n['clockSel'] = flag & 1
-            n['chipType'] = (flag >> 2) & 1
-            n['noAntiClick'] = bool((flag >> 3) & 1)
+            n["clockSel"] = flag & 1
+            n["chipType"] = (flag >> 2) & 1
+            n["noAntiClick"] = bool((flag >> 3) & 1)
         elif chip in [ChipType.NES, ChipType.VRC6, ChipType.FDS, ChipType.MMC5]:
-            n['clockSel'] = flag & 0b11
+            n["clockSel"] = flag & 0b11
         elif chip in [ChipType.C64_8580, ChipType.C64_6581]:
-            n['clockSel'] = flag & 0b1111
+            n["clockSel"] = flag & 0b1111
         elif chip == ChipType.SEGA_ARCADE:
-            n['clockSel'] = flag & 0b11111111
-        elif chip in [ChipType.NEO_GEO_CD, ChipType.NEO_GEO, ChipType.NEO_GEO_EX,
-                      ChipType.NEO_GEO_CD_EX, ChipType.YM2610B, ChipType.YM2610B_EX]:
-            n['clockSel'] = flag & 0b11111111
+            n["clockSel"] = flag & 0b11111111
+        elif chip in [
+            ChipType.NEO_GEO_CD,
+            ChipType.NEO_GEO,
+            ChipType.NEO_GEO_EX,
+            ChipType.NEO_GEO_CD_EX,
+            ChipType.YM2610B,
+            ChipType.YM2610B_EX,
+        ]:
+            n["clockSel"] = flag & 0b11111111
         elif chip == ChipType.AY38910:
-            n['clockSel'] = flag & 0b1111
-            n['chipType'] = (flag >> 4) & 0b11
-            n['stereo'] = bool((flag >> 6) & 1)
-            n['halfClock'] = bool((flag >> 7) & 1)
-            n['stereoSep'] = (flag >> 8) & 0b11111111
+            n["clockSel"] = flag & 0b1111
+            n["chipType"] = (flag >> 4) & 0b11
+            n["stereo"] = bool((flag >> 6) & 1)
+            n["halfClock"] = bool((flag >> 7) & 1)
+            n["stereoSep"] = (flag >> 8) & 0b11111111
         elif chip == ChipType.AMIGA:
-            n['clockSel'] = flag & 1
-            n['chipType'] = (flag >> 1) & 1
-            n['bypassLimits'] = bool((flag >> 2) & 1)
-            n['stereoSep'] = (flag >> 8) & 0b1111111
+            n["clockSel"] = flag & 1
+            n["chipType"] = (flag >> 1) & 1
+            n["bypassLimits"] = bool((flag >> 2) & 1)
+            n["stereoSep"] = (flag >> 8) & 0b1111111
         elif chip == ChipType.YM2151:
-            n['clockSel'] = flag & 0b11111111
-        elif chip in [ChipType.YM2612, ChipType.YM2612_EX, ChipType.YM2612_PLUS,
-                      ChipType.YM2612_PLUS_EX]:
-            n['clockSel'] = flag & 2147483647  # bits 0-30
-            n['ladderEffect'] = bool((flag >> 31) & 1)
+            n["clockSel"] = flag & 0b11111111
+        elif chip in [
+            ChipType.YM2612,
+            ChipType.YM2612_EX,
+            ChipType.YM2612_PLUS,
+            ChipType.YM2612_PLUS_EX,
+        ]:
+            n["clockSel"] = flag & 2147483647  # bits 0-30
+            n["ladderEffect"] = bool((flag >> 31) & 1)
         elif chip == ChipType.TIA:
-            n['clockSel'] = flag & 1
-            n['mixingType'] = (flag >> 1) & 0b11
+            n["clockSel"] = flag & 1
+            n["mixingType"] = (flag >> 1) & 0b11
         elif chip == ChipType.VIC20:
-            n['clockSel'] = flag & 1
+            n["clockSel"] = flag & 1
         elif chip == ChipType.SNES:
-            n['volScaleL'] = flag & 0b1111111
-            n['volScaleR'] = (flag >> 8) & 0b1111111
+            n["volScaleL"] = flag & 0b1111111
+            n["volScaleR"] = (flag >> 8) & 0b1111111
         elif chip in [ChipType.OPLL, ChipType.OPLL_DRUMS]:
-            n['clockSel'] = flag & 0b1111
-            n['patchSet'] = flag >> 4  # safe
+            n["clockSel"] = flag & 0b1111
+            n["patchSet"] = flag >> 4  # safe
         elif chip == ChipType.N163:
-            n['clockSel'] = flag & 0b1111
-            n['channels'] = (flag >> 4) & 0b111
-            n['multiplex'] = bool((flag >> 7) & 1)
+            n["clockSel"] = flag & 0b1111
+            n["channels"] = (flag >> 4) & 0b111
+            n["multiplex"] = bool((flag >> 7) & 1)
         elif chip in [ChipType.OPN, ChipType.YM2203_EX]:
-            n['clockSel'] = flag & 0b11111
-            n['prescale'] = (flag >> 5) & 0b11
-        elif chip in [ChipType.OPL, ChipType.OPL_DRUMS, ChipType.OPL2, ChipType.OPL2_DRUMS,
-                      ChipType.Y8950, ChipType.Y8950_DRUMS]:
-            n['clockSel'] = flag & 0b11111111
+            n["clockSel"] = flag & 0b11111
+            n["prescale"] = (flag >> 5) & 0b11
+        elif chip in [
+            ChipType.OPL,
+            ChipType.OPL_DRUMS,
+            ChipType.OPL2,
+            ChipType.OPL2_DRUMS,
+            ChipType.Y8950,
+            ChipType.Y8950_DRUMS,
+        ]:
+            n["clockSel"] = flag & 0b11111111
         elif chip in [ChipType.OPL3, ChipType.OPL3_DRUMS]:
-            n['clockSel'] = flag & 0b11111111
+            n["clockSel"] = flag & 0b11111111
         elif chip == ChipType.PC_SPEAKER:
-            n['speakerType'] = flag & 0b11
+            n["speakerType"] = flag & 0b11
         elif chip == ChipType.RF5C68:
-            n['clockSel'] = flag & 0b1111
-            n['chipType'] = flag >> 4  # safe
+            n["clockSel"] = flag & 0b1111
+            n["chipType"] = flag >> 4  # safe
         elif chip in [ChipType.SAA1099, ChipType.OPZ]:
-            n['clockSel'] = flag & 0b11
+            n["clockSel"] = flag & 0b11
         elif chip == ChipType.AY8930:
-            n['clockSel'] = flag & 0b1111
-            n['stereo'] = bool((flag >> 6) & 1)
-            n['halfClock'] = bool((flag >> 7) & 1)
-            n['stereoSep'] = (flag >> 8) & 0b11111111
+            n["clockSel"] = flag & 0b1111
+            n["stereo"] = bool((flag >> 6) & 1)
+            n["halfClock"] = bool((flag >> 7) & 1)
+            n["stereoSep"] = (flag >> 8) & 0b11111111
         elif chip == ChipType.VRC7:
-            n['clockSel'] = flag & 0b11
+            n["clockSel"] = flag & 0b11
         elif chip == ChipType.ZX_BEEPER:
-            n['clockSel'] = flag & 1
+            n["clockSel"] = flag & 1
         elif chip in [ChipType.SCC, ChipType.SCC_PLUS]:
-            n['clockSel'] = flag & 0b11
+            n["clockSel"] = flag & 0b11
         elif chip == ChipType.MSM6295:
-            n['clockSel'] = flag & 0b1111111
-            n['rateSel'] = bool((flag >> 7) & 1)
+            n["clockSel"] = flag & 0b1111111
+            n["rateSel"] = bool((flag >> 7) & 1)
         elif chip == ChipType.MSM6258:
-            n['clockSel'] = flag & 0b11
+            n["clockSel"] = flag & 0b11
         elif chip in [ChipType.OPL4, ChipType.OPL4_DRUMS]:
-            n['clockSel'] = flag & 0b11111111
+            n["clockSel"] = flag & 0b11111111
         elif chip == ChipType.SETA:
-            n['clockSel'] = flag & 0b1111
-            n['stereo'] = bool((flag >> 4) & 1)
+            n["clockSel"] = flag & 0b1111
+            n["stereo"] = bool((flag >> 4) & 1)
         elif chip == ChipType.ES5506:
-            n['channels'] = flag & 0b11111
+            n["channels"] = flag & 0b11111
         elif chip == ChipType.TSU:
-            n['clockSel'] = flag & 1
-            n['echo'] = bool((flag >> 2) & 1)
-            n['swapEcho'] = bool((flag >> 3) & 1)
-            n['sampleMemSize'] = (flag >> 4) & 1
-            n['pdm'] = bool((flag >> 5) & 1)
-            n['echoDelay'] = (flag >> 8) & 0b111111
-            n['echoFeedback'] = (flag >> 16) & 0b1111
-            n['echoResolution'] = (flag >> 20) & 0b1111
-            n['echoVol'] = (flag >> 24) & 0b11111111
+            n["clockSel"] = flag & 1
+            n["echo"] = bool((flag >> 2) & 1)
+            n["swapEcho"] = bool((flag >> 3) & 1)
+            n["sampleMemSize"] = (flag >> 4) & 1
+            n["pdm"] = bool((flag >> 5) & 1)
+            n["echoDelay"] = (flag >> 8) & 0b111111
+            n["echoFeedback"] = (flag >> 16) & 0b1111
+            n["echoResolution"] = (flag >> 20) & 0b1111
+            n["echoVol"] = (flag >> 24) & 0b11111111
         elif chip == ChipType.YMZ280B:
-            n['clockSel'] = flag & 0b11111111
+            n["clockSel"] = flag & 0b11111111
         elif chip == ChipType.PCM_DAC:
-            n['rate'] = (flag & 0b1111111111111111) + 1
-            n['outDepth'] = (flag >> 16) & 0b1111
-            n['stereo'] = bool((flag >> 20) & 1)
+            n["rate"] = (flag & 0b1111111111111111) + 1
+            n["outDepth"] = (flag >> 16) & 0b1111
+            n["stereo"] = bool((flag >> 20) & 1)
         elif chip == ChipType.QSOUND:
-            n['echoDelay'] = flag & 0b1111111111111
-            n['echoFeedback'] = (flag >> 16) & 0b11111111
+            n["echoDelay"] = flag & 0b1111111111111
+            n["echoFeedback"] = (flag >> 16) & 0b11111111
         return n
 
     def __read_header(self, stream: BinaryIO) -> None:
@@ -641,7 +701,7 @@ class FurnaceModule:
 
     def __read_info(self, stream: BinaryIO) -> None:
         stream.seek(self.__song_info_ptr)
-        if stream.read(4) != b'INFO':
+        if stream.read(4) != b"INFO":
             raise ValueError('No "INFO" magic')
 
         if self.meta.version < 100:  # don't read size prior to 0.6pre1
@@ -652,19 +712,13 @@ class FurnaceModule:
             info_blk = BytesIO(stream.read(blk_size))
 
         # info of first subsong
-        self.subsongs[0].timing.timebase = (read_byte(info_blk) + 1)
-        self.subsongs[0].timing.speed = (
-            read_byte(info_blk),
-            read_byte(info_blk)
-        )
+        self.subsongs[0].timing.timebase = read_byte(info_blk) + 1
+        self.subsongs[0].timing.speed = (read_byte(info_blk), read_byte(info_blk))
         self.subsongs[0].timing.arp_speed = read_byte(info_blk)
         self.subsongs[0].timing.clock_speed = read_float(info_blk)
         self.subsongs[0].pattern_length = read_short(info_blk)
         len_orders = read_short(info_blk)
-        self.subsongs[0].timing.highlight = (
-            read_byte(info_blk),
-            read_byte(info_blk)
-        )
+        self.subsongs[0].timing.highlight = (read_byte(info_blk), read_byte(info_blk))
 
         # global
         num_insts = read_short(info_blk)
@@ -676,9 +730,7 @@ class FurnaceModule:
         for chip_id in info_blk.read(MAX_CHIPS):
             if chip_id == 0:
                 break  # seek position is after chips here
-            self.chips.list.append(
-                ChipInfo(ChipType(chip_id))  # type: ignore
-            )
+            self.chips.list.append(ChipInfo(ChipType(chip_id)))  # type: ignore
 
         # fetch volume
         for i in range(MAX_CHIPS):
@@ -712,21 +764,13 @@ class FurnaceModule:
         # Compat flags, part I
         self.__read_compat_flags(info_blk, 1)
 
-        self.__instrument_ptr = [
-            read_int(info_blk) for _ in range(num_insts)
-        ]
+        self.__instrument_ptr = [read_int(info_blk) for _ in range(num_insts)]
 
-        self.__wavetable_ptr = [
-            read_int(info_blk) for _ in range(num_waves)
-        ]
+        self.__wavetable_ptr = [read_int(info_blk) for _ in range(num_waves)]
 
-        self.__sample_ptr = [
-            read_int(info_blk) for _ in range(num_samples)
-        ]
+        self.__sample_ptr = [read_int(info_blk) for _ in range(num_samples)]
 
-        self.__pattern_ptr = [
-            read_int(info_blk) for _ in range(num_patterns)
-        ]
+        self.__pattern_ptr = [read_int(info_blk) for _ in range(num_patterns)]
 
         num_channels = self.get_num_channels()
 
@@ -767,7 +811,8 @@ class FurnaceModule:
             self.__read_compat_flags(info_blk, 2)
             if self.meta.version >= 96:
                 self.subsongs[0].timing.virtual_tempo = (
-                    read_short(info_blk), read_short(info_blk)
+                    read_short(info_blk),
+                    read_short(info_blk),
                 )
             else:
                 info_blk.read(4)  # reserved in self.meta.version < 96
@@ -778,9 +823,7 @@ class FurnaceModule:
             self.subsongs[0].comment = read_str(info_blk)
             num_extra_subsongs = read_byte(info_blk)
             info_blk.read(3)  # reserved
-            self.__subsong_ptr = [
-                read_int(info_blk) for _ in range(num_extra_subsongs)
-            ]
+            self.__subsong_ptr = [read_int(info_blk) for _ in range(num_extra_subsongs)]
 
         # Extra metadata
         if self.meta.version >= 103:
@@ -808,13 +851,11 @@ class FurnaceModule:
                 self.patchbay.append(
                     PatchBay(
                         dest=InputPatchBayEntry(
-                            set=InputPortSet(src >> 4),
-                            port=src & 0b1111
+                            set=InputPortSet(src >> 4), port=src & 0b1111
                         ),
                         source=OutputPatchBayEntry(
-                            set=OutputPortSet(dst >> 4),
-                            port=dst & 0b1111
-                        )
+                            set=OutputPortSet(dst >> 4), port=dst & 0b1111
+                        ),
                     )
                 )
 
@@ -830,20 +871,24 @@ class FurnaceModule:
             # speed pattern
             len_speed_pattern = read_byte(info_blk)
             if (len_speed_pattern < 0) or (len_speed_pattern > 16):
-                raise ValueError('Invalid speed pattern length value')
+                raise ValueError("Invalid speed pattern length value")
             self.subsongs[0].speed_pattern = [
                 read_byte(info_blk) for _ in range(len_speed_pattern)
             ]
-            info_blk.read(16 - len_speed_pattern)  # skip that many bytes, because it's always 0x06
+            info_blk.read(
+                16 - len_speed_pattern
+            )  # skip that many bytes, because it's always 0x06
 
             # groove
             len_groove_list = read_byte(info_blk)
             for _ in range(len_groove_list):
                 len_groove = read_byte(info_blk)
-                self.subsongs[0].grooves.append([
-                    read_byte(info_blk) for _ in range(len_groove)
-                ])
-                info_blk.read(16 - len_groove)  # TODO: i assume the same as above. i hope i'm right
+                self.subsongs[0].grooves.append(
+                    [read_byte(info_blk) for _ in range(len_groove)]
+                )
+                info_blk.read(
+                    16 - len_groove
+                )  # TODO: i assume the same as above. i hope i'm right
 
     def __read_instruments(self, stream: BinaryIO) -> None:
         for i in self.__instrument_ptr:
@@ -877,7 +922,7 @@ class FurnaceModule:
 
             # Old pattern
             if self.meta.version < 157:
-                if stream.read(4) != b'PATR':
+                if stream.read(4) != b"PATR":
                     raise ValueError('No "PATR" magic')
                 sz = read_int(stream)
                 if sz == 0:
@@ -900,12 +945,15 @@ class FurnaceModule:
                         note=Note(read_short(patr_blk)),
                         octave=read_short(patr_blk),
                         instrument=read_short(patr_blk),
-                        volume=read_short(patr_blk)
+                        volume=read_short(patr_blk),
                     )
-                    row.octave += (1 if row.note == Note.C_ else 0)
-                    effect_columns = self.subsongs[new_patr.subsong].effect_columns[new_patr.channel]
+                    row.octave += 1 if row.note == Note.C_ else 0
+                    effect_columns = self.subsongs[new_patr.subsong].effect_columns[
+                        new_patr.channel
+                    ]
                     row.effects = [
-                        (read_short(patr_blk), read_short(patr_blk)) for _ in range(effect_columns)
+                        (read_short(patr_blk), read_short(patr_blk))
+                        for _ in range(effect_columns)
                     ]
                     new_patr.data.append(row)
 
@@ -914,7 +962,7 @@ class FurnaceModule:
 
             # New pattern
             else:
-                if stream.read(4) != b'PATN':
+                if stream.read(4) != b"PATN":
                     raise ValueError('No "PATN" magic')
                 sz = read_int(stream)
                 if sz == 0:
@@ -929,21 +977,23 @@ class FurnaceModule:
                 new_patr.name = read_str(patr_blk)
 
                 num_rows = self.subsongs[new_patr.subsong].pattern_length
-                effect_columns = self.subsongs[new_patr.subsong].effect_columns[new_patr.channel]
+                effect_columns = self.subsongs[new_patr.subsong].effect_columns[
+                    new_patr.channel
+                ]
 
                 empty_row: Callable[[], FurnaceRow] = lambda: FurnaceRow(
-                    Note.__, 0, 0xffff, 0xffff, [(0xffff,0xffff)] * effect_columns
+                    Note.__, 0, 0xFFFF, 0xFFFF, [(0xFFFF, 0xFFFF)] * effect_columns
                 )
 
                 row_idx = 0
                 while row_idx < num_rows:
                     char = read_byte(patr_blk)
                     # end of pattern
-                    if char == 0xff:
+                    if char == 0xFF:
                         break
                     # skip N+2 rows
                     if char & 0x80:
-                        skip = (char & 0x7f) + 2
+                        skip = (char & 0x7F) + 2
                         row_idx += skip
                         for _ in range(skip):
                             new_patr.data.append(empty_row())
@@ -995,24 +1045,23 @@ class FurnaceModule:
                             note = Note(note_val)
                             octave = -5 + raw_note // 12
 
-                    ins, volume = 0xffff, 0xffff
+                    ins, volume = 0xFFFF, 0xFFFF
                     if ins_present:
                         ins = read_byte(patr_blk)
                     if volume_present:
                         volume = read_byte(patr_blk)
 
                     row = FurnaceRow(
-                        note=note,
-                        octave=octave,
-                        instrument=ins,
-                        volume=volume
+                        note=note, octave=octave, instrument=ins, volume=volume
                     )
 
-                    row.effects = [(0xffff,0xffff)] * effect_columns
-                    for i, fx_presents in enumerate(zip(effect_present_list, effect_val_present_list)):
+                    row.effects = [(0xFFFF, 0xFFFF)] * effect_columns
+                    for i, fx_presents in enumerate(
+                        zip(effect_present_list, effect_val_present_list)
+                    ):
                         if i >= effect_columns:
                             break
-                        fx_cmd, fx_val = 0xffff, 0xffff
+                        fx_cmd, fx_val = 0xFFFF, 0xFFFF
                         if fx_presents[0]:
                             fx_cmd = read_byte(patr_blk)
                         if fx_presents[1]:
@@ -1021,7 +1070,7 @@ class FurnaceModule:
 
                     new_patr.data.append(row)
                     row_idx += 1
-                
+
                 # fill the rest of the pattern with EMPTY
                 while row_idx < num_rows:
                     new_patr.data.append(empty_row())
@@ -1034,7 +1083,7 @@ class FurnaceModule:
             if i == 0:
                 break
             stream.seek(i)
-            if stream.read(4) != b'SONG':
+            if stream.read(4) != b"SONG":
                 raise ValueError('No "SONG" magic')
             subsong_blk = BytesIO(stream.read(read_int(stream)))
             new_subsong = SubSong()
@@ -1042,18 +1091,18 @@ class FurnaceModule:
             new_subsong.speed_pattern.clear()
 
             new_subsong.timing.timebase = read_byte(subsong_blk)
-            new_subsong.timing.speed = (
-                read_byte(subsong_blk), read_byte(subsong_blk)
-            )
+            new_subsong.timing.speed = (read_byte(subsong_blk), read_byte(subsong_blk))
             new_subsong.timing.arp_speed = read_byte(subsong_blk)
             new_subsong.timing.clock_speed = read_float(subsong_blk)
             new_subsong.pattern_length = read_short(subsong_blk)
             new_subsong_len_orders = read_short(subsong_blk)
             new_subsong.timing.highlight = (
-                read_byte(subsong_blk), read_byte(subsong_blk)
+                read_byte(subsong_blk),
+                read_byte(subsong_blk),
             )
             new_subsong.timing.virtual_tempo = (
-                read_short(subsong_blk), read_short(subsong_blk)
+                read_short(subsong_blk),
+                read_short(subsong_blk),
             )
             new_subsong.name = read_str(subsong_blk)
             new_subsong.comment = read_str(subsong_blk)
@@ -1091,7 +1140,7 @@ class FurnaceModule:
                 # speed pattern
                 len_speed_pattern = read_byte(subsong_blk)
                 if (len_speed_pattern < 0) or (len_speed_pattern > 16):
-                    raise ValueError('Invalid speed pattern length value')
+                    raise ValueError("Invalid speed pattern length value")
                 new_subsong.speed_pattern = [
                     read_byte(subsong_blk) for _ in range(len_speed_pattern)
                 ]
@@ -1100,5 +1149,7 @@ class FurnaceModule:
 
     def __str__(self) -> str:
         return '<Furnace ver. %d module "%s" by %s>' % (
-            self.meta.version, self.meta.name, self.meta.author
+            self.meta.version,
+            self.meta.name,
+            self.meta.author,
         )

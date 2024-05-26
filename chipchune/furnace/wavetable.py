@@ -5,8 +5,8 @@ from chipchune._util import read_short, read_int, read_str
 from .data_types import WavetableMeta
 from .enums import _FurWavetableImportType
 
-FILE_MAGIC_STR = b'-Furnace waveta-'
-EMBED_MAGIC_STR = b'WAVE'
+FILE_MAGIC_STR = b"-Furnace waveta-"
+EMBED_MAGIC_STR = b"WAVE"
 
 
 class FurnaceWavetable:
@@ -40,28 +40,31 @@ class FurnaceWavetable:
         if isinstance(file_name, str):
             self.file_name = file_name
         if self.file_name is None:
-            raise RuntimeError('No file name set, either set self.file_name or pass file_name to the function')
+            raise RuntimeError(
+                "No file name set, either set self.file_name or pass file_name to the function"
+            )
 
         # since we're loading from an uncompressed file, we can just check the file magic number
-        with open(self.file_name, 'rb') as f:
-            detect_magic = f.peek(len(FILE_MAGIC_STR))[:len(FILE_MAGIC_STR)]
+        with open(self.file_name, "rb") as f:
+            detect_magic = f.peek(len(FILE_MAGIC_STR))[: len(FILE_MAGIC_STR)]
             if detect_magic == FILE_MAGIC_STR:
                 return self.load_from_stream(f, _FurWavetableImportType.FILE)
             else:  # uncompressed for sure
-                raise ValueError('No recognized file type magic')
+                raise ValueError("No recognized file type magic")
 
-    def load_from_bytes(self, data: bytes, import_as: Union[int, _FurWavetableImportType]) -> None:
+    def load_from_bytes(
+        self, data: bytes, import_as: Union[int, _FurWavetableImportType]
+    ) -> None:
         """
         Load a wavetable from a series of bytes.
 
         :param data: Bytes
         """
-        return self.load_from_stream(
-            BytesIO(data),
-            import_as
-        )
-    
-    def load_from_stream(self, stream: BinaryIO, import_as: Union[int, _FurWavetableImportType]) -> None:
+        return self.load_from_stream(BytesIO(data), import_as)
+
+    def load_from_stream(
+        self, stream: BinaryIO, import_as: Union[int, _FurWavetableImportType]
+    ) -> None:
         """
         Load a wavetable from an **uncompressed** stream.
 
@@ -72,7 +75,7 @@ class FurnaceWavetable:
         """
         if import_as == _FurWavetableImportType.FILE:
             if stream.read(len(FILE_MAGIC_STR)) != FILE_MAGIC_STR:
-                raise ValueError('Bad magic value for a wavetable file')
+                raise ValueError("Bad magic value for a wavetable file")
             version = read_short(stream)
             read_short(stream)  # reserved
             self.__load_embed(stream)
@@ -81,12 +84,12 @@ class FurnaceWavetable:
             return self.__load_embed(stream)
 
         else:
-            raise ValueError('Invalid import type')
+            raise ValueError("Invalid import type")
 
     def __load_embed(self, stream: BinaryIO) -> None:
         if stream.read(len(EMBED_MAGIC_STR)) != EMBED_MAGIC_STR:
-            raise RuntimeError('Bad magic value for a wavetable embed')
-        
+            raise RuntimeError("Bad magic value for a wavetable embed")
+
         blk_size = read_int(stream)
         if blk_size > 0:
             wt_data: Union[BytesIO, BinaryIO] = BytesIO(stream.read(blk_size))
@@ -96,6 +99,8 @@ class FurnaceWavetable:
         self.meta.name = read_str(wt_data)
         self.meta.width = read_int(wt_data)
         read_int(wt_data)  # reserved
-        self.meta.height = read_int(wt_data) + 1  # serialized height is 1 lower than actual value
+        self.meta.height = (
+            read_int(wt_data) + 1
+        )  # serialized height is 1 lower than actual value
 
         self.data = [read_int(wt_data) for _ in range(self.meta.width)]

@@ -2,9 +2,24 @@ from dataclasses import dataclass, field
 from typing import Tuple, List, TypedDict, Any, Union, Dict
 
 from .enums import (
-    ChipType, LinearPitch, LoopModality, DelayBehavior, JumpTreatment, InputPortSet, OutputPortSet,
-    InstrumentType, MacroCode, OpMacroCode, MacroType, MacroItem, GBHwCommand, WaveFX, ESFilterMode,
-    SNESSusMode, GainMode, Note
+    ChipType,
+    LinearPitch,
+    LoopModality,
+    DelayBehavior,
+    JumpTreatment,
+    InputPortSet,
+    OutputPortSet,
+    InstrumentType,
+    MacroCode,
+    OpMacroCode,
+    MacroType,
+    MacroItem,
+    GBHwCommand,
+    WaveFX,
+    ESFilterMode,
+    SNESSusMode,
+    GainMode,
+    Note,
 )
 
 
@@ -14,6 +29,7 @@ class ChipInfo:
     """
     Information on a single chip.
     """
+
     type: ChipType
     #: shall be a simple dict, no enums needed
     flags: Dict[str, Any] = field(default_factory=dict)
@@ -30,18 +46,19 @@ class ModuleMeta:
     """
     Module metadata.
     """
-    name: str = ''
-    name_jp: str = ''
-    author: str = ''
-    author_jp: str = ''
-    album: str = ''
+
+    name: str = ""
+    name_jp: str = ""
+    author: str = ""
+    author_jp: str = ""
+    album: str = ""
     """
     Can also be the game name or container name.
     """
-    album_jp: str = ''
-    sys_name: str = 'Sega Genesis/Mega Drive'
-    sys_name_jp: str = ''
-    comment: str = ''
+    album_jp: str = ""
+    sys_name: str = "Sega Genesis/Mega Drive"
+    sys_name_jp: str = ""
+    comment: str = ""
     version: int = 0
     tuning: float = 440.0
 
@@ -51,6 +68,7 @@ class TimingInfo:
     """
     Timing information for a single subsong.
     """
+
     arp_speed = 1
     clock_speed = 60.0
     highlight: Tuple[int, int] = (4, 16)
@@ -64,6 +82,7 @@ class ChipList:
     """
     Information about chips used in the module.
     """
+
     list: List[ChipInfo] = field(default_factory=list)
     master_volume: float = 2.0
 
@@ -73,17 +92,16 @@ class ChannelDisplayInfo:
     """
     Relating to channel display in Pattern and Order windows.
     """
-    name: str = ''
-    abbreviation: str = ''
+
+    name: str = ""
+    abbreviation: str = ""
     collapsed: bool = False
     shown: bool = True
 
     def __repr__(self) -> str:
-        return "ChannelDisplayInfo(name='%s', abbreviation='%s', collapsed=%s, shown=%s)" % (
-            self.name,
-            self.abbreviation,
-            self.collapsed,
-            self.shown
+        return (
+            "ChannelDisplayInfo(name='%s', abbreviation='%s', collapsed=%s, shown=%s)"
+            % (self.name, self.abbreviation, self.collapsed, self.shown)
         )
 
 
@@ -142,8 +160,12 @@ class ModuleCompatFlags:
     e1e2_stop_on_same_note: bool = False
     broken_porta_after_arp: bool = False
     sn_no_low_periods: bool = False
-    cut_delay_effect_policy: DelayBehavior = field(default_factory=lambda: DelayBehavior.LAX)
-    jump_treatment: JumpTreatment = field(default_factory=lambda: JumpTreatment.ALL_JUMPS)
+    cut_delay_effect_policy: DelayBehavior = field(
+        default_factory=lambda: DelayBehavior.LAX
+    )
+    jump_treatment: JumpTreatment = field(
+        default_factory=lambda: JumpTreatment.ALL_JUMPS
+    )
     auto_sys_name: bool = True
     disable_sample_macro: bool = False
     broken_out_vol_2: bool = False
@@ -171,8 +193,9 @@ class SubSong:
     """
     Information on a single subsong.
     """
-    name: str = ''
-    comment: str = ''
+
+    name: str = ""
+    comment: str = ""
     speed_pattern: List[int] = field(default_factory=lambda: [6])
     """
     Maximum 16 entries.
@@ -180,20 +203,31 @@ class SubSong:
     grooves: List[List[int]] = field(default_factory=list)
     timing: TimingInfo = field(default_factory=TimingInfo)
     pattern_length = 64
-    order: Dict[int, List[int]] = field(default_factory=lambda: {
-        0: [0], 1: [0], 2: [0], 3: [0], 4: [0],
-        5: [0], 6: [0], 7: [0], 8: [0], 9: [0]
-    })
-    effect_columns: List[int] = field(default_factory=lambda: [
-        1 for _ in range(
-            ChipType.YM2612.channels + ChipType.SMS.channels
-        )
-    ])
-    channel_display: List[ChannelDisplayInfo] = field(default_factory=lambda: [
-        ChannelDisplayInfo() for _ in range(
-            ChipType.YM2612.channels + ChipType.SMS.channels
-        )
-    ])
+    order: Dict[int, List[int]] = field(
+        default_factory=lambda: {
+            0: [0],
+            1: [0],
+            2: [0],
+            3: [0],
+            4: [0],
+            5: [0],
+            6: [0],
+            7: [0],
+            8: [0],
+            9: [0],
+        }
+    )
+    effect_columns: List[int] = field(
+        default_factory=lambda: [
+            1 for _ in range(ChipType.YM2612.channels + ChipType.SMS.channels)
+        ]
+    )
+    channel_display: List[ChannelDisplayInfo] = field(
+        default_factory=lambda: [
+            ChannelDisplayInfo()
+            for _ in range(ChipType.YM2612.channels + ChipType.SMS.channels)
+        ]
+    )
 
 
 @dataclass
@@ -201,6 +235,7 @@ class FurnaceRow:
     """
     Represents a single row in a pattern.
     """
+
     note: Note
     octave: int
     instrument: int
@@ -238,21 +273,18 @@ class FurnaceRow:
         else:
             note_str = "%s%d" % (note_maps[self.note], self.octave)
 
-        vol = ".." if self.volume==0xffff else "%02X" % self.volume
-        ins = ".." if self.instrument==0xffff else "%02X" % self.instrument
+        vol = ".." if self.volume == 0xFFFF else "%02X" % self.volume
+        ins = ".." if self.instrument == 0xFFFF else "%02X" % self.instrument
 
         rep_str = "%s%s%s"
 
         for fx in self.effects:
             cmd, val = fx
-            cmd_str = ".." if cmd == 0xffff else "%02X" % cmd
-            val_str = ".." if val == 0xffff else "%02X" % val
+            cmd_str = ".." if cmd == 0xFFFF else "%02X" % cmd
+            val_str = ".." if val == 0xFFFF else "%02X" % val
             rep_str += "%s%s" % (cmd_str, val_str)
 
-        return rep_str % (
-            note_str,
-            ins, vol
-        ) + "|"
+        return rep_str % (note_str, ins, vol) + "|"
 
     def __str__(self) -> str:
         if self.note == Note.OFF:
@@ -266,21 +298,18 @@ class FurnaceRow:
         else:
             note_str = "%s%d" % (self.note, self.octave)
 
-        vol = "--" if self.volume==0xffff else "%02x" % self.volume
-        ins = "--" if self.instrument==0xffff else "%02x" % self.instrument
+        vol = "--" if self.volume == 0xFFFF else "%02x" % self.volume
+        ins = "--" if self.instrument == 0xFFFF else "%02x" % self.instrument
 
         rep_str = "row data: %s %s %s"
 
         for fx in self.effects:
             cmd, val = fx
-            cmd_str = "--" if cmd == 0xffff else "%02x" % cmd
-            val_str = "--" if val == 0xffff else "%02x" % val
+            cmd_str = "--" if cmd == 0xFFFF else "%02x" % cmd
+            val_str = "--" if val == 0xFFFF else "%02x" % val
             rep_str += " %s%s" % (cmd_str, val_str)
 
-        return "<" + rep_str % (
-            note_str,
-            ins, vol
-        ) + ">"
+        return "<" + rep_str % (note_str, ins, vol) + ">"
 
 
 @dataclass
@@ -288,6 +317,7 @@ class FurnacePattern:
     """
     Represents one pattern in a module.
     """
+
     channel: int = 0
     index: int = 0
     subsong: int = 0
@@ -300,13 +330,15 @@ class FurnacePattern:
 
         :return: Furnace clipboard data
         """
-        return "org.tildearrow.furnace - Pattern Data\n0\n" + "\n".join([x.as_clipboard() for x in self.data])
+        return "org.tildearrow.furnace - Pattern Data\n0\n" + "\n".join(
+            [x.as_clipboard() for x in self.data]
+        )
 
     def __str__(self) -> str:
         return "<Furnace pattern %s for ch.%02d of subsong %02d>" % (
             self.name if len(self.name) > 0 else "%02x" % self.index,
             self.channel,
-            self.subsong
+            self.subsong,
         )
 
 
@@ -314,6 +346,7 @@ class InputPatchBayEntry(TypedDict):
     """
     A patch that has an "input" connector.
     """
+
     set: InputPortSet
     """
     The set that the patch belongs to.
@@ -328,6 +361,7 @@ class OutputPatchBayEntry(TypedDict):
     """
     A patch that has an "output" connector.
     """
+
     set: OutputPortSet
     """
     The set that the patch belongs to.
@@ -343,6 +377,7 @@ class PatchBay:
     """
     A single patchbay connection.
     """
+
     source: OutputPatchBayEntry
     dest: InputPatchBayEntry
 
@@ -353,11 +388,12 @@ class InsFeatureAbstract:
     """
     Base class for all InsFeature* classes. Not really to be used.
     """
+
     _code: str = field(init=False)
 
     def __post_init__(self) -> None:
         if len(self._code) != 2:
-            raise ValueError('No code defined for this instrument feature')
+            raise ValueError("No code defined for this instrument feature")
 
     # def serialize(self) -> bytes:
     #     raise Exception('Method serialize() has not been overridden...')
@@ -368,8 +404,9 @@ class InsFeatureName(InsFeatureAbstract, str):
     """
     Instrument's name block. Can be used as a string.
     """
-    _code = 'NA'
-    name: str = ''
+
+    _code = "NA"
+    name: str = ""
 
     def __str__(self) -> str:
         return self.name
@@ -409,7 +446,7 @@ class InsFMOperator:
 
 @dataclass
 class InsFeatureFM(InsFeatureAbstract):
-    _code = 'FM'
+    _code = "FM"
     alg: int = 0
     fb: int = 4
     fms: int = 0
@@ -418,28 +455,14 @@ class InsFeatureFM(InsFeatureAbstract):
     ams2: int = 0
     ops: int = 2
     opll_preset: int = 0
-    op_list: List[InsFMOperator] = field(default_factory=lambda: [
-        InsFMOperator(
-            tl=42, ar=31, dr=8,
-            sl=15, rr=3, mult=5,
-            dt=5
-        ),
-        InsFMOperator(
-            tl=48, ar=31, dr=4,
-            sl=11, rr=1, mult=1,
-            dt=5
-        ),
-        InsFMOperator(
-            tl=18, ar=31, dr=10,
-            sl=15, rr=4, mult=1,
-            dt=0
-        ),
-        InsFMOperator(
-            tl=2, ar=31, dr=9,
-            sl=15, rr=9, mult=1,
-            dt=0
-        ),
-    ])
+    op_list: List[InsFMOperator] = field(
+        default_factory=lambda: [
+            InsFMOperator(tl=42, ar=31, dr=8, sl=15, rr=3, mult=5, dt=5),
+            InsFMOperator(tl=48, ar=31, dr=4, sl=11, rr=1, mult=1, dt=5),
+            InsFMOperator(tl=18, ar=31, dr=10, sl=15, rr=4, mult=1, dt=0),
+            InsFMOperator(tl=2, ar=31, dr=9, sl=15, rr=9, mult=1, dt=0),
+        ]
+    )
 
 
 @dataclass
@@ -455,28 +478,28 @@ class SingleMacro:
 
 @dataclass
 class InsFeatureMacro(InsFeatureAbstract):
-    _code = 'MA'
+    _code = "MA"
     macros: List[SingleMacro] = field(default_factory=lambda: [SingleMacro()])
 
 
 @dataclass
 class InsFeatureOpr1Macro(InsFeatureMacro):
-    _code = 'O1'
+    _code = "O1"
 
 
 @dataclass
 class InsFeatureOpr2Macro(InsFeatureMacro):
-    _code = 'O2'
+    _code = "O2"
 
 
 @dataclass
 class InsFeatureOpr3Macro(InsFeatureMacro):
-    _code = 'O3'
+    _code = "O3"
 
 
 @dataclass
 class InsFeatureOpr4Macro(InsFeatureMacro):
-    _code = 'O4'
+    _code = "O4"
 
 
 @dataclass
@@ -487,7 +510,7 @@ class GBHwSeq:
 
 @dataclass
 class InsFeatureGB(InsFeatureAbstract):
-    _code = 'GB'
+    _code = "GB"
     env_vol: int = 15
     env_dir: int = 0
     env_len: int = 2
@@ -507,12 +530,14 @@ class GenericADSR:
 
 @dataclass
 class InsFeatureC64(InsFeatureAbstract):
-    _code = '64'
+    _code = "64"
     tri_on: bool = False
     saw_on: bool = True
     pulse_on: bool = False
     noise_on: bool = False
-    envelope: GenericADSR = field(default_factory=lambda: GenericADSR(a=0, d=8, s=0, r=0))
+    envelope: GenericADSR = field(
+        default_factory=lambda: GenericADSR(a=0, d=8, s=0, r=0)
+    )
     duty: int = 2048
     ring_mod: int = 0
     osc_sync: int = 0
@@ -544,37 +569,41 @@ class DPCMMap:
 
 @dataclass
 class InsFeatureAmiga(InsFeatureAbstract):  # Sample data
-    _code = 'SM'
+    _code = "SM"
     init_sample: int = 0
     use_note_map: bool = False
     use_sample: bool = False
     use_wave: bool = False
     wave_len: int = 31
-    sample_map: List[SampleMap] = field(default_factory=lambda: [SampleMap() for _ in range(120)])
+    sample_map: List[SampleMap] = field(
+        default_factory=lambda: [SampleMap() for _ in range(120)]
+    )
 
 
 @dataclass
 class InsFeatureDPCMMap(InsFeatureAbstract):  # DPCM sample data
-    _code = 'NE'
+    _code = "NE"
     use_map: bool = False
-    sample_map: List[DPCMMap] = field(default_factory=lambda: [SampleMap() for _ in range(120)])
+    sample_map: List[DPCMMap] = field(
+        default_factory=lambda: [SampleMap() for _ in range(120)]
+    )
 
 
 @dataclass
 class InsFeatureX1010(InsFeatureAbstract):
-    _code = 'X1'
+    _code = "X1"
     bank_slot: int = 0
 
 
 @dataclass
 class InsFeaturePowerNoise(InsFeatureAbstract):
-    _code = 'PN'
+    _code = "PN"
     octave: int = 0
 
 
 @dataclass
 class InsFeatureSID2(InsFeatureAbstract):
-    _code = 'S2'
+    _code = "S2"
     noise_mode: int = 0
     wave_mix: int = 0
     volume: int = 0
@@ -582,7 +611,7 @@ class InsFeatureSID2(InsFeatureAbstract):
 
 @dataclass
 class InsFeatureN163(InsFeatureAbstract):
-    _code = 'N1'
+    _code = "N1"
     wave: int = -1
     wave_pos: int = 0
     wave_len: int = 32
@@ -591,7 +620,7 @@ class InsFeatureN163(InsFeatureAbstract):
 
 @dataclass
 class InsFeatureFDS(InsFeatureAbstract):  # Virtual Boy
-    _code = 'FD'
+    _code = "FD"
     mod_speed: int = 0
     mod_depth: int = 0
     init_table_with_first_wave: bool = False  # compat
@@ -600,7 +629,7 @@ class InsFeatureFDS(InsFeatureAbstract):  # Virtual Boy
 
 @dataclass
 class InsFeatureMultiPCM(InsFeatureAbstract):
-    _code = 'MP'
+    _code = "MP"
     ar: int = 15
     d1r: int = 15
     dl: int = 0
@@ -614,7 +643,7 @@ class InsFeatureMultiPCM(InsFeatureAbstract):
 
 @dataclass
 class InsFeatureWaveSynth(InsFeatureAbstract):
-    _code = 'WS'
+    _code = "WS"
     wave_indices: List[int] = field(default_factory=lambda: [0, 0])
     rate_divider: int = 1
     effect: WaveFX = WaveFX.NONE
@@ -627,16 +656,16 @@ class InsFeatureWaveSynth(InsFeatureAbstract):
 
 @dataclass
 class InsFeatureSoundUnit(InsFeatureAbstract):
-    _code = 'SU'
+    _code = "SU"
     switch_roles: bool = False
 
 
 @dataclass
 class InsFeatureES5506(InsFeatureAbstract):
-    _code = 'ES'
+    _code = "ES"
     filter_mode: ESFilterMode = ESFilterMode.LPK2_LPK1
-    k1: int = 0xffff
-    k2: int = 0xffff
+    k1: int = 0xFFFF
+    k2: int = 0xFFFF
     env_count: int = 0
     left_volume_ramp: int = 0
     right_volume_ramp: int = 0
@@ -648,18 +677,20 @@ class InsFeatureES5506(InsFeatureAbstract):
 
 @dataclass
 class InsFeatureSNES(InsFeatureAbstract):
-    _code = 'SN'
+    _code = "SN"
     use_env: bool = True
     sus: SNESSusMode = SNESSusMode.DIRECT
     gain_mode: GainMode = GainMode.DIRECT
     gain: int = 127
     d2: int = 0
-    envelope: GenericADSR = field(default_factory=lambda: GenericADSR(a=15, d=7, s=7, r=0))
+    envelope: GenericADSR = field(
+        default_factory=lambda: GenericADSR(a=15, d=7, s=7, r=0)
+    )
 
 
 @dataclass
 class InsFeatureOPLDrums(InsFeatureAbstract):
-    _code = 'LD'
+    _code = "LD"
     fixed_drums: bool = False
     kick_freq: int = 1312
     snare_hat_freq: int = 1360
@@ -671,7 +702,8 @@ class _InsFeaturePointerAbstract(InsFeatureAbstract):
     """
     Also not really to be used. Container for all "list" features.
     """
-    _code = 'LL'
+
+    _code = "LL"
     pointers: Dict[int, int] = field(default_factory=dict)
 
 
@@ -680,7 +712,8 @@ class InsFeatureSampleList(_InsFeaturePointerAbstract):
     """
     List of pointers to all samples used by this instrument.
     """
-    _code = 'SL'
+
+    _code = "SL"
 
 
 @dataclass
@@ -688,10 +721,12 @@ class InsFeatureWaveList(_InsFeaturePointerAbstract):
     """
     List of pointers to all wave tables used by this instrument.
     """
-    _code = 'WL'
+
+    _code = "WL"
+
 
 @dataclass
 class WavetableMeta:
-    name: str = ''
+    name: str = ""
     width: int = 32
     height: int = 32

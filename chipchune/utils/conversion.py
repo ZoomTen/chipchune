@@ -4,6 +4,7 @@ from chipchune.interchange.furnace import furnace_note_to_internote
 from typing import Union, List, Tuple
 from dataclasses import dataclass, field
 
+
 @dataclass
 class SequenceEntry:
     """
@@ -13,6 +14,7 @@ class SequenceEntry:
     A pattern can be turned into a list of SequenceEntries, which should be easier
     to convert into a format of your choice.
     """
+
     note: InterNote
     length: int
     volume: int
@@ -32,6 +34,7 @@ class SequenceEntry:
     Tracker-defined effects list; if undefined, this should be empty.
     """
 
+
 def pattern_to_sequence(pattern: Union[FurnacePattern, None]) -> List[SequenceEntry]:
     """
     Interface to convert a pattern from tracker rows to a "sequence", which is
@@ -46,6 +49,7 @@ def pattern_to_sequence(pattern: Union[FurnacePattern, None]) -> List[SequenceEn
     else:
         raise TypeError("Invalid pattern type; must be one of: FurnacePattern")
 
+
 def furnace_pattern_to_sequence(pattern: FurnacePattern) -> List[SequenceEntry]:
     converted: List[SequenceEntry] = []
     last_volume = -1
@@ -57,15 +61,15 @@ def furnace_pattern_to_sequence(pattern: FurnacePattern) -> List[SequenceEntry]:
 
         if effects == [(65535, 65535)]:
             effects = []
-        
+
         if volume == 65535:
             volume = last_volume
         else:
             last_volume = volume
-        
+
         if instrument == 65535:
             instrument = -1
-        
+
         if note == InterNote.__:
             if len(converted) == 0:
                 converted.append(

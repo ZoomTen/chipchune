@@ -1,10 +1,12 @@
 from chipchune._util import EnumShowNameOnly, EnumValueEquals
 from typing import Tuple
 
+
 class LinearPitch(EnumShowNameOnly, EnumValueEquals):
     """
     Options for :attr:`chipchune.furnace.data_types.ModuleCompatFlags.linear_pitch`.
     """
+
     NON_LINEAR = 0
     ONLY_PITCH_CHANGE = 1
     FULL_LINEAR = 2
@@ -14,6 +16,7 @@ class LoopModality(EnumShowNameOnly, EnumValueEquals):
     """
     Options for :attr:`chipchune.furnace.data_types.ModuleCompatFlags.loop_modality`.
     """
+
     HARD_RESET_CHANNELS = 0
     SOFT_RESET_CHANNELS = 1
     DO_NOTHING = 2
@@ -23,6 +26,7 @@ class DelayBehavior(EnumShowNameOnly, EnumValueEquals):
     """
     Options for :attr:`chipchune.furnace.data_types.ModuleCompatFlags.cut_delay_effect_policy`.
     """
+
     STRICT = 0
     BROKEN = 1
     LAX = 2
@@ -32,6 +36,7 @@ class JumpTreatment(EnumShowNameOnly, EnumValueEquals):
     """
     Options for :attr:`chipchune.furnace.data_types.ModuleCompatFlags.jump_treatment`.
     """
+
     ALL_JUMPS = 0
     FIRST_JUMP_ONLY = 1
     ROW_JUMP_PRIORITY = 2
@@ -41,6 +46,7 @@ class Note(EnumShowNameOnly):
     """
     All notes recognized by Furnace
     """
+
     __ = 0
     Cs = 1
     D_ = 2
@@ -64,6 +70,7 @@ class MacroItem(EnumShowNameOnly):
     Special values used only in this parser, to allow data editing similar to that
     of Furnace itself.
     """
+
     LOOP = 0
     RELEASE = 1
 
@@ -222,6 +229,7 @@ class OpMacroCode(EnumShowNameOnly, EnumValueEquals):
     """
     Controls which FM parameter a macro should change.
     """
+
     AM = 0
     AR = 1
     DR = 2
@@ -248,6 +256,7 @@ class MacroType(EnumShowNameOnly):
     """
     Instrument macro type (version 120+).
     """
+
     SEQUENCE = 0
     ADSR = 1
     LFO = 2
@@ -257,6 +266,7 @@ class MacroSize(EnumShowNameOnly):
     """
     Type of value stored in the instrument file.
     """
+
     _value_: int
     num_bytes: int
     signed: bool
@@ -269,8 +279,8 @@ class MacroSize(EnumShowNameOnly):
     def __new__(cls, id: int, num_bytes: int, signed: bool):  # type: ignore[no-untyped-def]
         member = object.__new__(cls)
         member._value_ = id
-        setattr(member, 'num_bytes', num_bytes)
-        setattr(member, 'signed', signed)
+        setattr(member, "num_bytes", num_bytes)
+        setattr(member, "signed", signed)
         return member
 
 
@@ -278,6 +288,7 @@ class GBHwCommand(EnumShowNameOnly):
     """
     Game Boy hardware envelope commands.
     """
+
     ENVELOPE = 0
     SWEEP = 1
     WAIT = 2
@@ -290,6 +301,7 @@ class SampleType(EnumShowNameOnly):
     """
     Sample types used in Furnace
     """
+
     ZX_DRUM = 0
     NES_DPCM = 1
     QSOUND_ADPCM = 4
@@ -306,6 +318,7 @@ class InstrumentType(EnumShowNameOnly):
     """
     Instrument types currently available as of version 144.
     """
+
     STANDARD = 0
     FM_4OP = 1
     GB = 2
@@ -363,6 +376,7 @@ class ChipType(EnumShowNameOnly):
     Furnace chip database, either planned or implemented.
     Contains console name, chip ID and number of channels.
     """
+
     _value_: int
     channels: int
 
@@ -392,12 +406,12 @@ class ChipType(EnumShowNameOnly):
     SNES = (0x87, 8)  # SPC700
     VRC6 = (0x88, 3)
     OPLL = (0x89, 9)  # YM2413
-    FDS = (0x8a, 1)
-    MMC5 = (0x8b, 3)
-    N163 = (0x8c, 8)
-    OPN = (0x8d, 6)  # YM2203
-    PC98 = (0x8e, 16)  # YM2608
-    OPL = (0x8f, 9)  # YM3526
+    FDS = (0x8A, 1)
+    MMC5 = (0x8B, 3)
+    N163 = (0x8C, 8)
+    OPN = (0x8D, 6)  # YM2203
+    PC98 = (0x8E, 16)  # YM2608
+    OPL = (0x8F, 9)  # YM3526
 
     OPL2 = (0x90, 9)  # YM3812
     OPL3 = (0x91, 18)  # YMF262
@@ -409,97 +423,99 @@ class ChipType(EnumShowNameOnly):
     SAA1099 = (0x97, 6)
     OPZ = (0x98, 8)
     POKEMON_MINI = (0x99, 1)
-    AY8930 = (0x9a, 3)
-    SEGAPCM = (0x9b, 16)
-    VIRTUAL_BOY = (0x9c, 6)
-    VRC7 = (0x9d, 6)
-    YM2610B = (0x9e, 16)
-    ZX_BEEPER = (0x9f, 6)  # tildearrow's engine
+    AY8930 = (0x9A, 3)
+    SEGAPCM = (0x9B, 16)
+    VIRTUAL_BOY = (0x9C, 6)
+    VRC7 = (0x9D, 6)
+    YM2610B = (0x9E, 16)
+    ZX_BEEPER = (0x9F, 6)  # tildearrow's engine
 
-    YM2612_EX = (0xa0, 9)
-    SCC = (0xa1, 5)
-    OPL_DRUMS = (0xa2, 11)
-    OPL2_DRUMS = (0xa3, 11)
-    OPL3_DRUMS = (0xa4, 20)
-    NEO_GEO = (0xa5, 14)
-    NEO_GEO_EX = (0xa6, 17)
-    OPLL_DRUMS = (0xa7, 11)
-    LYNX = (0xa8, 4)
-    SEGAPCM_DMF = (0xa9, 5)
-    MSM6295 = (0xaa, 4)
-    MSM6258 = (0xab, 1)
-    COMMANDER_X16 = (0xac, 17)  # VERA
-    BUBBLE_SYSTEM_WSG = (0xad, 2)
-    OPL4 = (0xae, 42)
-    OPL4_DRUMS = (0xaf, 44)
+    YM2612_EX = (0xA0, 9)
+    SCC = (0xA1, 5)
+    OPL_DRUMS = (0xA2, 11)
+    OPL2_DRUMS = (0xA3, 11)
+    OPL3_DRUMS = (0xA4, 20)
+    NEO_GEO = (0xA5, 14)
+    NEO_GEO_EX = (0xA6, 17)
+    OPLL_DRUMS = (0xA7, 11)
+    LYNX = (0xA8, 4)
+    SEGAPCM_DMF = (0xA9, 5)
+    MSM6295 = (0xAA, 4)
+    MSM6258 = (0xAB, 1)
+    COMMANDER_X16 = (0xAC, 17)  # VERA
+    BUBBLE_SYSTEM_WSG = (0xAD, 2)
+    OPL4 = (0xAE, 42)
+    OPL4_DRUMS = (0xAF, 44)
 
-    SETA = (0xb0, 16)  # Allumer X1-010
-    ES5506 = (0xb1, 32)
-    Y8950 = (0xb2, 10)
-    Y8950_DRUMS = (0xb3, 12)
-    SCC_PLUS = (0xb4, 5)
-    TSU = (0xb5, 8)
-    YM2203_EX = (0xb6, 9)
-    YM2608_EX = (0xb7, 19)
-    YMZ280B = (0xb8, 8)
-    NAMCO = (0xb9, 3)  # Namco WSG
-    N15XX = (0xba, 8)  # Namco 15xx
-    CUS30 = (0xbb, 8)  # Namco CUS30
-    MSM5232 = (0xbc, 8)
-    YM2612_PLUS_EX = (0xbd, 11)
-    YM2612_PLUS = (0xbe, 7)
-    T6W28 = (0xbf, 4)
+    SETA = (0xB0, 16)  # Allumer X1-010
+    ES5506 = (0xB1, 32)
+    Y8950 = (0xB2, 10)
+    Y8950_DRUMS = (0xB3, 12)
+    SCC_PLUS = (0xB4, 5)
+    TSU = (0xB5, 8)
+    YM2203_EX = (0xB6, 9)
+    YM2608_EX = (0xB7, 19)
+    YMZ280B = (0xB8, 8)
+    NAMCO = (0xB9, 3)  # Namco WSG
+    N15XX = (0xBA, 8)  # Namco 15xx
+    CUS30 = (0xBB, 8)  # Namco CUS30
+    MSM5232 = (0xBC, 8)
+    YM2612_PLUS_EX = (0xBD, 11)
+    YM2612_PLUS = (0xBE, 7)
+    T6W28 = (0xBF, 4)
 
-    PCM_DAC = (0xc0, 1)
-    YM2612_CSM = (0xc1, 10)
-    NEO_GEO_CSM = (0xc2, 18)  # YM2610 CSM
-    YM2203_CSM = (0xc3, 10)
-    YM2608_CSM = (0xc4, 20)
-    YM2610B_CSM = (0xc5, 20)
-    K007232 = (0xc6, 2)
-    GA20 = (0xc7, 4)
-    SM8521 = (0xc8, 3)
-    M114S = (0xc9, 16)
-    ZX_BEEPER_QUADTONE: Tuple[int, int] = (0xca, 5)  # Natt Akuma's engine
-    PV_1000: Tuple[int, int] = (0xcb, 3)  # NEC D65010G031
-    K053260 = (0xcc, 4)
-    TED = (0xcd, 2)
-    NAMCO_C140 = (0xce, 24)
-    NAMCO_C219 = (0xcf, 16)
+    PCM_DAC = (0xC0, 1)
+    YM2612_CSM = (0xC1, 10)
+    NEO_GEO_CSM = (0xC2, 18)  # YM2610 CSM
+    YM2203_CSM = (0xC3, 10)
+    YM2608_CSM = (0xC4, 20)
+    YM2610B_CSM = (0xC5, 20)
+    K007232 = (0xC6, 2)
+    GA20 = (0xC7, 4)
+    SM8521 = (0xC8, 3)
+    M114S = (0xC9, 16)
+    ZX_BEEPER_QUADTONE: Tuple[int, int] = (0xCA, 5)  # Natt Akuma's engine
+    PV_1000: Tuple[int, int] = (0xCB, 3)  # NEC D65010G031
+    K053260 = (0xCC, 4)
+    TED = (0xCD, 2)
+    NAMCO_C140 = (0xCE, 24)
+    NAMCO_C219 = (0xCF, 16)
 
-    NAMCO_C352 = (0xd0, 32)
-    ESFM = (0xd1, 18)
-    ES5503 = (0xd2, 32)
-    POWERNOISE = (0xd4, 4)
-    DAVE = (0xd5, 6)
-    NDS = (0xd6, 16)
-    GBA = (0xd7, 2)
-    GBA_MINMOD = (0xd8, 16)
-    BIFURCATOR = (0xd9, 4)
-    YM2610B_EX = (0xde, 19)
+    NAMCO_C352 = (0xD0, 32)
+    ESFM = (0xD1, 18)
+    ES5503 = (0xD2, 32)
+    POWERNOISE = (0xD4, 4)
+    DAVE = (0xD5, 6)
+    NDS = (0xD6, 16)
+    GBA = (0xD7, 2)
+    GBA_MINMOD = (0xD8, 16)
+    BIFURCATOR = (0xD9, 4)
+    YM2610B_EX = (0xDE, 19)
 
-    QSOUND = (0xe0, 19)
+    QSOUND = (0xE0, 19)
 
-    SID2 = (0xf0, 3) # SID2
-    FIVEE01 = (0xf1, 5) # 5E01
-    PONG = (0xfc, 1)
-    DUMMY = (0xfd, 1)
+    SID2 = (0xF0, 3)  # SID2
+    FIVEE01 = (0xF1, 5)  # 5E01
+    PONG = (0xFC, 1)
+    DUMMY = (0xFD, 1)
 
-    RESERVED_1 = (0xfe, 1)
-    RESERVED_2 = (0xff, 1)
+    RESERVED_1 = (0xFE, 1)
+    RESERVED_2 = (0xFF, 1)
 
     def __new__(cls, id: int, channels: int):  # type: ignore[no-untyped-def]
         member = object.__new__(cls)
         member._value_ = id
-        setattr(member, 'channels', channels)
+        setattr(member, "channels", channels)
         return member
 
     def __repr__(self) -> str:
         # repr abuse
         # about as stupid as "mapping for the renderer"...
         return "%s (0x%02x), %d channel%s" % (
-            self.name, self._value_, self.channels,
-            "s" if self.channels != 1 else ""
+            self.name,
+            self._value_,
+            self.channels,
+            "s" if self.channels != 1 else "",
         )
 
 
@@ -507,6 +523,7 @@ class InputPortSet(EnumShowNameOnly):
     """
     Devices which contain an "input" port.
     """
+
     SYSTEM = 0
     NULL = 0xFFF
 
@@ -515,6 +532,7 @@ class OutputPortSet(EnumShowNameOnly):
     """
     Devices which contain an "output" port.
     """
+
     CHIP_1 = 0
     CHIP_2 = 1
     CHIP_3 = 2
@@ -556,6 +574,7 @@ class WaveFX(EnumShowNameOnly):
     """
     Used in :attr:`chipchune.furnace.data_types.InsFeatureWaveSynth.effect`.
     """
+
     NONE = 0
 
     # single waveform
@@ -582,6 +601,7 @@ class ESFilterMode(EnumShowNameOnly):
     """
     Used in :attr:`chipchune.furnace.data_types.InsFeatureES5506.filter_mode`.
     """
+
     HPK2_HPK2 = 0
     HPK2_LPK1 = 1
     LPK2_LPK2 = 2
@@ -592,6 +612,7 @@ class GainMode(EnumShowNameOnly):
     """
     Used in :attr:`chipchune.furnace.data_types.InsFeatureSNES.gain_mode`.
     """
+
     DIRECT = 0
     DEC_LINEAR = 4
     DEC_LOG = 5
@@ -603,6 +624,7 @@ class SNESSusMode(EnumShowNameOnly):
     """
     Used in :attr:`chipchune.furnace.data_types.InsFeatureSNES.sus`.
     """
+
     DIRECT = 0
     SUS_WITH_DEC = 1
     SUS_WITH_EXP = 2
@@ -613,6 +635,7 @@ class _FurInsImportType(EnumShowNameOnly, EnumValueEquals):
     """
     Also only used in this parser to differentiate between different types of instrument formats.
     """
+
     # Old format
     FORMAT_0_FILE = 0
     FORMAT_0_EMBED = 1
@@ -621,9 +644,11 @@ class _FurInsImportType(EnumShowNameOnly, EnumValueEquals):
     FORMAT_1_FILE = 2
     FORMAT_1_EMBED = 3
 
+
 class _FurWavetableImportType(EnumShowNameOnly, EnumValueEquals):
     """
     Also only used in this parser to differentiate between different types of wavetable formats.
     """
+
     FILE = 0
     EMBED = 1
