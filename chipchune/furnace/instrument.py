@@ -1,5 +1,5 @@
 from io import BytesIO
-from typing import Optional, Union, BinaryIO, TypeVar, Type, List, Dict
+from typing import Optional, Union, BinaryIO, TypeVar, Type, List, Dict, cast
 
 from chipchune._util import read_byte, read_short, read_int, read_str
 from .data_types import (
@@ -646,7 +646,7 @@ class FurnaceInstrument:
 
         blk_size = read_int(stream)
         if blk_size > 0:
-            ins_data = BytesIO(stream.read(blk_size))
+            ins_data: Union[BytesIO, BinaryIO] = BytesIO(stream.read(blk_size))
         else:
             ins_data = stream
 
@@ -843,21 +843,21 @@ class FurnaceInstrument:
                 if arp_mac_mode == 0:
                     for j in range(len(arp_mac.data)):
                         if isinstance(arp_mac.data[j], int):
-                            arp_mac.data[j] -= 12
+                            arp_mac.data[j] = cast(int, arp_mac.data[j]) - 12
             if self.meta.version < 87:
                 if c64.vol_is_cutoff and not c64.filter_is_abs:
                     for j in range(len(vol_mac.data)):
                         if isinstance(vol_mac.data[j], int):
-                            vol_mac.data[j] -= 18
+                            vol_mac.data[j] = cast(int, vol_mac.data[j]) - 18
                 if c64.duty_is_abs:  # TODO
                     for j in range(len(duty_mac.data)):
                         if isinstance(duty_mac.data[j], int):
-                            duty_mac.data[j] -= 12
+                            duty_mac.data[j] = cast(int, duty_mac.data[j]) - 12
             if self.meta.version < 112:
                 if arp_mac_mode == 1: # fixed arp!
                     for i in range(len(arp_mac.data)):
                         if isinstance(arp_mac.data[i], int):
-                            arp_mac.data[i] |= (1 << 30)
+                            arp_mac.data[i] = cast(int, arp_mac.data[i]) | (1 << 30)
                     if len(arp_mac.data) > 0:
                         if arp_mac_loop != 0xffffffff:
                             if arp_mac_loop == arp_mac_len+1:
@@ -1563,7 +1563,7 @@ class FurnaceInstrument:
                     arp_mac.mode = 0
                     for i in range(len(arp_mac.data)):
                         if isinstance(arp_mac.data[i], int):
-                            arp_mac.data[i] ^= 0x40000000
+                            arp_mac.data[i] = cast(int, arp_mac.data[i]) ^ 0x40000000
 
         # add ops macros at the end
         if True:

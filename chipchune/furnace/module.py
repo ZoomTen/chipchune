@@ -1,7 +1,7 @@
 import re
 import zlib
 from io import BytesIO, BufferedReader
-from typing import BinaryIO, Optional, Literal, Union, Dict, List
+from typing import BinaryIO, Optional, Literal, Union, Dict, List, Callable
 
 from chipchune._util import read_byte, read_short, read_int, read_float, read_str
 from .data_types import (
@@ -931,7 +931,9 @@ class FurnaceModule:
                 num_rows = self.subsongs[new_patr.subsong].pattern_length
                 effect_columns = self.subsongs[new_patr.subsong].effect_columns[new_patr.channel]
 
-                empty_row = lambda: FurnaceRow(Note.__, 0, 0xffff, 0xffff, [(0xffff,0xffff)] * effect_columns)
+                empty_row: Callable[[], FurnaceRow] = lambda: FurnaceRow(
+                    Note.__, 0, 0xffff, 0xffff, [(0xffff,0xffff)] * effect_columns
+                )
 
                 row_idx = 0
                 while row_idx < num_rows:
@@ -988,9 +990,9 @@ class FurnaceModule:
                         elif raw_note == 182:
                             note = Note.REL
                         else:
-                            note = raw_note % 12
-                            note = 12 if note == 0 else note
-                            note = Note(note)
+                            note_val = raw_note % 12
+                            note_val = 12 if note_val == 0 else note_val
+                            note = Note(note_val)
                             octave = -5 + raw_note // 12
 
                     ins, volume = 0xffff, 0xffff

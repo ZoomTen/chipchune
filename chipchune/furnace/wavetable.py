@@ -89,7 +89,7 @@ class FurnaceWavetable:
         
         blk_size = read_int(stream)
         if blk_size > 0:
-            wt_data = BytesIO(stream.read(blk_size))
+            wt_data: Union[BytesIO, BinaryIO] = BytesIO(stream.read(blk_size))
         else:
             wt_data = stream
 
