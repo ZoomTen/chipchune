@@ -585,7 +585,7 @@ class InsFeatureDPCMMap(InsFeatureAbstract):  # DPCM sample data
     _code = "NE"
     use_map: bool = False
     sample_map: List[DPCMMap] = field(
-        default_factory=lambda: [SampleMap() for _ in range(120)]
+        default_factory=lambda: [DPCMMap() for _ in range(120)]
     )
 
 
