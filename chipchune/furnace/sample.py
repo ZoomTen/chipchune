@@ -23,10 +23,10 @@ class FurnaceSample:
         """
         Load a sample from an **uncompressed** stream.
 
-        :param stream: File-like object containing the uncompressed wavetable.
+        :param stream: File-like object containing the uncompressed sample.
         """
         if stream.read(len(FILE_MAGIC_STR)) != FILE_MAGIC_STR:
-            raise ValueError('Bad magic value for a wavetable file')
+            raise ValueError('Bad magic value for a sample')
         blk_size = read_int(stream)
         if blk_size > 0:
             smp_data = BytesIO(stream.read(blk_size))
