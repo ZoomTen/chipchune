@@ -695,3 +695,11 @@ class WavetableMeta:
     name: str = ''
     width: int = 32
     height: int = 32
+
+@dataclass
+class SampleMeta:
+    name: str = ''
+    length: int = 0
+    bitdepth: int = 0
+    loop_start: int = 0
+    loop_end: int = 0

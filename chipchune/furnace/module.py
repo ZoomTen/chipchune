@@ -14,6 +14,7 @@ from .enums import (
 )
 from .instrument import FurnaceInstrument
 from .wavetable import FurnaceWavetable
+from .sample import FurnaceSample
 
 MAGIC_STR = b'-Furnace module-'
 MAX_CHIPS = 32
@@ -74,6 +75,8 @@ class FurnaceModule:
         List of all patterns in the module.
         """
         self.wavetables: List[FurnaceWavetable] = []
+
+        self.samples: List[FurnaceWavetable] = []
 
         if isinstance(file_name_or_stream, BufferedReader):
             self.load_from_stream(file_name_or_stream)
@@ -867,7 +870,13 @@ class FurnaceModule:
             self.wavetables.append(new_wt)
 
     def __read_samples(self, stream: BinaryIO) -> None:
-        pass
+        for i in self.__sample_ptr:
+            if i == 0:
+                break
+            stream.seek(i)
+            new_wt = FurnaceSample()
+            new_wt.load_from_stream(stream)
+            self.samples.append(new_wt)
 
     def __read_patterns(self, stream: BinaryIO) -> None:
         for i in self.__pattern_ptr:
