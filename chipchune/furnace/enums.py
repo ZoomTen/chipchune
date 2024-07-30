@@ -126,7 +126,7 @@ class MacroCode(EnumShowNameOnly, EnumValueEquals):
     - QSound echo feedback
     - SNES special
     - MSM5232 group attack
-    - AY8930 duty? 
+    - AY8930 duty?
     """
 
     EX2 = 6
@@ -372,7 +372,7 @@ class ChipType(EnumShowNameOnly):
     GB = (0x04, 4)  # LR53902
     PCE = (0x05, 6)  # HuC6280
     NES = (0x06, 5)  # RP2A03
-    C64_8580 = (0x07, 4)  # SID r8580
+    C64_8580 = (0x07, 3)  # SID r8580
     SEGA_ARCADE = (0x08, 13)  # YM2151 + SegaPCM
     NEO_GEO_CD = (0x09, 13)
 
