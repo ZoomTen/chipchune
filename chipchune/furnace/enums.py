@@ -652,10 +652,12 @@ class _FurWavetableImportType(EnumShowNameOnly, EnumValueEquals):
     FILE = 0
     EMBED = 1
 
+
 class _FurSampleType(EnumShowNameOnly, EnumValueEquals):
     """
     Also only used in this parser to differentiate between different types of sample formats.
     """
+
     PCM_1_BIT = 0
     DPCM = 1
     YMZ = 3
