@@ -22,7 +22,11 @@ setup(
     author="Zumi Daxuya",
     author_email="daxuya.zumi+chipchune@proton.me",
     packages=[
-        "chipchune.furnace", "chipchune.famitracker", "chipchune.deflemask"
+        "chipchune",
+        "chipchune.deflemask",
+        "chipchune.famitracker",
+        "chipchune.furnace",
+        "chipchune.interchange",
     ],
     license="MIT",
     python_requires=">=3.8",
