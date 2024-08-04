@@ -28,6 +28,28 @@
 
 
 
+            <h2>API Documentation</h2>
+                <ul class="memberlist">
+            <li>
+                    <a class="variable" href="#FILE_MAGIC_STR">FILE_MAGIC_STR</a>
+            </li>
+            <li>
+                    <a class="class" href="#FurnaceSample">FurnaceSample</a>
+                            <ul class="memberlist">
+                        <li>
+                                <a class="variable" href="#FurnaceSample.meta">meta</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#FurnaceSample.data">data</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#FurnaceSample.load_from_stream">load_from_stream</a>
+                        </li>
+                </ul>
+
+            </li>
+    </ul>
+
 
 
         <a class="attribution" title="pdoc: Python API documentation generator" href="https://pdoc.dev" target="_blank">
@@ -47,6 +69,78 @@
                 
                 
             </section>
+                <section id="FILE_MAGIC_STR">
+                    <div class="attr variable">
+            <span class="name">FILE_MAGIC_STR</span>        =
+<span class="default_value">b&#39;SMP2&#39;</span>
+
+        
+    </div>
+    <a class="headerlink" href="#FILE_MAGIC_STR"></a>
+    
+    
+
+                </section>
+                <section id="FurnaceSample">
+                    <div class="attr class">
+            
+    <span class="def">class</span>
+    <span class="name">FurnaceSample</span>:
+
+        
+    </div>
+    <a class="headerlink" href="#FurnaceSample"></a>
+    
+    
+
+                            <div id="FurnaceSample.meta" class="classattr">
+                                <div class="attr variable">
+            <span class="name">meta</span><span class="annotation">: <a href="data_types.html#SampleMeta">chipchune.furnace.data_types.SampleMeta</a></span>
+
+        
+    </div>
+    <a class="headerlink" href="#FurnaceSample.meta"></a>
+    
+            <div class="docstring"><p>Sample metadata.</p>
+</div>
+
+
+                            </div>
+                            <div id="FurnaceSample.data" class="classattr">
+                                <div class="attr variable">
+            <span class="name">data</span><span class="annotation">: bytearray</span>
+
+        
+    </div>
+    <a class="headerlink" href="#FurnaceSample.data"></a>
+    
+            <div class="docstring"><p>Sample data.</p>
+</div>
+
+
+                            </div>
+                            <div id="FurnaceSample.load_from_stream" class="classattr">
+                                <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">load_from_stream</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param">stream: &lt;class &#x27;BinaryIO&#x27;&gt;</span><span class="return-annotation">) -> <span class="kc">None</span>:</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#FurnaceSample.load_from_stream"></a>
+    
+            <div class="docstring"><p>Load a sample from an <strong>uncompressed</strong> stream.</p>
+
+<h6 id="parameters">Parameters</h6>
+
+<ul>
+<li><strong>stream</strong>:  File-like object containing the uncompressed sample.</li>
+</ul>
+</div>
+
+
+                            </div>
+                </section>
     </main>
 <script>
     function escapeHTML(html) {
